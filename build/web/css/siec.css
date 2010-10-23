@@ -1,258 +1,377 @@
+/**
+/* CSS Siec
+/* author: esteban.uscanga@tekiotl.com
+/* 2010
+/**/
+
 *{
 	margin:0;
 	padding:0;
+        border: 0 none;
+}
+/* Elementos HTML*/
+html {
+    height: 100.1%;
 }
 body {
-	border:0;
-	width:100%;
+	height: 100%;
+        color:#333;
 	background:#fff;
-	min-width:600px;
 	font-size:80%;
-	line-height:80%;
 	line-height:18px;
-	color:#333333;
 	font-family:Arial,Helvetica,sans-serif;
-	}
-h2, h3, h4 {
-	margin: 0;
-	padding: 0 0 5px 0;
 }
-	
+a{
+    color: #096DD1;
+    text-decoration: none;
+}
+h1, h2, h3, h4 {
+    margin-bottom: 5px;
+    padding: 10px 0px 10px 10px;
+}
+h1{
+    color:#718BA6;
+}
 h2 {
-	margin:5px 0 0 5px;
-	font-size:14px;
-	font-weight:600;
-	color:#3D3D3D;
-	font-family:"Trebuchet MS";
+    font-size: 150%;
+    background-color: #6a92b5;
+    color: #213343;
 }
-	
 h3 {
-	font-size: 13px;
-	font-weight: bold;
+    font-size: 130%;
+    background-color: #6a92b5;
+    color: #213343;
 }
-
 h4 {
-	font-size: 11px;
+    padding-left: 30px;
+    font-size: 110%;
+    background-color: transparent;
+    color: #213343;
 }
 
-a {
-	color: #096DD1;
-	text-decoration: none;
-	cursor: pointer;
+hr {
+    display: none;
 }
 
-a:hover {
-	text-decoration: none;
+/* Miscelaneos */
+
+    /* Cuadro */
+.cuadro{
+	border-bottom:1px solid #D3D3D3;
 }
-p {
-	margin:.4em 0 .8em 0;
-	padding:0;
+.theader{
+	background:url("../images/bg-panel-header.gif") repeat-x scroll 0 0 #F1F1F1;
+	border-bottom:1px solid #D3D3D3;
+	height:27px;
+	overflow:hidden;
+	position:relative;
+        font-weight: bold;
+        padding:8px 0 0 15px;
 }
-img {
-	margin:10px 0 5px;
+.cuadcont{
+    padding:10px;
+    background: #fff;
 }
-#ads img {
-	display:block;
-	padding-top:10px;
+.cuadcont ul{
+    padding-left:20px;
 }
+.cuadcont li{
+    list-style: circle;
+}
+.cuadromarg{
+    margin: 10px;
+}
+#footerbox {
+    clear: both;
+    height: 40px;
+}
+/* Layout */
+#wrapper {
+    height: 100%;
+    min-height: 100%;
+    margin: 0 200px -41px 200px;
+    border-left: 3px solid #C3C3C3;
+    border-right: 3px solid #C3C3C3;
+    background-color: #cfdce7;
+}
+html > body #wrapper {
+    height: auto;
+}
+
+/* Header */
 #header {
-	clear:both;
-	float:left;
-	width:100%;
+    position: relative;
+    height: 85px;
+    margin: 0 -202px 0 -202px;
+    border-bottom: 1px solid #848484;
+    color: #fff;
+    background-color: #f2f2f2;
 }
-/* Menu superior */
-#menutop{
-	height:80px;
-	background:#f2f2f2;
-	border-bottom:1px solid #848484;
-}
-#menutop ul{
-	margin-top:13px;
-	margin-left:10px;
-}
-#menutop li{
-	list-style:none;
-	float:left;
-}
-#menutop a{
-	color:#000;
-	font-size:90%;
-	display:block;
-	float:left;
-	margin-right:20px;
-}
-/* Menu superior */
 #desktopTitlebar {
-	background:url("../images/logo-blank.gif") no-repeat scroll left 0 transparent;
+	background:url("../images/logo-blank.gif") no-repeat scroll left transparent;
 	height:32px;
 	padding:7px 8px 6px;
 }
 #desktopTitlebarWrapper {
 	background:url("../images/bg-header.gif") repeat-x scroll left #718BA6;
 	height:45px;
-	overflow:hidden;
 	position:relative;
 }
-
-#header p,
-#header h1,
-#header h2 {
-	
-	margin:0;
+#header h1{
+    display:none;
 }
-#header ul {
-	clear:left;
-	float:left;
-	width:100%;
-	list-style:none;
-	margin:10px 0 0 0;
-	padding:0;
-}
-#header ul li {
-	display:inline;
-	list-style:none;
-	margin:0;
-	padding:0;
-}
-#header ul li a {
-	display:block;
-	float:left;
-	margin:0 0 0 0px;
-	padding:2px 20px;
-	text-align:center;
-	color:#fff;
-	text-decoration:none;
-	left:15px;
-	line-height:1.3em;
-}
-#header ul li a:hover {
-	
-}
-#header ul li a.active,
-#header ul li a.active:hover {
-	
-}
-#header ul li a span {
-	display:block;
-}
-#layoutdims {
-	clear:both;
-	
-	border-top:4px solid #000;
-	margin:0;
-	padding:6px 15px !important;
-	text-align:right;
-}
-.colmask {
-	position:relative;
-	clear:both;
-	float:left;
-	width:100%;
-	overflow:hidden;
-}
-.colright,
-.colmid,
-.colleft {
-	float:left;
-	width:100%;
-	position:relative;
-}
-.col1,
-.col2,
-.col3 {
-	float:left;
-	position:relative;
-	padding:0 0 0 0;
-	overflow:hidden;
-}
-/* 3 Columnas*/
-.threecol {
-
-}
-.threecol .colmid {
-	right:25%;			
-	background:#fff;
-}
-.threecol .colleft {
-	right:50%;
-}
-.threecol .col1 {
-	width:46%;
-	left:102%;
-	padding-top:20px;			
-}
-.threecol .col2 {
-	width:30%;
-	left:29%;
-}
-.threecol .col3 {
-	width:24%;			
-	left:85%;			
-}
-#footer {
-	clear:both;
-	float:left;
-	width:100%;
-	border-top:1px solid #848484;
-}
-#desktopFooter{
-	font-size:11px;
-	padding:15px;
-}
-#footer p {
-	padding:10px;
-	margin:0;
-}
-.cuadro{
-	width:199px;
-	
-	border-bottom:1px solid #D3D3D3;
-}
-.cuadror{
-	width:232px;
-	border-bottom:1px solid #D3D3D3;
-}
-.theader{
-	background:url("../images/bg-panel-header.gif") repeat-x scroll 0 0 #F1F1F1;
-	border-bottom:1px solid #D3D3D3;
-	height:30px;
-	overflow:hidden;
-	position:relative;
-}
-.cuadcont{
-	margin:10px;
-}
-.cuadcont ul{
-	margin-left:15px;
-}
-.columnHandle {
-	background:url("../images/handle-icon.gif") no-repeat scroll center center #C3C3C3;
-	border-color:-moz-use-text-color #909090;
-	border-left:1px solid #909090;
-	border-right:1px solid #909090;
-	border-style:none solid;
-	border-width:0 1px;
-	float:left;
-	min-height:400px;
-	overflow:hidden;
-	width:4px;
-	cursor: e-resize; height: 64px;
-}
-.fl{
-	float:left;
-}
-.fr{
-	float:right;
-}
-.topbar{
+#header .topbar{
 	color:#D4DCE4;
 	font-family:Verdana,Arial,Helvetica,sans-serif;
 	font-size:10px;
 	text-align:right;
+        display: block;
+        float:right;
 }
-.fixl{
-	clear:left;
+.topbar ul{
+    margin-top:10px;
 }
-.hidden{
-	display:none;
+.topbar a{
+        text-decoration: none;
+        color:#fff;
+}
+.topbar li{
+    float:left;
+    margin-left: 20px;
+    list-style: none;
+}
+
+    /* Menu Principal */
+#mprincipal{
+	background:#f2f2f2;
+}
+#mprincipal ul{
+	margin-top:13px;
+	margin-left:10px;
+}
+#mprincipal li{
+	list-style:none;
+	float:left;
+}
+#mprincipal a{
+	color:#000;
+	font-size:90%;
+	display:block;
+	float:left;
+	margin-right:20px;
+}
+    /* Menu de controles */
+#mtopctrl{
+float: right;
+}
+#mtopctrl a{
+    color:#001ca8;
+}
+#mtopctrl ul{
+    margin:0 20px 0 10px;
+}
+#mtopctrl ul li{
+    display: block;
+    float: left;
+}
+#btnhidecols{
+    display: block;
+    padding-left:28px;
+    height: 22px;
+}
+.btnhidecolsnp{
+    background:transparent url("../images/view_icon.png") no-repeat 0 -2px;
+}
+.btnhidecolsp{
+    background:transparent url("../images/view_choose.png") no-repeat 0 -2px;
+}
+/* Menu izquierda*/
+#menul {
+    float: left;
+    width: 200px;
+    margin-left: -202px;
+    position: relative;
+}
+/* Contenido (ver -> wrapper)*/
+#mitte {
+    margin-bottom: 12px;
+}
+    /* Elementos del Contenido*/
+#mitte ul,
+#mitte p {
+    margin: 15px 30px 15px 50px;
+}
+/* Menu derecha*/
+#menur {
+    position: absolute;
+    top: 86px;
+    right: 0px;
+    width: 200px;
+}
+/* Footer */
+#footer {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    clear: both;
+    border-top:1px solid #848484;
+    background-color: #fff;
+    color: #333;
+}
+#footer p {
+    font-size:11px;
+    padding:10px 0 0 15px;
+}
+
+/* Formularios, elementos */
+.form{
+    margin: 10px;
+}
+.form div{
+    margin:5px;
+}
+label{
+    font-style: italic;
+    font-size: 1.1em;
+}
+.input input,select{
+    width: 200px;
+}
+.textarea textarea{
+    width: 80%;
+}
+ input,textarea,select{
+     border:1px solid #dee2e3;
+     padding: 5px;
+}
+input:hover,input:focus,textarea:hover,textarea:focus,select:hover,select:focus{
+    color:#00204e;
+    border:1px solid #c4c7c8;
+}
+.textarea textarea{
+    color:#333;
+    font-size: 90%;
+    font-family:Arial,Helvetica,sans-serif;
+}
+.textarea label,.selectmultiple select{
+    display: block;
+}
+.submit input{
+    display: block;
+    background:url("../images/bg-panel-header.gif") repeat-x #F1F1F1;
+    border:1px solid #D3D3D3;
+    cursor:pointer;
+    height:30px;
+    padding:5px 10px 5px 10px;
+    color:#3e4545;
+}
+
+/* Login */
+#login form {
+    -moz-border-radius:11px 11px 11px 11px;
+    -moz-box-shadow:0 4px 18px #C8C8C8;
+    background:none repeat scroll 0 0 #FFFFFF;
+    border:1px solid #E5E5E5;
+    font-weight:normal;
+    margin-left:8px;
+    padding:16px 16px 40px;
+}
+#login form p {
+    margin-bottom:0;
+}
+#login label {
+    color:#777777;
+    font-size:13px;
+}
+
+#login form .forgetmenot label {
+    font-size:11px;
+    line-height:19px;
+}
+#login form .submit, .alignright {
+    float:right;
+}
+#login form p {
+    margin-bottom:24px;
+}
+#nav {
+    text-shadow:0 1px 0 #FFF;
+}
+#login {
+    font:11px "Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;
+    padding-top:30px;
+    margin:1em auto;
+    width:320px;
+}
+
+#info {
+    font:11px "Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;
+    margin:1em auto;
+    width:320px;
+}
+#login_error, .message {
+    -moz-border-radius:3px 3px 3px 3px;
+    border-style:solid;
+    border-width:1px;
+    margin:0 0 16px 8px;
+    padding:12px;
+}
+#nav {
+    margin:0 0 0 8px;
+    padding:16px;
+}
+#user_pass, #user_login, #user_email {
+    background:none repeat scroll 0 0 #FBFBFB;
+    border:1px solid #E5E5E5;
+    font-size:24px;
+    margin-bottom:16px;
+    margin-right:6px;
+    margin-top:2px;
+    padding:3px;
+    width:97%;
+}
+#login input {
+    color:#555555;
+}
+.h1login{
+    font-family: "Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;
+    text-align: center;
+    display:block;
+    width: 46%;
+    line-height: 2em;
+    font-size:1em;
+    margin:5em auto;
+    margin-bottom:-1em;
+    color:#6f90b8;
+}
+.error, .login #login_error {
+    background:#ffEBE8;
+    border-color:#CC0000;
+    -moz-border-radius:3px 3px 3px 3px;
+    border-style:solid;
+    border-width:1px;
+    margin:0 0 16px 8px;
+    padding:12px;
+}
+
+/********
+/
+/   Páginas
+/
+*********/
+
+/*Página Registro de Estrategias*/
+.ulalumnosel li{
+   margin-top: 5px;
+}
+.ulalumnosel li:hover{
+   background:#ccc;
+   cursor:pointer;
+   font-weight: bold;
+}
+.ulalumnos{
+    display:none;
+}
+.ulalumnos li{
+    padding:5px 0 5px 0;
 }
