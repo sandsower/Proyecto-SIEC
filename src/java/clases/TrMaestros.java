@@ -5,6 +5,9 @@
 
 package clases;
 
+import MovimientosBD.ConexionBD;
+import java.sql.*;
+
 /**
  *
  * @author Sandsower
@@ -14,7 +17,12 @@ public class TrMaestros
     private int Maestro_ID;
     private String codigo;
     private int usuario_ID;
-    private int materia_Grupo;
+
+    public TrMaestros(int Maestro_ID, String codigo, int usuario_ID){
+        this.setCodigo(codigo);
+        this.setMaestro_ID(Maestro_ID);
+        this.setUsuario_ID(usuario_ID);
+    }
 
     /**
      * @return the Maestro_ID
@@ -58,17 +66,25 @@ public class TrMaestros
         this.usuario_ID = usuario_ID;
     }
 
-    /**
-     * @return the materia_Grupo
-     */
-    public int getMateria_Grupo() {
-        return materia_Grupo;
-    }
-
-    /**
-     * @param materia_Grupo the materia_Grupo to set
-     */
-    public void setMateria_Grupo(int materia_Grupo) {
-        this.materia_Grupo = materia_Grupo;
+    public TrMaestros obtenerMaestro (int id){
+        try {
+            ConexionBD nuevaConexion = new ConexionBD();
+            nuevaConexion.conectarBD("root", "13450811");
+            Connection con = nuevaConexion.getCon();
+            Statement stmt = null;
+            ResultSet rs = null;
+            TrMaestros mae = null;
+            //SQL query command
+            String SQL = "SELECT * FROM Tc_Carrera WHERE Carrera_ID="+id;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                mae = new TrMaestros(rs.getInt("Maestro_ID"), rs.getString("Codigo"), rs.getInt("Usuario_ID"));
+            }
+            return mae;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
     }
 }
