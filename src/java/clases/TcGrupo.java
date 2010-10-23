@@ -96,25 +96,5 @@ public class TcGrupo
         this.letra = letra;
     }
 
-    public TcGrupo obtenerGrupo (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TcGrupo grp = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tc_Grupo WHERE Grupo_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                grp = new TcGrupo(rs.getInt("Grupo_ID"), rs.getString("Des_Grupo"), rs.getInt("Carrera_ID"), rs.getString("Cuatrimestre"), rs.getString("Letra"));
-            }
-            return grp;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
+    
 }

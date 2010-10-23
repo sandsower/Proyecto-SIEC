@@ -112,26 +112,4 @@ public class TrEstrategias
     public void setEvaluacion(int evaluacion) {
         this.evaluacion = evaluacion;
     }
-
-    public TrEstrategias obtenerEstrategia (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TrEstrategias est = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tr_Comentario_Pda_Estrategia WHERE Coment_Estra_DPA_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                est = new TrEstrategias(rs.getInt("Estrategia_ID"), rs.getString("Fecha_Inicio_Registro"), rs.getString("Mensaje"), rs.getString("Maestro_ID"), rs.getInt("Maestros_Maestro_ID"), rs.getInt("Evaluacion"));
-            }
-            return est;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
 }

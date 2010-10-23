@@ -47,26 +47,4 @@ public class TrEvaluacionParcialAcumulativa {
         this.evaluacion_parcial_acumulativa_ID = evaluacion_parcial_acumulativa_ID;
     }
 
-    public TrEvaluacionParcialAcumulativa obtenerEvaluacionParcialAcumulativa (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TrEvaluacionParcialAcumulativa epa = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tr_Evaluacion_Parcial_Acumulativa WHERE Tr_Evaluacion_Parcial_Acumulativa_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                epa = new TrEvaluacionParcialAcumulativa(rs.getInt("Evaluacion_Parcial_Acumulativa_ID"), rs.getInt("Evaluacion_Parcial_ID"), rs.getInt("Evaluacion_Acumulativa_ID"));
-            }
-            return epa;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
-
 }

@@ -65,26 +65,4 @@ public class TrMaestros
     public void setUsuario_ID(int usuario_ID) {
         this.usuario_ID = usuario_ID;
     }
-
-    public TrMaestros obtenerMaestro (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TrMaestros mae = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tc_Carrera WHERE Carrera_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                mae = new TrMaestros(rs.getInt("Maestro_ID"), rs.getString("Codigo"), rs.getInt("Usuario_ID"));
-            }
-            return mae;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
 }

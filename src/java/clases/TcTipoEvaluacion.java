@@ -41,27 +41,5 @@ public class TcTipoEvaluacion {
     public void setDesTipoEvaluacion(String desTipoEvaluacion) {
         this.desTipoEvaluacion = desTipoEvaluacion;
     }
-
-    public TcTipoEvaluacion obtenerTipoEvaluacion (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TcTipoEvaluacion tev = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tc_Tipo_Evaluacion WHERE Tipo_Evaluacion_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                tev = new TcTipoEvaluacion(rs.getInt("Tipo_Evaluacion_ID"), rs.getString("Des_Tipo_Evaluacion"));
-            }
-            return tev;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
    
 }

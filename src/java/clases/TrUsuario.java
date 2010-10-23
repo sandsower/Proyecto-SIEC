@@ -129,26 +129,4 @@ public class TrUsuario
     public void setPerfil_ID(int perfil_ID) {
         this.perfil_ID = perfil_ID;
     }
-
-     public TrUsuario obtenerUsuario (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TrUsuario usr = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tr_Usuario WHERE Tr_Usuario_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                usr = new TrUsuario(rs.getInt("Usuario_ID"), rs.getString("Nombres"), rs.getString("Apellidos"), rs.getString("Fecha_Nac"), rs.getString("Usuario"), rs.getString("Password"), rs.getInt("Perfil_ID"));
-            }
-            return usr;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
 }

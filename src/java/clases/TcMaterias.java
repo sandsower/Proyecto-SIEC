@@ -63,25 +63,4 @@ public class TcMaterias
         this.departamento = departamento;
     }
 
-    public TcMaterias obtenerMateria (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TcMaterias mat = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tc_Materias WHERE Materias_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                mat = new TcMaterias(rs.getInt("Materias_ID"), rs.getString("Des_Materias"), rs.getInt("Departamento"));
-            }
-            return mat;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
 }

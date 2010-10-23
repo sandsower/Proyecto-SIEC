@@ -86,26 +86,4 @@ public class TrEvaluacionParcial {
     public void setTipo_evaluacion_ID(int tipo_evaluacion_ID) {
         this.tipo_evaluacion_ID = tipo_evaluacion_ID;
     }
-
-    public TrEvaluacionParcial obtenerEvaluacionParcial (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TrEvaluacionParcial evp = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tr_Evaluacion_Parcial WHERE Tr_Evaluacion_Parcial_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                evp = new TrEvaluacionParcial(rs.getInt("Evaluacion_Parcial_ID"), rs.getInt("Calificacion"), rs.getInt("Parcial"),rs.getInt("Evaluacion_Nivel_ID"), rs.getInt("Tipo_Evaluacion_ID"), rs.getInt("Maestro_Materia_Grupo_Sesion_ID"), rs.getInt("Alumnos_ID"));
-            }
-            return evp;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
 }

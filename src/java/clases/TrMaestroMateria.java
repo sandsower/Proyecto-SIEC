@@ -65,26 +65,4 @@ public class TrMaestroMateria
         this.maestro_ID = maestro_ID;
     }
 
-    public TrMaestroMateria obtenerMaestroMateria (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TrMaestroMateria mma = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tr_Maestro_Materia WHERE Tr_Maestro_Materia_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                mma = new TrMaestroMateria(rs.getInt("Maestro_Materia_ID"), rs.getInt("Materia_ID"), rs.getInt("Maestro_ID"));
-            }
-            return mma;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
-
 }

@@ -60,26 +60,4 @@ public class TrMaestroMateriaGrupoSesion {
     public void setMaeMatGrp_ID(int maeMatGrp_ID) {
         this.maeMatGrp_ID = maeMatGrp_ID;
     }
-
-    public TrMaestroMateriaGrupoSesion obtenerMaestroMateriaGrupo (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TrMaestroMateriaGrupoSesion mmgs = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tr_Maestro_Materia_Grupo_Sesion WHERE Tr_Maestro_Materia_Grupo_Sesion_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                mmgs = new TrMaestroMateriaGrupoSesion(rs.getInt("Maestro_Materia_Grupo_Sesion_ID"),rs.getInt("Sesion_ID"), rs.getInt("Maestro_Materia_Grupo_ID"));
-            }
-            return mmgs;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
 }

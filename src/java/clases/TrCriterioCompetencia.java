@@ -66,25 +66,4 @@ public class TrCriterioCompetencia
         this.descripcion = descripcion;
     }
 
-    public TrCriterioCompetencia obtenerCriterioCompetencia (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TrCriterioCompetencia ccm = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tr_Criterio_Competencia WHERE Criterio_Competencia_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                ccm = new TrCriterioCompetencia(rs.getInt("Criterio_ID"), rs.getString("Des_Criterio"), rs.getString("Descripcion"));
-            }
-            return ccm;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
 }

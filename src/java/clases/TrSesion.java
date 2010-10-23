@@ -113,27 +113,5 @@ public class TrSesion
     public void setPonderacion(String ponderacion) {
         this.ponderacion = ponderacion;
     }
-
-     public TrSesion obtenerSesion (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TrSesion ses = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tr_Sesion WHERE Sesion_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                ses = new TrSesion(rs.getInt("Sesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Criterio_Competencia_ID"), rs.getInt("Sesion_Rechazada_ID"), rs.getString("Ponderacion"));
-            }
-            return ses;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
     
 }
