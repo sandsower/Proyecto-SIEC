@@ -16,11 +16,11 @@ public static void main(String[] args)
 
         ObtenerIndividuo obt = new ObtenerIndividuo();
         TcCarrera carrera = obt.obtenerCarrera(2);
-        System.out.print(carrera.toString());
+        System.out.println(carrera.toString());
 
 
         TcCategorias categoria =obt.obtenerCategoria(2);
-        System.out.print(categoria.toString());
+        System.out.println(categoria.toString());
 
         TrUsuario usuario=obt.obtenerUsuario(3);
         System.out.println(usuario.toString());
@@ -31,7 +31,7 @@ public static void main(String[] args)
         TrSesion sesion=obt.obtenerSesion(1);
         System.out.println(sesion.toString());
 
-        TrMaestros maestros=obt.obtenerMaestro(5);
+        TrMaestros maestros=obt.obtenerMaestro(4);
         System.out.println(maestros.toString());
 
         TrMaestroMateriaGrupoSesion mGS=obt.obtenerMaestroMateriaGrupoSesion(1);
@@ -41,10 +41,10 @@ public static void main(String[] args)
         System.out.println(mMG.toString());
 
 
-        TrMaestroMateria mM=obt.obtenerMaestroMateria(5);
+        TrMaestroMateria mM=obt.obtenerMaestroMateria(3);
         System.out.println(mM.toString());
 
-        TrEvaluacionParcialAcumulativa ePA=obt.obtenerEvaluacionParcialAcumulativa(1);
+        TrEvaluacionParcialAcumulativa ePA=obt.obtenerEvaluacionParcialAcumulativa(2);
         System.out.println(ePA.toString());
 
         TrEvaluacionParcial eP=obt.obtenerEvaluacionParcial(3);
@@ -53,10 +53,8 @@ public static void main(String[] args)
         TrEvaluacionAcumulativa eA=obt.obtenerEvaluacionAcumulativa(4);
         System.out.println(eA.toString());
         
-        TrEstrategias estrategias=obt.obtenerEstrategia(6);
+        TrEstrategias estrategias=obt.obtenerEstrategia(12);
         System.out.println(estrategias.toString());
-
-
 }
 
 }

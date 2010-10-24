@@ -27,7 +27,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TcCarrera car = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tc_Carrera WHERE Carrera_ID=" + id;
+            String SQL = "SELECT * FROM tc_carrera WHERE Carrera_ID=".toLowerCase() + id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while (rs.next()) {
@@ -46,7 +46,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TcCategorias cat = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tc_Categorias WHERE Categoria_ID="+id;
+            String SQL = "SELECT * FROM Tc_Categorias WHERE Categoria_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -65,7 +65,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TcCompetencias com = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tc_Competencias WHERE Competencia_ID="+id;
+            String SQL = "SELECT * FROM Tc_Competencias WHERE Competencia_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -84,7 +84,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TcCriterios cri = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tc_Criterios WHERE Criterio_ID="+id;
+            String SQL = "SELECT * FROM Tc_Criterios WHERE Criterio_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -103,7 +103,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TcDepartamentos dep = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tc_Departamentos WHERE Departamento_ID="+id;
+            String SQL = "SELECT * FROM Tc_Departamentos WHERE Departamento_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -122,7 +122,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TcGrupo grp = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tc_Grupo WHERE Grupo_ID="+id;
+            String SQL = "SELECT * FROM Tc_Grupo WHERE Grupo_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -142,7 +142,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TcMaterias mat = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tc_Materias WHERE Materias_ID="+id;
+            String SQL = "SELECT * FROM Tc_Materias WHERE Materias_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -161,7 +161,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TcReportes rep = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tc_Reportes WHERE Reportes_ID="+id;
+            String SQL = "SELECT * FROM Tc_Reportes WHERE Reportes_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -180,7 +180,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TcTipoEvaluacion tev = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tc_Tipo_Evaluacion WHERE Tipo_Evaluacion_ID="+id;
+            String SQL = "SELECT * FROM Tc_Tipo_Evaluacion WHERE Tipo_Evaluacion_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -199,7 +199,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrAlumnos alm = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Alumnos WHERE Alumnos_ID="+id;
+            String SQL = "SELECT * FROM Tr_Alumnos WHERE Alumnos_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -218,7 +218,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrAlumnos alm = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Alumnos WHERE Matricula='"+matricula+"'";
+            String SQL = "SELECT * FROM Tr_Alumnos WHERE Matricula='".toLowerCase()+matricula+"'";
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -237,7 +237,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrComentarioDPAEstrategia cde = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Comentario_Dpa_Estrategia WHERE Coment_Estra_DPA_ID="+id;
+            String SQL = "SELECT * FROM Tr_Comentario_Dpa_Estrategia WHERE Coment_Estra_DPA_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -255,7 +255,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrCriterioCompetencia ccm = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Criterio_Competencia WHERE Criterio_Competencia_ID="+id;
+            String SQL = "SELECT * FROM Tr_Criterio_Competencia WHERE Criterio_Competencia_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -274,11 +274,11 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrEstrategias est = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Estrategias WHERE Estrategia_ID="+id;
+            String SQL = "SELECT * FROM Tr_Estrategias WHERE Estrategia_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                est = new TrEstrategias(rs.getInt("Estrategia_ID"), rs.getString("Fecha_Inicio_Registro"), rs.getString("Mensaje"), rs.getInt("Maestro_ID"));
+                est = new TrEstrategias(rs.getInt("Estrategia_ID"), rs.getString("Fecha_Inicio_Registro"), rs.getString("Mensaje"), rs.getInt("Maestros_Maestro_ID"));
             }
             return est;
         } catch (SQLException ex) {
@@ -296,7 +296,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrEvaluacionAcumulativa eva = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Evaluacion_Acumulativa WHERE Tr_Evaluacion_Acumulativa_ID="+id;
+            String SQL = "SELECT * FROM Tr_Evaluacion_Acumulativa WHERE Evaluacion_Acumulativa_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -315,7 +315,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrEvaluacionParcial evp = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Evaluacion_Parcial WHERE Tr_Evaluacion_Parcial_ID="+id;
+            String SQL = "SELECT * FROM Tr_Evaluacion_Parcial WHERE Evaluacion_Parcial_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -334,7 +334,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrEvaluacionParcialAcumulativa epa = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Evaluacion_Parcial_Acumulativa WHERE Tr_Evaluacion_Parcial_Acumulativa_ID="+id;
+            String SQL = "SELECT * FROM Tr_Evaluacion_Parcial_Acumulativa WHERE Evaluacion_Parcial_Acumulativa_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -353,11 +353,11 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrMaestroMateria mma = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Maestro_Materia WHERE Tr_Maestro_Materia_ID="+id;
+            String SQL = "SELECT * FROM Tr_Maestro_Materia WHERE Maestro_Materia_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mma = new TrMaestroMateria(rs.getInt("Maestro_Materia_ID"), rs.getInt("Materia_ID"), rs.getInt("Maestro_ID"));
+                mma = new TrMaestroMateria(rs.getInt("Maestro_Materia_ID"), rs.getInt("Materias_ID"), rs.getInt("Maestro_ID"));
             }
             return mma;
         } catch (SQLException ex) {
@@ -372,11 +372,11 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrMaestroMateriaGrupo mmg = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Maestro_Materia_Grupo WHERE Tr_Maestro_Materia_Grupo_ID="+id;
+            String SQL = "SELECT * FROM Tr_Maestro_Materia_Grupo WHERE Maestro_Materia_Grupo_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mmg = new TrMaestroMateriaGrupo(rs.getInt("Maestro_Materia_Grupo_ID"), rs.getInt("Grupo_ID"), rs.getInt("Maestro_Materia_ID"));
+                mmg = new TrMaestroMateriaGrupo(rs.getInt("Maestro_Materia_Grupo_ID"), rs.getInt("Grupo_Grupo_ID"), rs.getInt("Maestro_Materia_ID"));
             }
             return mmg;
         } catch (SQLException ex) {
@@ -394,11 +394,11 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrMaestroMateriaGrupoSesion mmgs = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Maestro_Materia_Grupo_Sesion WHERE Tr_Maestro_Materia_Grupo_Sesion_ID="+id;
+            String SQL = "SELECT * FROM Tr_Maestro_Materia_Grupo_Sesion WHERE Maestro_Materia_Grupo_Sesion_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mmgs = new TrMaestroMateriaGrupoSesion(rs.getInt("Maestro_Materia_Grupo_Sesion_ID"),rs.getInt("Sesion_ID"), rs.getInt("Maestro_Materia_Grupo_ID"));
+                mmgs = new TrMaestroMateriaGrupoSesion(rs.getInt("Maestro_Materia_Grupo_Sesion_ID"),rs.getInt("Sesion_Sesion_ID"), rs.getInt("Mae_Mat_Grp_ID"));
             }
             return mmgs;
         } catch (SQLException ex) {
@@ -413,7 +413,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrMaestros mae = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tc_Carrera WHERE Carrera_ID="+id;
+            String SQL = "SELECT * FROM Tr_Maestros WHERE Maestro_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -432,11 +432,11 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrSesion ses = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Sesion WHERE Sesion_ID="+id;
+            String SQL = "SELECT * FROM Tr_Sesion WHERE Sesion_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ses = new TrSesion(rs.getInt("Sesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Criterio_Competencia_ID"), rs.getInt("Sesion_Rechazada_ID"), rs.getString("Ponderacion"));
+                ses = new TrSesion(rs.getInt("Sesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Criterio_Competencia_Criterio_Competencia_ID"), rs.getInt("Sesion_Rechazada_Sesion_Rechazada_ID"), rs.getString("Ponderacion"));
             }
             return ses;
         } catch (SQLException ex) {
@@ -451,7 +451,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrUsuario usr = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Usuario WHERE Usuario_ID="+id;
+            String SQL = "SELECT * FROM Tr_Usuario WHERE Usuario_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -470,7 +470,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrSesionRechazada ser = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Sesion_Rechazada WHERE Sesion_Rechazada_ID="+id;
+            String SQL = "SELECT * FROM Tr_Sesion_Rechazada WHERE Sesion_Rechazada_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -489,7 +489,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TcEvaluacionNivel evn = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tc_Evaluacion_Nivel WHERE Evaluacion_Nivel_ID="+id;
+            String SQL = "SELECT * FROM Tc_Evaluacion_Nivel WHERE Evaluacion_Nivel_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -511,7 +511,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TcPerfil per = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tc_Perfil WHERE Perfil_ID="+id;
+            String SQL = "SELECT * FROM Tc_Perfil WHERE Perfil_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){

@@ -49,6 +49,7 @@ public class TcCarrera
         this.des_Carrera = des_Carrera;
     }
 
+    @Override
     public String toString() {
         String regresa = "";
         StringBuilder sb = new StringBuilder();
