@@ -61,4 +61,17 @@ public class TrMaestroMateriaGrupo {
     public void setMaestroMateria_ID(int maestroMateria_ID) {
         this.maestroMateria_ID = maestroMateria_ID;
     }
+
+          public String toString()
+    {
+        String regresa="";
+        StringBuilder sb=new StringBuilder();
+        sb.append("maestroMateriaGrupo_ID").append(getMaestroMateriaGrupo_ID()).append("], ");
+        sb.append("grupoGrupo_ID").append(getGrupoGrupo_ID()).append("], ");
+        sb.append("maestroMateria_ID").append(getMaestroMateria_ID()).append("], ");
+
+        regresa  = sb.toString();
+        return regresa;
+
+    }
 }

@@ -80,5 +80,15 @@ public class TcCompetencias
     public void setCategoria_ID(int categoria_ID) {
         this.categoria_ID = categoria_ID;
     }
-     
+    
+    public String toString() {
+        String regresa = "";
+        StringBuilder sb = new StringBuilder();
+        sb.append("competencia_ID").append(getCompetencia_ID()).append("], ");
+        sb.append("des_Competencia").append(getDes_Competencia()).append("], ");
+        sb.append("descripcion").append(getDescripcion()).append("], ");
+        sb.append("categoria_ID").append(getCategoria_ID()).append("], ");
+        return regresa;
+    }
+ 
 }

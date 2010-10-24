@@ -129,4 +129,24 @@ public class TrUsuario
     public void setPerfil_ID(int perfil_ID) {
         this.perfil_ID = perfil_ID;
     }
+
+    public String toString()
+    {
+        String regresa="";
+        StringBuilder sb=new StringBuilder();
+        sb.append("usuario_ID").append(getUsuario_ID()).append("], ");
+        sb.append("Nombres").append(getNombres()).append("], ");
+        sb.append("Apellidos").append(getApellidos()).append("], ");
+        sb.append("fecha_Nac").append(getFecha_Nac()).append("], ");
+        sb.append("usuario").append(getUsuario()).append("], ");
+        sb.append("password").append(getPassword()).append("], ");
+        sb.append("perfil_ID").append(getPerfil_ID()).append("], ");
+
+        regresa  = sb.toString();
+        return regresa;
+
+    }
+
+
+
 }

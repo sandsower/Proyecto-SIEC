@@ -19,7 +19,7 @@ public class ConexionBD {
     public void conectarBD(String username, String password){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            String connectionUrl = "jdbc:mysql://localhost/javaprueba?user="+username+"&password="+password;
+            String connectionUrl = "jdbc:mysql://localhost/siec?user="+username+"&password="+password;
             Connection theCon = DriverManager.getConnection(connectionUrl);
             this.setCon(theCon);
         }

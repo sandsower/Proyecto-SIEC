@@ -46,11 +46,11 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TcCategorias cat = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tc_Categoria WHERE Categoria_ID="+id;
+            String SQL = "SELECT * FROM Tc_Categorias WHERE Categoria_ID="+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                cat = new TcCategorias(rs.getInt("Categoria_ID"),rs.getString("Des_categoria"), rs.getString("Descripcion"), rs.getInt("Order"));
+                cat = new TcCategorias(rs.getInt("Categoria_ID"),rs.getString("Des_categoria"), rs.getString("Descripcion"), rs.getInt("Orden"));
             }
             return cat;
         } catch (SQLException ex) {
@@ -146,7 +146,7 @@ public class ObtenerIndividuo {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mat = new TcMaterias(rs.getInt("Materias_ID"), rs.getString("Des_Materias"), rs.getInt("Departamento"));
+                mat = new TcMaterias(rs.getInt("Materias_ID"), rs.getString("Des_Materias"), rs.getInt("Departamento_ID"));
             }
             return mat;
         } catch (SQLException ex) {
@@ -218,7 +218,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrAlumnos alm = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Alumnos WHERE Matricula="+matricula;
+            String SQL = "SELECT * FROM Tr_Alumnos WHERE Matricula='"+matricula+"'";
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -237,7 +237,7 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrComentarioDPAEstrategia cde = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Comentario_Pda_Estrategia WHERE Coment_Estra_DPA_ID="+id;
+            String SQL = "SELECT * FROM Tr_Comentario_Dpa_Estrategia WHERE Coment_Estra_DPA_ID="+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -274,11 +274,11 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrEstrategias est = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Comentario_Pda_Estrategia WHERE Coment_Estra_DPA_ID="+id;
+            String SQL = "SELECT * FROM Tr_Estrategias WHERE Estrategia_ID="+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                est = new TrEstrategias(rs.getInt("Estrategia_ID"), rs.getString("Fecha_Inicio_Registro"), rs.getString("Mensaje"), rs.getString("Maestro_ID"), rs.getInt("Maestros_Maestro_ID"), rs.getInt("Evaluacion"));
+                est = new TrEstrategias(rs.getInt("Estrategia_ID"), rs.getString("Fecha_Inicio_Registro"), rs.getString("Mensaje"), rs.getInt("Maestro_ID"));
             }
             return est;
         } catch (SQLException ex) {
@@ -451,11 +451,11 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrUsuario usr = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Usuario WHERE Tr_Usuario_ID="+id;
+            String SQL = "SELECT * FROM Tr_Usuario WHERE Usuario_ID="+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                usr = new TrUsuario(rs.getInt("Usuario_ID"), rs.getString("Nombres"), rs.getString("Apellidos"), rs.getString("Fecha_Nac"), rs.getString("Usuario"), rs.getString("Password"), rs.getInt("Perfil_ID"));
+                usr = new TrUsuario(rs.getInt("Usuario_ID"), rs.getString("Nombres"), rs.getString("Apellidos"), rs.getDate("Fecha_Nac").toString(), rs.getString("Usuario"), rs.getString("Password"), rs.getInt("Perfil_ID"));
             }
             return usr;
         } catch (SQLException ex) {
@@ -482,6 +482,48 @@ public class ObtenerIndividuo {
         }
         return null;
     }
+
+     public TcEvaluacionNivel obtenerEvaluacionNivel (int id){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            TcEvaluacionNivel evn = null;
+            //SQL query command
+            String SQL = "SELECT * FROM Tc_Evaluacion_Nivel WHERE Evaluacion_Nivel_ID="+id;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                evn = new TcEvaluacionNivel(rs.getInt("Evaluacion_Nivel_ID"), rs.getString("Des_Evaluacion"));
+            }
+            return evn;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+     
+     public TcPerfil obtenerPerfil (int id){
+        try {
+            ConexionBD nuevaConexion = new ConexionBD();
+            nuevaConexion.conectarBD("root", "13450811");
+            Connection con = nuevaConexion.getCon();
+            Statement stmt = null;
+            ResultSet rs = null;
+            TcPerfil per = null;
+            //SQL query command
+            String SQL = "SELECT * FROM Tc_Perfil WHERE Perfil_ID="+id;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                per = new TcPerfil(rs.getInt("Perfil_ID"), rs.getString("Des_Perfil"));
+            }
+            return per;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
 
     public static void main(String[] args) {
         ObtenerIndividuo obt = new ObtenerIndividuo();

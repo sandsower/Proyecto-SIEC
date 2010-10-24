@@ -41,5 +41,12 @@ public class TcTipoEvaluacion {
     public void setDesTipoEvaluacion(String desTipoEvaluacion) {
         this.desTipoEvaluacion = desTipoEvaluacion;
     }
-   
+
+     public String toString() {
+        String regresa = "";
+        StringBuilder sb = new StringBuilder();
+        sb.append("tipoEvaluacion_ID").append(getTipoEvaluacion_ID()).append("], ");
+        sb.append("desTipoEvaluacion").append(getDesTipoEvaluacion()).append("], ");
+        return regresa;
+    }
 }

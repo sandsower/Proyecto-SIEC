@@ -47,26 +47,12 @@ public class TcPerfil
         this.des_Perfil = des_Perfil;
     }
 
-    public TcPerfil obtenerPerfil (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TcPerfil per = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tc_Perfil WHERE Perfil_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                per = new TcPerfil(rs.getInt("Perfil_ID"), rs.getString("Des_Perfil"));
-            }
-            return per;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
+     public String toString() {
+        String regresa = "";
+        StringBuilder sb = new StringBuilder();
+        sb.append("perfil_ID").append(getPerfil_ID()).append("], ");
+        sb.append("des_Perfil").append(getDes_Perfil()).append("], ");
+        return regresa;
     }
 
 }

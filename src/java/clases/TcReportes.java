@@ -65,4 +65,13 @@ public class TcReportes
         this.perfil_ID = perfil_ID;
     }
 
+      public String toString() {
+        String regresa = "";
+        StringBuilder sb = new StringBuilder();
+        sb.append("reportes_ID").append(getReportes_ID()).append("], ");
+        sb.append("perfil_ID").append(getPerfil_ID()).append("], ");
+        sb.append("des_Reportes").append(getDes_Reportes()).append("], ");
+        return regresa;
+    }
+
 }

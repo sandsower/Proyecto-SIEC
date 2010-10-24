@@ -60,4 +60,18 @@ public class TrMaestroMateriaGrupoSesion {
     public void setMaeMatGrp_ID(int maeMatGrp_ID) {
         this.maeMatGrp_ID = maeMatGrp_ID;
     }
+
+
+         public String toString()
+    {
+        String regresa="";
+        StringBuilder sb=new StringBuilder();
+        sb.append("maestroMateriaGrupoSesion_ID").append(getMaestroMateriaGrupoSesion_ID()).append("], ");
+        sb.append("sesionSesion_ID").append(getSesionSesion_ID()).append("], ");
+        sb.append("maeMatGrp_ID").append(getMaeMatGrp_ID()).append("], ");
+
+        regresa  = sb.toString();
+        return regresa;
+
+    }
 }

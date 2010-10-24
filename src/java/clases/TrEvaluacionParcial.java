@@ -86,4 +86,22 @@ public class TrEvaluacionParcial {
     public void setTipo_evaluacion_ID(int tipo_evaluacion_ID) {
         this.tipo_evaluacion_ID = tipo_evaluacion_ID;
     }
+
+               public String toString()
+    {
+        String regresa="";
+        StringBuilder sb=new StringBuilder();
+        sb.append("evaluacion_parcial_ID").append(getEvaluacion_parcial_ID()).append("], ");
+        sb.append("calificacion").append(getCalificacion()).append("], ");
+        sb.append("parcial").append(getParcial()).append("], ");
+        sb.append("evaluacion_nivel_ID").append(getEvaluacion_nivel_ID()).append("], ");
+        sb.append("tipo_evaluacion_ID").append(getTipo_evaluacion_ID()).append("], ");
+        sb.append("maestro_materia_grupo_sesion_ID").append(getMaestro_materia_grupo_sesion_ID()).append("], ");
+        sb.append("alumnos_ID").append(getAlumnos_ID()).append("], ");
+
+
+        regresa  = sb.toString();
+        return regresa;
+
+    }
 }

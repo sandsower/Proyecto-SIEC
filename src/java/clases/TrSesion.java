@@ -113,5 +113,21 @@ public class TrSesion
     public void setPonderacion(String ponderacion) {
         this.ponderacion = ponderacion;
     }
-    
+
+
+       public String toString()
+    {
+        String regresa="";
+        StringBuilder sb=new StringBuilder();
+        sb.append("sesion_ID").append(getSesion_ID()).append("], ");
+        sb.append("mensaje").append(getMensaje()).append("], ");
+        sb.append("estado").append( getEstado()).append("], ");
+        sb.append("criterioCompetencia_ID").append(getCriterioCompetencia_ID()).append("], ");
+        sb.append("sesionRechazada_ID").append(getSesionRechazada_ID()).append("], ");
+        sb.append("ponderacion").append(getPonderacion()).append("], ");
+
+        regresa  = sb.toString();
+        return regresa;
+
+    }
 }

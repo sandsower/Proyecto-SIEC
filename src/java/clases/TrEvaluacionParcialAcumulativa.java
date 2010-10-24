@@ -47,4 +47,17 @@ public class TrEvaluacionParcialAcumulativa {
         this.evaluacion_parcial_acumulativa_ID = evaluacion_parcial_acumulativa_ID;
     }
 
+            public String toString()
+    {
+        String regresa="";
+        StringBuilder sb=new StringBuilder();
+        sb.append("evaluacion_parcial_acumulativa_ID").append(getEvaluacion_acumulativa_ID()).append("], ");
+        sb.append("evaluacion_parcial_ID").append(getEvaluacion_parcial_ID()).append("], ");
+        sb.append("evaluacion_acumulativa_ID").append( getEvaluacion_parcial_acumulativa_ID()).append("], ");
+
+        regresa  = sb.toString();
+        return regresa;
+
+    }
+
 }
