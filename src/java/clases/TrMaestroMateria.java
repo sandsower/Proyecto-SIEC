@@ -65,14 +65,14 @@ public class TrMaestroMateria
         this.maestro_ID = maestro_ID;
     }
 
-           public String toString()
+    @Override
+    public String toString()
     {
         String regresa="";
         StringBuilder sb=new StringBuilder();
         sb.append("maestro_Materia_ID").append(getMaestro_Materia_ID()).append("], ");
         sb.append("materia_ID").append( getMateria_ID()).append("], ");
         sb.append("maestro_ID").append(getMaestro_ID()).append("], ");
-
         regresa  = sb.toString();
         return regresa;
 

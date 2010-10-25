@@ -115,7 +115,8 @@ public class TrSesion
     }
 
 
-       public String toString()
+    @Override
+    public String toString()
     {
         String regresa="";
         StringBuilder sb=new StringBuilder();
@@ -125,7 +126,6 @@ public class TrSesion
         sb.append("criterioCompetencia_ID").append(getCriterioCompetencia_ID()).append("], ");
         sb.append("sesionRechazada_ID").append(getSesionRechazada_ID()).append("], ");
         sb.append("ponderacion").append(getPonderacion()).append("], ");
-
         regresa  = sb.toString();
         return regresa;
 

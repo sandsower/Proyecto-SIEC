@@ -259,7 +259,7 @@ public class ObtenerIndividuo {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ccm = new TrCriterioCompetencia(rs.getInt("Criterio_ID"), rs.getString("Des_Criterio"), rs.getString("Descripcion"));
+                ccm = new TrCriterioCompetencia(rs.getInt("Criterio_ID"), rs.getInt("Criterio_Competencia_ID"), rs.getInt("Competencia_ID"), rs.getString("Ponderacion_Criterio"));
             }
             return ccm;
         } catch (SQLException ex) {
@@ -289,9 +289,6 @@ public class ObtenerIndividuo {
 
     public TrEvaluacionAcumulativa obtenerEvaluacionAcumulativa (int id){
         try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
             Statement stmt = null;
             ResultSet rs = null;
             TrEvaluacionAcumulativa eva = null;
@@ -387,9 +384,6 @@ public class ObtenerIndividuo {
 
     public TrMaestroMateriaGrupoSesion obtenerMaestroMateriaGrupoSesion (int id){
         try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
             Statement stmt = null;
             ResultSet rs = null;
             TrMaestroMateriaGrupoSesion mmgs = null;
@@ -504,9 +498,6 @@ public class ObtenerIndividuo {
      
      public TcPerfil obtenerPerfil (int id){
         try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
             Statement stmt = null;
             ResultSet rs = null;
             TcPerfil per = null;

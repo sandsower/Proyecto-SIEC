@@ -66,14 +66,14 @@ public class TrMaestros
         this.usuario_ID = usuario_ID;
     }
 
-         public String toString()
+    @Override
+    public String toString()
     {
         String regresa="";
         StringBuilder sb=new StringBuilder();
         sb.append("Maestro_ID").append(getMaestro_ID()).append("], ");
         sb.append("codigo").append(getCodigo()).append("], ");
         sb.append("usuario_ID").append(getUsuario_ID()).append("], ");
-
         regresa  = sb.toString();
         return regresa;
 

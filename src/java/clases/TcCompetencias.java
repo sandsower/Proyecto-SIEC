@@ -81,14 +81,14 @@ public class TcCompetencias
         this.categoria_ID = categoria_ID;
     }
     
+    @Override
     public String toString() {
-        String regresa = "";
         StringBuilder sb = new StringBuilder();
         sb.append("competencia_ID").append(getCompetencia_ID()).append("], ");
         sb.append("des_Competencia").append(getDes_Competencia()).append("], ");
         sb.append("descripcion").append(getDescripcion()).append("], ");
         sb.append("categoria_ID").append(getCategoria_ID()).append("], ");
-        return regresa;
+        return sb.toString();
     }
  
 }

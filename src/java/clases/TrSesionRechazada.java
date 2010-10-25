@@ -50,14 +50,13 @@ public class TrSesionRechazada
     }
 
 
-       public String toString()
+    @Override
+    public String toString()
     {
         String regresa="";
         StringBuilder sb=new StringBuilder();
         sb.append("sesion_Rechazada").append(getSesion_Rechazada()).append("], ");
         sb.append("mensaje").append(getMensaje()).append("], ");
-
-
         regresa  = sb.toString();
         return regresa;
 

@@ -63,13 +63,13 @@ public class TcMaterias
         this.departamento = departamento;
     }
 
+    @Override
     public String toString() {
-        String regresa = "";
         StringBuilder sb = new StringBuilder();
         sb.append("materias_ID").append(getMaterias_ID()).append("], ");
         sb.append("des_Materias").append(getDes_Materias()).append("], ");
         sb.append("departamento").append(getDepartamento()).append("], ");
-        return regresa;
+        return sb.toString();
     }
 
 }

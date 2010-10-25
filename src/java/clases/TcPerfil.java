@@ -47,12 +47,12 @@ public class TcPerfil
         this.des_Perfil = des_Perfil;
     }
 
+    @Override
      public String toString() {
-        String regresa = "";
         StringBuilder sb = new StringBuilder();
         sb.append("perfil_ID").append(getPerfil_ID()).append("], ");
         sb.append("des_Perfil").append(getDes_Perfil()).append("], ");
-        return regresa;
+        return sb.toString();
     }
 
 }

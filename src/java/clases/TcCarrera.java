@@ -51,11 +51,10 @@ public class TcCarrera
 
     @Override
     public String toString() {
-        String regresa = "";
         StringBuilder sb = new StringBuilder();
         sb.append("carrera_ID").append(getCarrera_ID()).append("], ");
         sb.append("des_Carrera").append(getDes_Carrera()).append("], ");
-        return regresa;
+        return sb.toString();
     }
 
 }

@@ -50,12 +50,12 @@ public class TcEvaluacionNivel
 
     
      
+    @Override
       public String toString() {
-        String regresa = "";
         StringBuilder sb = new StringBuilder();
         sb.append("evaluacion_Nivel_ID").append(getEvaluacion_Nivel_ID()).append("], ");
         sb.append("des_Evaluacion").append(getDes_Evaluacion()).append("], ");
-        return regresa;
+        return sb.toString();
     }
 
 }

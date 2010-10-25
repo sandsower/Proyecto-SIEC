@@ -48,17 +48,14 @@ public class TrEvaluacionAcumulativa {
     }
 
 
-                public String toString()
+    @Override
+    public String toString()
     {
         String regresa="";
         StringBuilder sb=new StringBuilder();
         sb.append("evaluacion_acumulativa_ID").append(getEvaluacion_acumulativa_ID()).append("], ");
         sb.append("parcial").append(getParcial()).append("], ");
         sb.append("calificacion").append(getCalificacion()).append("], ");
-
-
-
-
         regresa  = sb.toString();
         return regresa;
 

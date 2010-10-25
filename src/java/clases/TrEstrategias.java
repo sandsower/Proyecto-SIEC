@@ -90,16 +90,15 @@ public class TrEstrategias
     /**
      * @param evaluacion the evaluacion to set
      */
+    @Override
              public String toString()
     {
         String regresa="";
         StringBuilder sb=new StringBuilder();
-        sb.append("estrategia_ID").append(getEstrategia_ID()).append("], ");
-        sb.append("fecha_Inicio_Registro").append(getFecha_Inicio_Registro()).append("], ");
-        sb.append("mensaje").append(getMensaje()).append("], ");
-        sb.append("Maestro_ID").append(getMaestro_ID()).append("], ");
-       
-
+        sb.append("estrategia_ID [").append(getEstrategia_ID()).append("], ");
+        sb.append("fecha_Inicio_Registro [").append(getFecha_Inicio_Registro()).append("], ");
+        sb.append("mensaje [").append(getMensaje()).append("], ");
+        sb.append("Maestro_ID [").append(getMaestro_ID()).append("], ");
         regresa  = sb.toString();
         return regresa;
 

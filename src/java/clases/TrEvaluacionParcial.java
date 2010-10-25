@@ -87,7 +87,8 @@ public class TrEvaluacionParcial {
         this.tipo_evaluacion_ID = tipo_evaluacion_ID;
     }
 
-               public String toString()
+    @Override
+    public String toString()
     {
         String regresa="";
         StringBuilder sb=new StringBuilder();
@@ -98,8 +99,6 @@ public class TrEvaluacionParcial {
         sb.append("tipo_evaluacion_ID").append(getTipo_evaluacion_ID()).append("], ");
         sb.append("maestro_materia_grupo_sesion_ID").append(getMaestro_materia_grupo_sesion_ID()).append("], ");
         sb.append("alumnos_ID").append(getAlumnos_ID()).append("], ");
-
-
         regresa  = sb.toString();
         return regresa;
 
