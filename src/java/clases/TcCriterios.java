@@ -64,25 +64,13 @@ public class TcCriterios
         this.descripcion = descripcion;
     }
 
-    public TcCriterios obtenerCriterio (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TcCriterios cri = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tc_Criterios WHERE Criterio_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                cri = new TcCriterios(rs.getInt("Criterio_ID"), rs.getString("Des_Criterio"), rs.getString("Descripcion"));
-            }
-            return cri;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
+    @Override
+     public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("criterio_ID").append(getCriterio_ID()).append("], ");
+        sb.append("des_Criterio").append(getDes_Criterio()).append("], ");
+        sb.append("descripcion").append(getDescripcion()).append("], ");
+        return sb.toString();
     }
+  
 }

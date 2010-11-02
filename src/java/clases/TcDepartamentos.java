@@ -15,6 +15,7 @@ public class TcDepartamentos
 {
     private int departamento_ID;
     private String des_Departamento;
+    
     public TcDepartamentos(int departamento_ID,String des_Departamento){
         this.setDepartamento_ID(departamento_ID);
         this.setDes_Departamento(des_Departamento);
@@ -46,26 +47,13 @@ public class TcDepartamentos
     public void setDes_Departamento(String des_Departamento) {
         this.des_Departamento = des_Departamento;
     }
-
-     public TcDepartamentos obtenerDepartamento (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TcDepartamentos dep = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tc_Departamentos WHERE Departamento_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                dep = new TcDepartamentos(rs.getInt("Departamento_ID"), rs.getString("Des_Departamento"));
-            }
-            return dep;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
+    
+    @Override
+     public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("departamento_ID").append(getDepartamento_ID()).append("], ");
+        sb.append("des_Departamento").append(getDes_Departamento()).append("], ");
+        return sb.toString();
     }
+     
 }

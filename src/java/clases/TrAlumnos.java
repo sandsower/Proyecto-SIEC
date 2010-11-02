@@ -98,47 +98,15 @@ public class TrAlumnos
         this.carrera_ID = carrera_ID;
     }
 
-    public TrAlumnos obtenerAlumnobyID (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TrAlumnos alm = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tr_Alumnos WHERE Alumnos_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                alm = new TrAlumnos(rs.getInt("Alumnos_ID"), rs.getString("Matricula"), rs.getInt("Usuario_ID"), rs.getInt("Grupo_ID"), rs.getInt("Carrera_ID"));
-            }
-            return alm;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
+    @Override
+     public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("alumnos_ID").append(getAlumnos_ID()).append("], ");
+        sb.append("matricula").append(getMatricula()).append("], ");
+        sb.append("usuario_ID").append(getUsuario_ID()).append("], ");
+        sb.append("grupo_ID").append(getGrupo_ID()).append("], ");
+        sb.append("carrera_ID").append(getCarrera_ID()).append("], ");
+        return sb.toString();
     }
-
-    public TrAlumnos obtenerAlumnobyMatricula (String matricula){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TrAlumnos alm = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tr_Alumnos WHERE Matricula="+matricula;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                alm = new TrAlumnos(rs.getInt("Alumnos_ID"), rs.getString("Matricula"), rs.getInt("Usuario_ID"), rs.getInt("Grupo_ID"), rs.getInt("Carrera_ID"));
-            }
-            return alm;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
+     
 }

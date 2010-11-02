@@ -80,25 +80,15 @@ public class TcCompetencias
     public void setCategoria_ID(int categoria_ID) {
         this.categoria_ID = categoria_ID;
     }
-     public TcCompetencias obtenerCompetencia (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TcCompetencias com = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tc_Competencias WHERE Competencia_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                com = new TcCompetencias(rs.getInt("Competencia_ID"), rs.getString("Des_Competencia"), rs.getString("Descripcion"), rs.getInt("Categoria_ID"));
-            }
-            return com;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
+    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("competencia_ID").append(getCompetencia_ID()).append("], ");
+        sb.append("des_Competencia").append(getDes_Competencia()).append("], ");
+        sb.append("descripcion").append(getDescripcion()).append("], ");
+        sb.append("categoria_ID").append(getCategoria_ID()).append("], ");
+        return sb.toString();
     }
+ 
 }

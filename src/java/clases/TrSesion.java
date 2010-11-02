@@ -5,6 +5,9 @@
 
 package clases;
 
+import MovimientosBD.ConexionBD;
+import java.sql.*;
+
 /**
  *
  * @author Sandsower
@@ -14,9 +17,18 @@ public class TrSesion
     private int sesion_ID;
     private String mensaje;
     private int estado;
-    private int criterio_Competencia_Criterio_Competencia_ID;
-    private int sesion_Rechazada_sesion_Recahzada;
+    private int criterioCompetencia_ID;
+    private int sesionRechazada_ID;
     private String ponderacion;
+
+    public TrSesion(int sesion_ID, String mensaje, int estado, int criterioCompetencia_ID, int sesionRechazada_ID, String ponderacion){
+        this.setCriterioCompetencia_ID(criterioCompetencia_ID);
+        this.setEstado(estado);
+        this.setMensaje(mensaje);
+        this.setPonderacion(ponderacion);
+        this.setSesionRechazada_ID(sesionRechazada_ID);
+        this.setSesion_ID(sesion_ID);
+    }
 
     /**
      * @return the sesion_ID
@@ -63,29 +75,29 @@ public class TrSesion
     /**
      * @return the criterio_Competencia_Criterio_Competencia_ID
      */
-    public int getCriterio_Competencia_Criterio_Competencia_ID() {
-        return criterio_Competencia_Criterio_Competencia_ID;
+    public int getCriterioCompetencia_ID() {
+        return criterioCompetencia_ID;
     }
 
     /**
      * @param criterio_Competencia_Criterio_Competencia_ID the criterio_Competencia_Criterio_Competencia_ID to set
      */
-    public void setCriterio_Competencia_Criterio_Competencia_ID(int criterio_Competencia_Criterio_Competencia_ID) {
-        this.criterio_Competencia_Criterio_Competencia_ID = criterio_Competencia_Criterio_Competencia_ID;
+    public void setCriterioCompetencia_ID(int criterioCompetencia_ID) {
+        this.criterioCompetencia_ID = criterioCompetencia_ID;
     }
 
     /**
      * @return the sesion_Rechazada_sesion_Recahzada
      */
-    public int getSesion_Rechazada_sesion_Recahzada() {
-        return sesion_Rechazada_sesion_Recahzada;
+    public int getSesionRechazada_ID() {
+        return sesionRechazada_ID;
     }
 
     /**
      * @param sesion_Rechazada_sesion_Recahzada the sesion_Rechazada_sesion_Recahzada to set
      */
-    public void setSesion_Rechazada_sesion_Recahzada(int sesion_Rechazada_sesion_Recahzada) {
-        this.sesion_Rechazada_sesion_Recahzada = sesion_Rechazada_sesion_Recahzada;
+    public void setSesionRechazada_ID(int sesionRechazada_ID) {
+        this.sesionRechazada_ID = sesionRechazada_ID;
     }
 
     /**
@@ -100,5 +112,22 @@ public class TrSesion
      */
     public void setPonderacion(String ponderacion) {
         this.ponderacion = ponderacion;
+    }
+
+
+    @Override
+    public String toString()
+    {
+        String regresa="";
+        StringBuilder sb=new StringBuilder();
+        sb.append("sesion_ID").append(getSesion_ID()).append("], ");
+        sb.append("mensaje").append(getMensaje()).append("], ");
+        sb.append("estado").append( getEstado()).append("], ");
+        sb.append("criterioCompetencia_ID").append(getCriterioCompetencia_ID()).append("], ");
+        sb.append("sesionRechazada_ID").append(getSesionRechazada_ID()).append("], ");
+        sb.append("ponderacion").append(getPonderacion()).append("], ");
+        regresa  = sb.toString();
+        return regresa;
+
     }
 }

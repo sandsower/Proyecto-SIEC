@@ -14,14 +14,45 @@ import java.sql.*;
  */
 public class TrCriterioCompetencia
 {
+    private int criterioCompetencia_ID;
+    private int competencia_ID;
     private int criterio_ID;
-    private String des_Criterio;
-    private String descripcion;
+    private String ponderacionCriterio;
+    
 
-    public TrCriterioCompetencia(int criterio_ID, String des_Criterio, String descripcion){
+    public TrCriterioCompetencia(int criterio_ID, int criterioCompetencia_ID, int competencia_ID, String ponderacionCriterio){
         this.setCriterio_ID(criterio_ID);
-        this.setDes_Criterio(des_Criterio);
-        this.setDescripcion(descripcion);
+        this.setCompetencia_ID(competencia_ID);
+        this.setCriterioCompetencia_ID(criterioCompetencia_ID);
+        this.setPonderacionCriterio(ponderacionCriterio);
+    }
+
+    /**
+     * @return the criterioCompetencia_ID
+     */
+    public int getCriterioCompetencia_ID() {
+        return criterioCompetencia_ID;
+    }
+
+    /**
+     * @param criterioCompetencia_ID the criterioCompetencia_ID to set
+     */
+    public void setCriterioCompetencia_ID(int criterioCompetencia_ID) {
+        this.criterioCompetencia_ID = criterioCompetencia_ID;
+    }
+
+    /**
+     * @return the competencia_ID
+     */
+    public int getCompetencia_ID() {
+        return competencia_ID;
+    }
+
+    /**
+     * @param competencia_ID the competencia_ID to set
+     */
+    public void setCompetencia_ID(int competencia_ID) {
+        this.competencia_ID = competencia_ID;
     }
 
     /**
@@ -39,52 +70,27 @@ public class TrCriterioCompetencia
     }
 
     /**
-     * @return the des_Criterio
+     * @return the ponderacionCriterio
      */
-    public String getDes_Criterio() {
-        return des_Criterio;
+    public String getPonderacionCriterio() {
+        return ponderacionCriterio;
     }
 
     /**
-     * @param des_Criterio the des_Criterio to set
+     * @param ponderacionCriterio the ponderacionCriterio to set
      */
-    public void setDes_Criterio(String des_Criterio) {
-        this.des_Criterio = des_Criterio;
+    public void setPonderacionCriterio(String ponderacionCriterio) {
+        this.ponderacionCriterio = ponderacionCriterio;
     }
 
-    /**
-     * @return the descripcion
-     */
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    /**
-     * @param descripcion the descripcion to set
-     */
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public TrCriterioCompetencia obtenerCriterioCompetencia (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TrCriterioCompetencia ccm = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tr_Criterio_Competencia WHERE Criterio_Competencia_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                ccm = new TrCriterioCompetencia(rs.getInt("Criterio_ID"), rs.getString("Des_Criterio"), rs.getString("Descripcion"));
-            }
-            return ccm;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
+    @Override
+    public String toString(){
+        String regresa = "";
+        regresa = "Valores de criterioCompetencia: "
+                + "Criterio_ID ["+this.getCriterio_ID()+"]\n"
+                + "Competencia_ID ["+this.getCompetencia_ID()+"]\n"
+                + "Criterio_Competencia_ID ["+this.getCriterioCompetencia_ID()+"]\n"
+                + "Ponderacion_Criterio ["+this.getPonderacionCriterio()+"]\n";
+        return regresa;
     }
 }

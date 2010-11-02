@@ -65,25 +65,13 @@ public class TcReportes
         this.perfil_ID = perfil_ID;
     }
 
-    public TcReportes obtenerReporte (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TcReportes rep = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tc_Reportes WHERE Reportes_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                rep = new TcReportes(rs.getInt("Reportes_ID"), rs.getString("Des_Reportes"), rs.getInt("Perfil_ID"));
-            }
-            return rep;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
+    @Override
+      public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("reportes_ID").append(getReportes_ID()).append("], ");
+        sb.append("perfil_ID").append(getPerfil_ID()).append("], ");
+        sb.append("des_Reportes").append(getDes_Reportes()).append("], ");
+        return sb.toString();
     }
+
 }

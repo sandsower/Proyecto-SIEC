@@ -82,26 +82,14 @@ public class TcCategorias
         this.orden = orden;
     }
 
-     public TcCategorias obtenerCategoria (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TcCategorias cat = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tc_Categoria WHERE Categoria_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                cat = new TcCategorias(rs.getInt("Categoria_ID"),rs.getString("Des_categoria"), rs.getString("Descripcion"), rs.getInt("Order"));
-            }
-            return cat;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
+    @Override
+     public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("categoria_ID").append(getCategoria_ID()).append("], ");
+        sb.append("des_categoria").append(getDes_categoria()).append("], ");
+        sb.append("descripcion").append(getDescripcion()).append("], ");
+        sb.append("orden").append(getOrden()).append("], ");
+        return sb.toString();
     }
 
 }

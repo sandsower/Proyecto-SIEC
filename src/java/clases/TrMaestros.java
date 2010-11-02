@@ -5,6 +5,9 @@
 
 package clases;
 
+import MovimientosBD.ConexionBD;
+import java.sql.*;
+
 /**
  *
  * @author Sandsower
@@ -14,7 +17,12 @@ public class TrMaestros
     private int Maestro_ID;
     private String codigo;
     private int usuario_ID;
-    private int materia_Grupo;
+
+    public TrMaestros(int Maestro_ID, String codigo, int usuario_ID){
+        this.setCodigo(codigo);
+        this.setMaestro_ID(Maestro_ID);
+        this.setUsuario_ID(usuario_ID);
+    }
 
     /**
      * @return the Maestro_ID
@@ -58,17 +66,16 @@ public class TrMaestros
         this.usuario_ID = usuario_ID;
     }
 
-    /**
-     * @return the materia_Grupo
-     */
-    public int getMateria_Grupo() {
-        return materia_Grupo;
-    }
+    @Override
+    public String toString()
+    {
+        String regresa="";
+        StringBuilder sb=new StringBuilder();
+        sb.append("Maestro_ID").append(getMaestro_ID()).append("], ");
+        sb.append("codigo").append(getCodigo()).append("], ");
+        sb.append("usuario_ID").append(getUsuario_ID()).append("], ");
+        regresa  = sb.toString();
+        return regresa;
 
-    /**
-     * @param materia_Grupo the materia_Grupo to set
-     */
-    public void setMateria_Grupo(int materia_Grupo) {
-        this.materia_Grupo = materia_Grupo;
     }
 }

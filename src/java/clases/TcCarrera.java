@@ -49,26 +49,12 @@ public class TcCarrera
         this.des_Carrera = des_Carrera;
     }
 
-
-    public TcCarrera obtenerCarrera (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TcCarrera car = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tc_Carrera WHERE Carrera_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                car = new TcCarrera(rs.getInt("Carrera_ID"), rs.getString("Des_Carrera"));
-            }
-            return car;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("carrera_ID").append(getCarrera_ID()).append("], ");
+        sb.append("des_Carrera").append(getDes_Carrera()).append("], ");
+        return sb.toString();
     }
+
 }

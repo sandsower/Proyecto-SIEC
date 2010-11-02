@@ -5,6 +5,9 @@
 
 package clases;
 
+import MovimientosBD.ConexionBD;
+import java.sql.*;
+
 /**
  *
  * @author Sandsower
@@ -14,6 +17,10 @@ public class TrSesionRechazada
     private int sesion_Rechazada;
     private String mensaje;
 
+    public TrSesionRechazada(int sesion_Rechazada, String mensaje){
+        this.setMensaje(mensaje);
+        this.setSesion_Rechazada(sesion_Rechazada);
+    }
     /**
      * @return the sesion_Rechazada
      */
@@ -40,5 +47,18 @@ public class TrSesionRechazada
      */
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
+    }
+
+
+    @Override
+    public String toString()
+    {
+        String regresa="";
+        StringBuilder sb=new StringBuilder();
+        sb.append("sesion_Rechazada").append(getSesion_Rechazada()).append("], ");
+        sb.append("mensaje").append(getMensaje()).append("], ");
+        regresa  = sb.toString();
+        return regresa;
+
     }
 }

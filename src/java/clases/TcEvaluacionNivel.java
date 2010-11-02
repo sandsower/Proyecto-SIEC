@@ -48,25 +48,14 @@ public class TcEvaluacionNivel
         this.des_Evaluacion = des_Evaluacion;
     }
 
-     public TcEvaluacionNivel obtenerEvaluacionNivel (int id){
-        try {
-            ConexionBD nuevaConexion = new ConexionBD();
-            nuevaConexion.conectarBD("root", "13450811");
-            Connection con = nuevaConexion.getCon();
-            Statement stmt = null;
-            ResultSet rs = null;
-            TcEvaluacionNivel evn = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tc_Evaluacion_Nivel WHERE Evaluacion_Nivel_ID="+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                evn = new TcEvaluacionNivel(rs.getInt("Evaluacion_Nivel_ID"), rs.getString("Des_Evaluacion"));
-            }
-            return evn;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
+    
+     
+    @Override
+      public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("evaluacion_Nivel_ID").append(getEvaluacion_Nivel_ID()).append("], ");
+        sb.append("des_Evaluacion").append(getDes_Evaluacion()).append("], ");
+        return sb.toString();
     }
+
 }
