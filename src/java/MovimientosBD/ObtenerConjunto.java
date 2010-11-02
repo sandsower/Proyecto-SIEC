@@ -301,7 +301,7 @@ public class ObtenerConjunto {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                evp.add(new TrEvaluacionParcial(rs.getInt("Evaluacion_Parcial_ID"), rs.getInt("Calificacion"), rs.getInt("Parcial"),rs.getInt("Evaluacion_Nivel_ID"), rs.getInt("Tipo_Evaluacion_ID"), rs.getInt("Maestro_Materia_Grupo_Sesion_ID"), rs.getInt("Alumnos_ID")));
+                evp.add(new TrEvaluacionParcial(rs.getInt("Evaluacion_Parcial_ID"), rs.getInt("Calificacion"), rs.getInt("Parcial"),rs.getInt("Evaluacion_Nivel_ID"), rs.getInt("Tipo_Evaluacion_ID"), rs.getInt("Sesion_ID"), rs.getInt("Alumnos_ID")));
             }
             return evp;
         } catch (SQLException ex) {
@@ -396,7 +396,7 @@ public class ObtenerConjunto {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mmgs.add(new TrSesion(rs.getInt("Maestro_Materia_Grupo_Sesion_ID"),rs.getInt("PreSesion_ID"), rs.getInt("Mae_Mat_Grp_ID")));
+                mmgs.add(new TrSesion(rs.getInt("Sesion_ID"),rs.getInt("PreSesion_ID"), rs.getInt("Mae_Mat_Grp_ID")));
             }
             return mmgs;
         } catch (SQLException ex) {
@@ -415,7 +415,7 @@ public class ObtenerConjunto {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mmgs.add(new TrSesion(rs.getInt("Maestro_Materia_Grupo_Sesion_ID"),rs.getInt("PreSesion_ID"), rs.getInt("Mae_Mat_Grp_ID")));
+                mmgs.add(new TrSesion(rs.getInt("Sesion_ID"),rs.getInt("PreSesion_ID"), rs.getInt("Mae_Mat_Grp_ID")));
             }
             return mmgs;
         } catch (SQLException ex) {
@@ -453,7 +453,7 @@ public class ObtenerConjunto {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ses.add(new TrPreSesion(rs.getInt("Sesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Criterio_Competencia_Criterio_Competencia_ID"), rs.getString("Ponderacion")));
+                ses.add(new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Criterio_Competencia_Criterio_Competencia_ID"), rs.getString("Ponderacion")));
             }
             return ses;
         } catch (SQLException ex) {
