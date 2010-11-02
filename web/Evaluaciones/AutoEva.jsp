@@ -13,6 +13,7 @@
     </HEAD>
 
     <BODY>
+        <a href="CoEva.jsp">Link a otro lado</a>
 	<H1> AUTOEVALUACION </H1>
 
 	<TABLE border=0 width=1100>

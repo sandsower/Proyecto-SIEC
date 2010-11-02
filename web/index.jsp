@@ -51,7 +51,6 @@
     </div>
    </div><!-- Menu izquierdo -->
    <div id="mitte"><!-- Contenido -->
-
                         <div class="col1" id="PARRAFO1" width="200" height="200">
                             <iframe id="PARRAFO1" width="1200" height="900" src="Evaluaciones/AutoEva.jsp" align="left"></iframe>
                         </div>

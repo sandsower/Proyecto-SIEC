@@ -212,6 +212,25 @@ public class ObtenerIndividuo {
         return null;
     }
 
+    public TrAlumnos obtenerAlumnobyUsuarioID (int id){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            TrAlumnos alm = null;
+            //SQL query command
+            String SQL = "SELECT * FROM Tr_Alumnos WHERE Usuario_ID=".toLowerCase()+id;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                alm = new TrAlumnos(rs.getInt("Alumnos_ID"), rs.getString("Matricula"), rs.getInt("Usuario_ID"), rs.getInt("Grupo_ID"), rs.getInt("Carrera_ID"));
+            }
+            return alm;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
     public TrAlumnos obtenerAlumnobyMatricula (String matricula){
         try {
             Statement stmt = null;
