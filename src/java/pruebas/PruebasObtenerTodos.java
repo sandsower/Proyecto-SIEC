@@ -5,7 +5,7 @@
 
 package pruebas;
 
-import MovimientosBD.ObtenerTodos;
+import MovimientosBD.ObtenerConjunto;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +16,7 @@ public class PruebasObtenerTodos {
     
     public static void main(String[] args) {
         ArrayList resultados = null;
-        ObtenerTodos obt = new ObtenerTodos();
+        ObtenerConjunto obt = new ObtenerConjunto();
         int i = 0;
 
         i++;
@@ -101,7 +101,7 @@ public class PruebasObtenerTodos {
 
         i++;
         System.out.println("Prueba #"+i);
-        resultados = obt.obtenerMaestrosMateriasGruposSesiones();
+        resultados = obt.obtenerSesiones();
         System.out.println(resultados.size());
 
         i++;
@@ -121,12 +121,12 @@ public class PruebasObtenerTodos {
 
         i++;
         System.out.println("Prueba #"+i);
-        resultados = obt.obtenerSesionRechazadas();
+        resultados = obt.obtenerPreSesionesRechazadas();
         System.out.println(resultados.size());
 
         i++;
         System.out.println("Prueba #"+i);
-        resultados = obt.obtenerSesiones();
+        resultados = obt.obtenerPreSesiones();
         System.out.println(resultados.size());
 
         i++;

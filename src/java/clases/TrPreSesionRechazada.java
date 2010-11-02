@@ -12,12 +12,12 @@ import java.sql.*;
  *
  * @author Sandsower
  */
-public class TrSesionRechazada
+public class TrPreSesionRechazada
 {
     private int sesion_Rechazada;
     private String mensaje;
 
-    public TrSesionRechazada(int sesion_Rechazada, String mensaje){
+    public TrPreSesionRechazada(int sesion_Rechazada, String mensaje){
         this.setMensaje(mensaje);
         this.setSesion_Rechazada(sesion_Rechazada);
     }

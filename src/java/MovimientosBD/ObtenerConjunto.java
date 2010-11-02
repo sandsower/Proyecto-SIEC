@@ -14,11 +14,11 @@ import java.util.List;
  *
  * @author HANNA
  */
-public class ObtenerTodos {
+public class ObtenerConjunto {
 
      private Connection con;
 
-    public ObtenerTodos() {
+    public ObtenerConjunto() {
          ConexionBD nuevaConexion = new ConexionBD();
         nuevaConexion.conectarBD("root", "13450811");
         this.setCon(nuevaConexion.getCon());
@@ -367,17 +367,55 @@ public class ObtenerTodos {
         return null;
     }
 
-    public ArrayList obtenerMaestrosMateriasGruposSesiones (){
+    public ArrayList obtenerMaestrosMateriasGruposbyMateria (int id){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList mmg = new ArrayList();
+            //SQL query command
+            String SQL = "SELECT * FROM Tr_Maestro_Materia_Grupo where Materia_ID=".toLowerCase()+id;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                mmg.add(new TrMaestroMateriaGrupo(rs.getInt("Maestro_Materia_Grupo_ID"), rs.getInt("Grupo_Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materia_ID")));
+            }
+            return mmg;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
+    public ArrayList obtenerSesiones (){
         try {
             Statement stmt = null;
             ResultSet rs = null;
             ArrayList mmgs = new ArrayList();
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Maestro_Materia_Grupo_Sesion".toLowerCase();
+            String SQL = "SELECT * FROM Tr_Sesion".toLowerCase();
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mmgs.add(new TrMaestroMateriaGrupoSesion(rs.getInt("Maestro_Materia_Grupo_Sesion_ID"),rs.getInt("Sesion_Sesion_ID"), rs.getInt("Mae_Mat_Grp_ID")));
+                mmgs.add(new TrSesion(rs.getInt("Maestro_Materia_Grupo_Sesion_ID"),rs.getInt("PreSesion_ID"), rs.getInt("Mae_Mat_Grp_ID")));
+            }
+            return mmgs;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+    
+    public ArrayList obtenerSesionesbyMaeMatGrpID (int id){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList mmgs = new ArrayList();
+            //SQL query command
+            String SQL = "SELECT * FROM Tr_Sesion where Mae_Mat_Grp_ID=".toLowerCase()+id;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                mmgs.add(new TrSesion(rs.getInt("Maestro_Materia_Grupo_Sesion_ID"),rs.getInt("PreSesion_ID"), rs.getInt("Mae_Mat_Grp_ID")));
             }
             return mmgs;
         } catch (SQLException ex) {
@@ -405,17 +443,17 @@ public class ObtenerTodos {
         return null;
     }
 
-     public ArrayList obtenerSesiones (){
+     public ArrayList obtenerPreSesiones (){
         try {
             Statement stmt = null;
             ResultSet rs = null;
             ArrayList ses = new ArrayList();
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Sesion".toLowerCase();
+            String SQL = "SELECT * FROM Tr_PreSesion".toLowerCase();
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ses.add(new TrSesion(rs.getInt("Sesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Criterio_Competencia_Criterio_Competencia_ID"), rs.getInt("Sesion_Rechazada_Sesion_Rechazada_ID"), rs.getString("Ponderacion")));
+                ses.add(new TrPreSesion(rs.getInt("Sesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Criterio_Competencia_Criterio_Competencia_ID"), rs.getString("Ponderacion")));
             }
             return ses;
         } catch (SQLException ex) {
@@ -443,17 +481,17 @@ public class ObtenerTodos {
         return null;
     }
 
-     public ArrayList obtenerSesionRechazadas (){
+     public ArrayList obtenerPreSesionesRechazadas (){
         try {
             Statement stmt = null;
             ResultSet rs = null;
             ArrayList ser = new ArrayList();
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Sesion_Rechazada".toLowerCase();
+            String SQL = "SELECT * FROM Tr_PreSesion_Rechazada".toLowerCase();
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ser.add(new TrSesionRechazada(rs.getInt("Sesion_Rechazada_ID"), rs.getString("Mensaje")));
+                ser.add(new TrPreSesionRechazada(rs.getInt("Sesion_Rechazada_ID"), rs.getString("Mensaje")));
             }
             return ser;
         } catch (SQLException ex) {

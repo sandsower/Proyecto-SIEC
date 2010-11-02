@@ -382,17 +382,17 @@ public class ObtenerIndividuo {
         return null;
     }
 
-    public TrMaestroMateriaGrupoSesion obtenerMaestroMateriaGrupoSesion (int id){
+    public TrSesion obtenerSesion (int id){
         try {
             Statement stmt = null;
             ResultSet rs = null;
-            TrMaestroMateriaGrupoSesion mmgs = null;
+            TrSesion mmgs = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Maestro_Materia_Grupo_Sesion WHERE Maestro_Materia_Grupo_Sesion_ID=".toLowerCase()+id;
+            String SQL = "SELECT * FROM Tr_Sesion WHERE Maestro_Materia_Grupo_Sesion_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mmgs = new TrMaestroMateriaGrupoSesion(rs.getInt("Maestro_Materia_Grupo_Sesion_ID"),rs.getInt("Sesion_Sesion_ID"), rs.getInt("Mae_Mat_Grp_ID"));
+                mmgs = new TrSesion(rs.getInt("Maestro_Materia_Grupo_Sesion_ID"),rs.getInt("PreSesion_ID"), rs.getInt("Mae_Mat_Grp_ID"));
             }
             return mmgs;
         } catch (SQLException ex) {
@@ -420,17 +420,17 @@ public class ObtenerIndividuo {
         return null;
     }
 
-     public TrSesion obtenerSesion (int id){
+     public TrPreSesion obtenerPreSesion (int id){
         try {
             Statement stmt = null;
             ResultSet rs = null;
-            TrSesion ses = null;
+            TrPreSesion ses = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Sesion WHERE Sesion_ID=".toLowerCase()+id;
+            String SQL = "SELECT * FROM Tr_PreSesion WHERE Sesion_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ses = new TrSesion(rs.getInt("Sesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Criterio_Competencia_Criterio_Competencia_ID"), rs.getInt("Sesion_Rechazada_Sesion_Rechazada_ID"), rs.getString("Ponderacion"));
+                ses = new TrPreSesion(rs.getInt("Sesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Criterio_Competencia_Criterio_Competencia_ID"), rs.getString("Ponderacion"));
             }
             return ses;
         } catch (SQLException ex) {
@@ -458,17 +458,17 @@ public class ObtenerIndividuo {
         return null;
     }
 
-     public TrSesionRechazada obtenerSesionRechazada (int id){
+     public TrPreSesionRechazada obtenerPreSesionRechazada (int id){
         try {
             Statement stmt = null;
             ResultSet rs = null;
-            TrSesionRechazada ser = null;
+            TrPreSesionRechazada ser = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Sesion_Rechazada WHERE Sesion_Rechazada_ID=".toLowerCase()+id;
+            String SQL = "SELECT * FROM Tr_PreSesion_Rechazada WHERE Sesion_Rechazada_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ser = new TrSesionRechazada(rs.getInt("Sesion_Rechazada_ID"), rs.getString("Mensaje"));
+                ser = new TrPreSesionRechazada(rs.getInt("Sesion_Rechazada_ID"), rs.getString("Mensaje"));
             }
             return ser;
         } catch (SQLException ex) {

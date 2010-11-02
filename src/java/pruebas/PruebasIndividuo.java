@@ -92,12 +92,12 @@ public class PruebasIndividuo {
         //15-Sesion_Rechazada
         i++;
         System.out.println("Prueba #"+i);
-        TrSesionRechazada sRechazada=obt.obtenerSesionRechazada(2);
+        TrPreSesionRechazada sRechazada=obt.obtenerPreSesionRechazada(2);
         System.out.println(sRechazada.toString());
         //16-Sesion
         i++;
         System.out.println("Prueba #"+i);
-        TrSesion sesion=obt.obtenerSesion(1);
+        TrPreSesion sesion=obt.obtenerPreSesion(1);
         System.out.println(sesion.toString());
         //17-Maestros
         i++;
@@ -107,7 +107,7 @@ public class PruebasIndividuo {
         //18-Maestro_Materia_Grupo_Sesion
         i++;
         System.out.println("Prueba #"+i);
-        TrMaestroMateriaGrupoSesion mGS=obt.obtenerMaestroMateriaGrupoSesion(1);
+        TrSesion mGS=obt.obtenerSesion(1);
         System.out.println(mGS.toString());
         //19-Maestro_Materia_Grupo
         i++;

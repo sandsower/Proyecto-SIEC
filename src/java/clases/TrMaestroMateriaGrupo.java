@@ -14,7 +14,6 @@ public class TrMaestroMateriaGrupo {
         this.materia_ID = materia_ID;
     }
 
-
     private int maestroMateriaGrupo_ID;
     private int grupoGrupo_ID;
     private int maestro_ID;

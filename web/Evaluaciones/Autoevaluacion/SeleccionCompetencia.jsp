@@ -1,6 +1,6 @@
 <%-- 
-    Document   : SeleccionProfesor
-    Created on : Nov 1, 2010, 7:15:41 PM
+    Document   : SeleccionarCompetencia
+    Created on : Nov 1, 2010, 11:59:09 PM
     Author     : sands
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -14,11 +14,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Por favor selecciona la materia a evaluar:</h1>
-        <form action="llenarCompetencias.do" method="POST">
+        <h1>Favor de seleccionar la competencia a evaluar:</h1>
+        <form action="crearAE.do" method="POST">
             <select name="ID">
-                <c:forEach items="${Materias}" var="materia">
-                    <option value="${materia.materias_ID}">${materia.des_Materias}</option>
+                <c:forEach items="${Competencias}" var="competencia">
+                    <option id="${competencia.competencia_ID}">${competencia.des_Competencia}</option>
                 </c:forEach>
             </select>
             <input type="submit" value="Aceptar"/>

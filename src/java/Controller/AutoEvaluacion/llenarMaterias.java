@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package Controller;
+package Controller.AutoEvaluacion;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,11 +28,11 @@ public class llenarMaterias extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("ID"));
         //Inicializamos metodos de obtencion
         ObtenerIndividuo obti = new ObtenerIndividuo();
-        ObtenerTodos obtt = new ObtenerTodos();
+        ObtenerConjunto obtc = new ObtenerConjunto();
         //Obtenemos el alumno con el ID del usuario
         TrAlumnos alumno = obti.obtenerAlumnobyUsuarioID(id);
         //Obtenemos lista de MaestroMateriasGrupos por el ID de grupo sacado del alumno
-        ArrayList listaMMG = obtt.obtenerMaestrosMateriasGruposbyGrupo(alumno.getGrupo_ID());
+        ArrayList listaMMG = obtc.obtenerMaestrosMateriasGruposbyGrupo(alumno.getGrupo_ID());
         //Creamos un iterador para la listaMMG
         Iterator it = listaMMG.iterator();
         //Creamos la lista donde se guardaran las materias
