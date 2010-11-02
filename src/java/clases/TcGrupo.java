@@ -96,15 +96,15 @@ public class TcGrupo
         this.letra = letra;
     }
 
+    @Override
        public String toString() {
-        String regresa = "";
         StringBuilder sb = new StringBuilder();
         sb.append("grupo_ID").append(getGrupo_ID()).append("], ");
         sb.append("des_Grupo").append(getDes_Grupo()).append("], ");
         sb.append("carrera_ID").append(getCarrera_ID()).append("], ");
         sb.append("cuatrimestre").append(getCuatrimestre()).append("], ");
         sb.append("letra").append(getLetra()).append("], ");
-        return regresa;
+        return sb.toString();
     }
        
 }

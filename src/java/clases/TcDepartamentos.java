@@ -48,12 +48,12 @@ public class TcDepartamentos
         this.des_Departamento = des_Departamento;
     }
     
+    @Override
      public String toString() {
-        String regresa = "";
         StringBuilder sb = new StringBuilder();
         sb.append("departamento_ID").append(getDepartamento_ID()).append("], ");
         sb.append("des_Departamento").append(getDes_Departamento()).append("], ");
-        return regresa;
+        return sb.toString();
     }
      
 }

@@ -52,12 +52,12 @@ public class TrComentarioDPAEstrategia
         this.estrategia_ID = estrategia_ID;
     }
 
+    @Override
       public String toString() {
-        String regresa = "";
         StringBuilder sb = new StringBuilder();
         sb.append("comentarioEstrategiaDPA_ID").append(getComentarioEstrategiaDPA_ID()).append("], ");
         sb.append("estrategia_ID").append(getEstrategia_ID()).append("], ");
-        return regresa;
+        return sb.toString();
     }
 
 }

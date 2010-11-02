@@ -82,14 +82,14 @@ public class TcCategorias
         this.orden = orden;
     }
 
+    @Override
      public String toString() {
-        String regresa = "";
         StringBuilder sb = new StringBuilder();
         sb.append("categoria_ID").append(getCategoria_ID()).append("], ");
         sb.append("des_categoria").append(getDes_categoria()).append("], ");
         sb.append("descripcion").append(getDescripcion()).append("], ");
         sb.append("orden").append(getOrden()).append("], ");
-        return regresa;
+        return sb.toString();
     }
 
 }

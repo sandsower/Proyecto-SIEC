@@ -98,15 +98,15 @@ public class TrAlumnos
         this.carrera_ID = carrera_ID;
     }
 
+    @Override
      public String toString() {
-        String regresa = "";
         StringBuilder sb = new StringBuilder();
         sb.append("alumnos_ID").append(getAlumnos_ID()).append("], ");
         sb.append("matricula").append(getMatricula()).append("], ");
         sb.append("usuario_ID").append(getUsuario_ID()).append("], ");
         sb.append("grupo_ID").append(getGrupo_ID()).append("], ");
         sb.append("carrera_ID").append(getCarrera_ID()).append("], ");
-        return regresa;
+        return sb.toString();
     }
      
 }

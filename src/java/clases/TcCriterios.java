@@ -64,13 +64,13 @@ public class TcCriterios
         this.descripcion = descripcion;
     }
 
+    @Override
      public String toString() {
-        String regresa = "";
         StringBuilder sb = new StringBuilder();
         sb.append("criterio_ID").append(getCriterio_ID()).append("], ");
         sb.append("des_Criterio").append(getDes_Criterio()).append("], ");
         sb.append("descripcion").append(getDescripcion()).append("], ");
-        return regresa;
+        return sb.toString();
     }
   
 }
