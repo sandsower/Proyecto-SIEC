@@ -96,11 +96,6 @@ public class PruebasObtenerTodos {
 
         i++;
         System.out.println("Prueba #"+i);
-        resultados = obt.obtenerMaestrosMaterias();
-        System.out.println(resultados.size());
-
-        i++;
-        System.out.println("Prueba #"+i);
         resultados = obt.obtenerMaestrosMateriasGrupos();
         System.out.println(resultados.size());
 

@@ -363,25 +363,6 @@ public class ObtenerIndividuo {
         return null;
     }
 
-    public TrMaestroMateria obtenerMaestroMateria (int id){
-        try {
-            Statement stmt = null;
-            ResultSet rs = null;
-            TrMaestroMateria mma = null;
-            //SQL query command
-            String SQL = "SELECT * FROM Tr_Maestro_Materia WHERE Maestro_Materia_ID=".toLowerCase()+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                mma = new TrMaestroMateria(rs.getInt("Maestro_Materia_ID"), rs.getInt("Materias_ID"), rs.getInt("Maestro_ID"));
-            }
-            return mma;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
-
     public TrMaestroMateriaGrupo obtenerMaestroMateriaGrupo (int id){
         try {
             Statement stmt = null;
@@ -392,7 +373,7 @@ public class ObtenerIndividuo {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mmg = new TrMaestroMateriaGrupo(rs.getInt("Maestro_Materia_Grupo_ID"), rs.getInt("Grupo_Grupo_ID"), rs.getInt("Maestro_Materia_ID"));
+                mmg = new TrMaestroMateriaGrupo(rs.getInt("Maestro_Materia_Grupo_ID"), rs.getInt("Grupo_Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materia_ID"));
             }
             return mmg;
         } catch (SQLException ex) {

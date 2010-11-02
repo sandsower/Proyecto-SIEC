@@ -7,19 +7,34 @@ import java.sql.*;
 
 public class TrMaestroMateriaGrupo {
 
+    public TrMaestroMateriaGrupo(int maestroMateriaGrupo_ID, int grupoGrupo_ID, int maestro_ID, int materia_ID) {
+        this.maestroMateriaGrupo_ID = maestroMateriaGrupo_ID;
+        this.grupoGrupo_ID = grupoGrupo_ID;
+        this.maestro_ID = maestro_ID;
+        this.materia_ID = materia_ID;
+    }
+
 
     private int maestroMateriaGrupo_ID;
     private int grupoGrupo_ID;
-    private int maestroMateria_ID;
+    private int maestro_ID;
+    private int materia_ID;
 
-   
-    public TrMaestroMateriaGrupo(int maestroMateriaGrupo_ID,int grupoGrupo_ID, int maestroMateria_ID)
-    {
-     this.setGrupoGrupo_ID(grupoGrupo_ID);
-     this.setMaestroMateriaGrupo_ID(maestroMateriaGrupo_ID);
-     this.setMaestroMateria_ID(maestroMateria_ID);
+    public int getMaestro_ID() {
+        return maestro_ID;
     }
 
+    public void setMaestro_ID(int maestro_ID) {
+        this.maestro_ID = maestro_ID;
+    }
+
+    public int getMateria_ID() {
+        return materia_ID;
+    }
+
+    public void setMateria_ID(int materia_ID) {
+        this.materia_ID = materia_ID;
+    }
     /**
      * @return the maestroMateriaGrupo_ID
      */
@@ -48,19 +63,7 @@ public class TrMaestroMateriaGrupo {
         this.grupoGrupo_ID = grupoGrupo_ID;
     }
 
-    /**
-     * @return the maestroMateria_ID
-     */
-    public int getMaestroMateria_ID() {
-        return maestroMateria_ID;
-    }
-
-    /**
-     * @param maestroMateria_ID the maestroMateria_ID to set
-     */
-    public void setMaestroMateria_ID(int maestroMateria_ID) {
-        this.maestroMateria_ID = maestroMateria_ID;
-    }
+  
 
     @Override
     public String toString()
@@ -69,7 +72,8 @@ public class TrMaestroMateriaGrupo {
         StringBuilder sb=new StringBuilder();
         sb.append("maestroMateriaGrupo_ID").append(getMaestroMateriaGrupo_ID()).append("], ");
         sb.append("grupoGrupo_ID").append(getGrupoGrupo_ID()).append("], ");
-        sb.append("maestroMateria_ID").append(getMaestroMateria_ID()).append("], ");
+        sb.append("Materia_ID").append(getMateria_ID()).append("], ");
+        sb.append("Maestro_ID").append(getMateria_ID()).append("]");
         regresa  = sb.toString();
         return regresa;
 

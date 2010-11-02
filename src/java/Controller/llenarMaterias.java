@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import MovimientosBD.*;
 import clases.*;
 import java.util.ArrayList;
+import java.util.Iterator;
+import javax.servlet.RequestDispatcher;
 /**
  *
  * @author sands
@@ -29,8 +31,24 @@ public class llenarMaterias extends HttpServlet {
         ObtenerTodos obtt = new ObtenerTodos();
         //Obtenemos el alumno con el ID del usuario
         TrAlumnos alumno = obti.obtenerAlumnobyUsuarioID(id);
-        //Obtenemos lista de
+        //Obtenemos lista de MaestroMateriasGrupos por el ID de grupo sacado del alumno
         ArrayList listaMMG = obtt.obtenerMaestrosMateriasGruposbyGrupo(alumno.getGrupo_ID());
-        
+        //Creamos un iterador para la listaMMG
+        Iterator it = listaMMG.iterator();
+        //Creamos la lista donde se guardaran las materias
+        ArrayList listaMaterias = new ArrayList();
+        //Iterador
+        while(it.hasNext()){
+            //Sacamos el objeto de la lista
+            TrMaestroMateriaGrupo mmg = (TrMaestroMateriaGrupo) it.next();
+            //Obtenemos la materia correspondiente al indice de nuestra lista inicial
+            TcMaterias mat = obti.obtenerMateria(mmg.getMateria_ID());
+            //Y lo añadimos a la lista que regresaremos
+            listaMaterias.add(mat);
+        }
+        //Regresamos la lista de materias a la vista SeleccionMateria.jsp
+        req.setAttribute("Materias", listaMaterias);
+        RequestDispatcher view = req.getRequestDispatcher("SeleccionMateria.jsp");
+        view.forward(req, resp);
     }
 }

@@ -114,11 +114,9 @@ public class PruebasIndividuo {
         System.out.println("Prueba #"+i);
         TrMaestroMateriaGrupo mMG=obt.obtenerMaestroMateriaGrupo(2);
         System.out.println(mMG.toString());
-        //20-Maestro_Materia
+        //20-Maestro_Materia (borrada)
         i++;
         System.out.println("Prueba #"+i);
-        TrMaestroMateria mM=obt.obtenerMaestroMateria(3);
-        System.out.println(mM.toString());
         //21-Parcial_Acumulativa
         i++;
         System.out.println("Prueba #"+i);
