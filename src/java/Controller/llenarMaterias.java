@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import MovimientosBD.*;
 import clases.*;
+import java.util.ArrayList;
 /**
  *
  * @author sands
@@ -28,6 +29,8 @@ public class llenarMaterias extends HttpServlet {
         ObtenerTodos obtt = new ObtenerTodos();
         //Obtenemos el alumno con el ID del usuario
         TrAlumnos alumno = obti.obtenerAlumnobyUsuarioID(id);
+        //Obtenemos lista de
+        ArrayList listaMMG = obtt.obtenerMaestrosMateriasGruposbyGrupo(alumno.getGrupo_ID());
         
     }
 }
