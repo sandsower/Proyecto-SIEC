@@ -10,10 +10,6 @@
         <SCRIPT type= "text/JavaScript" src= "js/jquery.js"> </SCRIPT>
 	<SCRIPT type= "text/JavaScript" src= "js/acciones.js"> </SCRIPT>
         <link rel="stylesheet" href="Styles/default.css" type="text/css" />
-
-
-
-
     </HEAD>
 
     <BODY>
