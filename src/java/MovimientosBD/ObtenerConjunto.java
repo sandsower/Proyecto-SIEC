@@ -252,6 +252,25 @@ public class ObtenerConjunto {
         }
         return null;
     }
+    
+    public ArrayList obtenerCriterioCompetenciasbyCompetenciaID (int id){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList ccm = new ArrayList();
+            //SQL query command
+            String SQL = "SELECT * FROM Tr_Criterio_Competencia where Competencia_ID=".toLowerCase()+id;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                ccm.add(new TrCriterioCompetencia(rs.getInt("Criterio_ID"), rs.getInt("Criterio_Competencia_ID"), rs.getInt("Competencia_ID"), rs.getString("Ponderacion_Criterio")));
+            }
+            return ccm;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
 
     public ArrayList obtenerEstrategias (){
         try {
@@ -450,6 +469,25 @@ public class ObtenerConjunto {
             ArrayList ses = new ArrayList();
             //SQL query command
             String SQL = "SELECT * FROM Tr_PreSesion".toLowerCase();
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                ses.add(new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Criterio_Competencia_Criterio_Competencia_ID"), rs.getString("Ponderacion")));
+            }
+            return ses;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
+    public ArrayList obtenerPreSesionesbyCriterioCompetenciaID (int id){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList ses = new ArrayList();
+            //SQL query command
+            String SQL = "SELECT * FROM Tr_PreSesion where criterio_competencia_criterio_competencia_id=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){

@@ -344,6 +344,25 @@ public class ObtenerIndividuo {
         return null;
     }
 
+    public TrEvaluacionParcial obtenerEvaluacionParcialFilter (int idSesion, int tipo, int idAlumno){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            TrEvaluacionParcial evp = null;
+            //SQL query command
+            String SQL = "SELECT * FROM Tr_Evaluacion_Parcial WHERE Sesion_ID=".toLowerCase()+idSesion+" AND Tipo_Evaluacion_ID=".toLowerCase()+tipo+" AND Alumnos_ID=".toLowerCase()+idAlumno;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                evp = new TrEvaluacionParcial(rs.getInt("Evaluacion_Parcial_ID"), rs.getInt("Calificacion"), rs.getInt("Parcial"),rs.getInt("Evaluacion_Nivel_ID"), rs.getInt("Tipo_Evaluacion_ID"), rs.getInt("Sesion_ID"), rs.getInt("Alumnos_ID"));
+            }
+            return evp;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
     public TrEvaluacionParcialAcumulativa obtenerEvaluacionParcialAcumulativa (int id){
         try {
             Statement stmt = null;

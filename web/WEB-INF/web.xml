@@ -8,6 +8,10 @@
         <servlet-name>llenarCompetenciasAE</servlet-name>
         <servlet-class>Controller.AutoEvaluacion.llenarCompetencias</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>crearAE</servlet-name>
+        <servlet-class>Controller.AutoEvaluacion.crearAE</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>llenarMateriasAE</servlet-name>
         <url-pattern>/Evaluaciones/Autoevaluacion/llenarMaterias.do</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>llenarCompetenciasAE</servlet-name>
         <url-pattern>/Evaluaciones/Autoevaluacion/llenarCompetencias.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crearAE</servlet-name>
+        <url-pattern>/Evaluaciones/Autoevaluacion/crearAE.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

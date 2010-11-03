@@ -18,7 +18,7 @@
         <form action="crearAE.do" method="POST">
             <select name="ID">
                 <c:forEach items="${Competencias}" var="competencia">
-                    <option id="${competencia.competencia_ID}">${competencia.des_Competencia}</option>
+                    <option value="${competencia.competencia_ID}">${competencia.des_Competencia}</option>
                 </c:forEach>
             </select>
             <input type="submit" value="Aceptar"/>
