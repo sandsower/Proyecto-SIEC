@@ -16,19 +16,23 @@ public class TrUsuario
 {
     private int usuario_ID;
     private String Nombres;
-    private String Apellidos;
+    private String apellidoPat;
+    private String apellidoMat;
     private String fecha_Nac;
     private String usuario;
     private String password;
+    private String img;
     private int perfil_ID;
 
-    public TrUsuario(int usuario_ID,String Nombres, String Apellidos, String fecha_Nac, String usuario, String password, int perfil_ID){
-        this.setApellidos(Apellidos);
+    public TrUsuario(int usuario_ID,String Nombres, String apellidoPat, String apellidoMat, String fecha_Nac, String usuario, String password, String img, int perfil_ID){
+        this.setApellidoPat(apellidoPat);
+        this.setApellidoMat(apellidoMat);
         this.setFecha_Nac(fecha_Nac);
         this.setNombres(Nombres);
         this.setPassword(password);
         this.setPerfil_ID(perfil_ID);
         this.setUsuario(usuario);
+        this.setImg(img);
         this.setUsuario_ID(usuario_ID);
     }
 
@@ -63,15 +67,21 @@ public class TrUsuario
     /**
      * @return the Apellidos
      */
-    public String getApellidos() {
-        return Apellidos;
+
+    public String getApellidoMat() {
+        return apellidoMat;
     }
 
-    /**
-     * @param Apellidos the Apellidos to set
-     */
-    public void setApellidos(String Apellidos) {
-        this.Apellidos = Apellidos;
+    public void setApellidoMat(String apellidoMat) {
+        this.apellidoMat = apellidoMat;
+    }
+
+    public String getApellidoPat() {
+        return apellidoPat;
+    }
+
+    public void setApellidoPat(String apellidoPat) {
+        this.apellidoPat = apellidoPat;
     }
 
     /**
@@ -116,6 +126,14 @@ public class TrUsuario
         this.password = password;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     /**
      * @return the perfil_ID
      */
@@ -136,10 +154,12 @@ public class TrUsuario
         StringBuilder sb=new StringBuilder();
         sb.append("usuario_ID").append(getUsuario_ID()).append("], ");
         sb.append("Nombres").append(getNombres()).append("], ");
-        sb.append("Apellidos").append(getApellidos()).append("], ");
+        sb.append("Apellido Paterno").append(getApellidoPat()).append("], ");
+        sb.append("Apellido Materno").append(getApellidoMat()).append("], ");
         sb.append("fecha_Nac").append(getFecha_Nac()).append("], ");
         sb.append("usuario").append(getUsuario()).append("], ");
         sb.append("password").append(getPassword()).append("], ");
+        sb.append("imagen").append(getImg()).append("], ");
         sb.append("perfil_ID").append(getPerfil_ID()).append("], ");
 
         regresa  = sb.toString();

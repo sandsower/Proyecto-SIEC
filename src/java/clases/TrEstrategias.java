@@ -17,14 +17,13 @@ public class TrEstrategias
     private int estrategia_ID;
     private String fecha_Inicio_Registro;
     private String mensaje;
-    private int Maestro_ID;
-    
+    private String fecha_fin;
 
-    public TrEstrategias(int estrategia_ID,String fecha_Inicio_Registro, String mensaje, int Maestro_ID){
+    public TrEstrategias(int estrategia_ID,String fecha_Inicio_Registro, String mensaje,String fecha_fin){
         this.setEstrategia_ID(estrategia_ID);
-        this.setMaestro_ID(Maestro_ID);
         this.setFecha_Inicio_Registro(fecha_Inicio_Registro);
         this.setMensaje(mensaje);
+        this.setFecha_fin(fecha_fin);
     }
     /**
      * @return the estrategia_ID
@@ -68,23 +67,13 @@ public class TrEstrategias
         this.mensaje = mensaje;
     }
 
-    /**
-     * @return the Maestro_ID
-     */
-    public int getMaestro_ID() {
-        return Maestro_ID;
+    public String getFecha_fin() {
+        return fecha_fin;
     }
 
-    /**
-     * @param Maestro_ID the Maestro_ID to set
-     */
-    public void setMaestro_ID(int Maestro_ID) {
-        this.Maestro_ID = Maestro_ID;
+    public void setFecha_fin(String fecha_fin) {
+        this.fecha_fin = fecha_fin;
     }
-
-    /**
-     * @return the maestros_Maestro_ID
-     */
     
 
     /**
@@ -98,7 +87,7 @@ public class TrEstrategias
         sb.append("estrategia_ID [").append(getEstrategia_ID()).append("], ");
         sb.append("fecha_Inicio_Registro [").append(getFecha_Inicio_Registro()).append("], ");
         sb.append("mensaje [").append(getMensaje()).append("], ");
-        sb.append("Maestro_ID [").append(getMaestro_ID()).append("], ");
+        sb.append("Fecha Fin [").append(getFecha_fin()).append("], ");
         regresa  = sb.toString();
         return regresa;
 

@@ -14,25 +14,27 @@ import java.sql.*;
  */
 public class TrPreSesionRechazada
 {
-    private int sesion_Rechazada;
+    private int sesion_Rechazada_Id;
     private String mensaje;
+    private int preSesionId;
 
-    public TrPreSesionRechazada(int sesion_Rechazada, String mensaje){
+    public TrPreSesionRechazada(int sesion_Rechazada, String mensaje, int preSesionId){
         this.setMensaje(mensaje);
         this.setSesion_Rechazada(sesion_Rechazada);
+        this.setPreSesionId(preSesionId);
     }
     /**
      * @return the sesion_Rechazada
      */
     public int getSesion_Rechazada() {
-        return sesion_Rechazada;
+        return sesion_Rechazada_Id;
     }
 
     /**
      * @param sesion_Rechazada the sesion_Rechazada to set
      */
     public void setSesion_Rechazada(int sesion_Rechazada) {
-        this.sesion_Rechazada = sesion_Rechazada;
+        this.sesion_Rechazada_Id = sesion_Rechazada;
     }
 
     /**
@@ -49,16 +51,31 @@ public class TrPreSesionRechazada
         this.mensaje = mensaje;
     }
 
+    public int getPreSesionId() {
+        return preSesionId;
+    }
+
+    public void setPreSesionId(int preSesionId) {
+        this.preSesionId = preSesionId;
+    }
+
+    
+
 
     @Override
     public String toString()
     {
         String regresa="";
         StringBuilder sb=new StringBuilder();
-        sb.append("sesion_Rechazada").append(getSesion_Rechazada()).append("], ");
-        sb.append("mensaje").append(getMensaje()).append("], ");
+        sb.append("sesion_Rechazada [").append(getSesion_Rechazada()).append("], ");
+        sb.append("mensaje [").append(getMensaje()).append("], ");
+        sb.append("PreSesionId [").append(getPreSesionId()).append("], ");
         regresa  = sb.toString();
         return regresa;
 
     }
+//    public static void main(String []args){
+//        TrPreSesionRechazada ses = new TrPreSesionRechazada(1,"mensaje",1);
+//        ses.toString();
+//    }
 }

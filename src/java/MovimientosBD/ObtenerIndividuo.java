@@ -17,7 +17,7 @@ public class ObtenerIndividuo {
 
     public ObtenerIndividuo() {
         ConexionBD nuevaConexion = new ConexionBD();
-        nuevaConexion.conectarBD("root", "13450811");
+        nuevaConexion.conectarBD("root", "gameover");
         this.setCon(nuevaConexion.getCon());
     }
 
@@ -122,11 +122,11 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TcGrupo grp = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tc_Grupo WHERE Grupo_ID=".toLowerCase()+id;
+            String SQL = "SELECT * FROM tc_grupo WHERE GRUPO_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                grp = new TcGrupo(rs.getInt("Grupo_ID"), rs.getString("Des_Grupo"), rs.getInt("Carrera_ID"), rs.getString("Cuatrimestre"), rs.getString("Letra"));
+                grp = new TcGrupo(rs.getInt("GRUPO_ID"), rs.getString("DES_GRUPO"), rs.getInt("CARRERA_ID"), rs.getString("GRADO"));
             }
             return grp;
         } catch (SQLException ex) {
@@ -203,7 +203,7 @@ public class ObtenerIndividuo {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                alm = new TrAlumnos(rs.getInt("Alumnos_ID"), rs.getString("Matricula"), rs.getInt("Usuario_ID"), rs.getInt("Grupo_ID"), rs.getInt("Carrera_ID"));
+                alm = new TrAlumnos(rs.getInt("Alumnos_ID"), rs.getString("Matricula"), rs.getInt("Usuario_ID"), rs.getInt("Carrera_ID"));
             }
             return alm;
         } catch (SQLException ex) {
@@ -222,7 +222,7 @@ public class ObtenerIndividuo {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                alm = new TrAlumnos(rs.getInt("Alumnos_ID"), rs.getString("Matricula"), rs.getInt("Usuario_ID"), rs.getInt("Grupo_ID"), rs.getInt("Carrera_ID"));
+                alm = new TrAlumnos(rs.getInt("Alumnos_ID"), rs.getString("Matricula"), rs.getInt("Usuario_ID"), rs.getInt("Carrera_ID"));
             }
             return alm;
         } catch (SQLException ex) {
@@ -241,7 +241,7 @@ public class ObtenerIndividuo {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                alm = new TrAlumnos(rs.getInt("Alumnos_ID"), rs.getString("Matricula"), rs.getInt("Usuario_ID"), rs.getInt("Grupo_ID"), rs.getInt("Carrera_ID"));
+                alm = new TrAlumnos(rs.getInt("Alumnos_ID"), rs.getString("Matricula"), rs.getInt("Usuario_ID"), rs.getInt("Carrera_ID"));
             }
             return alm;
         } catch (SQLException ex) {
@@ -297,7 +297,7 @@ public class ObtenerIndividuo {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                est = new TrEstrategias(rs.getInt("Estrategia_ID"), rs.getString("Fecha_Inicio_Registro"), rs.getString("Mensaje"), rs.getInt("Maestros_Maestro_ID"));
+                est = new TrEstrategias(rs.getInt("Estrategia_ID"), rs.getString("Fecha_Inicio_Registro"), rs.getString("Mensaje"), rs.getString("Fecha_Cambio"));
             }
             return est;
         } catch (SQLException ex) {
@@ -369,11 +369,11 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrMaestroMateriaGrupo mmg = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Maestro_Materia_Grupo WHERE Maestro_Materia_Grupo_ID=".toLowerCase()+id;
+            String SQL = "SELECT * FROM tr_maestro_grupo_materia WHERE MATERIA_GRUPO_MAESTRO_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mmg = new TrMaestroMateriaGrupo(rs.getInt("Maestro_Materia_Grupo_ID"), rs.getInt("Grupo_Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materia_ID"));
+                mmg = new TrMaestroMateriaGrupo(rs.getInt("MATERIA_GRUPO_MAESTRO_ID"), rs.getInt("Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materias_ID"));
             }
             return mmg;
         } catch (SQLException ex) {
@@ -392,7 +392,7 @@ public class ObtenerIndividuo {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mmgs = new TrSesion(rs.getInt("Sesion_ID"),rs.getInt("PreSesion_ID"), rs.getInt("Mae_Mat_Grp_ID"));
+                mmgs = new TrSesion(rs.getInt("Sesion_ID"),rs.getInt("PreSesion_ID"), rs.getInt("Materia_Grupo_Maestro_ID"),rs.getInt("estado"));
             }
             return mmgs;
         } catch (SQLException ex) {
@@ -430,7 +430,7 @@ public class ObtenerIndividuo {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ses = new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Criterio_Competencia_Criterio_Competencia_ID"), rs.getString("Ponderacion"));
+                ses = new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Ponderacion"), rs.getString("Criterio_Competencia_Id"));
             }
             return ses;
         } catch (SQLException ex) {
@@ -449,7 +449,7 @@ public class ObtenerIndividuo {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                usr = new TrUsuario(rs.getInt("Usuario_ID"), rs.getString("Nombres"), rs.getString("Apellidos"), rs.getDate("Fecha_Nac").toString(), rs.getString("Usuario"), rs.getString("Password"), rs.getInt("Perfil_ID"));
+                usr = new TrUsuario(rs.getInt("Usuario_ID"), rs.getString("Nombres"), rs.getString("Apellido_Paterno"),rs.getString("Apellido_Materno"), rs.getString("Fecha_Nac").toString(), rs.getString("Usuario"), rs.getString("Password"),rs.getString("Imagen"), rs.getInt("Perfil_ID"));
             }
             return usr;
         } catch (SQLException ex) {
@@ -464,11 +464,11 @@ public class ObtenerIndividuo {
             ResultSet rs = null;
             TrPreSesionRechazada ser = null;
             //SQL query command
-            String SQL = "SELECT * FROM Tr_PreSesion_Rechazada WHERE Sesion_Rechazada_ID=".toLowerCase()+id;
+            String SQL = "SELECT * FROM tr_presesion_rechazada WHERE SESION_RECHAZADA_ID=".toLowerCase()+id;
             stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
+                rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ser = new TrPreSesionRechazada(rs.getInt("Sesion_Rechazada_ID"), rs.getString("Mensaje"));
+                ser = new TrPreSesionRechazada(rs.getInt("Sesion_Rechazada_ID"), rs.getString("Mensaje"), rs.getInt("PreSesion_Id"));
             }
             return ser;
         } catch (SQLException ex) {
@@ -515,14 +515,14 @@ public class ObtenerIndividuo {
         return null;
     }
 
-
-    public static void main(String[] args) {
-        ObtenerIndividuo obt = new ObtenerIndividuo();
-        TrEstrategias estr = obt.obtenerEstrategia(1);
-        System.out.println(estr.toString());
-        TrComentarioDPAEstrategia cde = obt.obtenerComentarioDPAEstrategia(1);
-        System.out.println(cde.toString());
-    }
+// Esta tabla ya no existe
+//    public static void main(String[] args) {
+//        ObtenerIndividuo obt = new ObtenerIndividuo();
+//        TrEstrategias estr = obt.obtenerEstrategia(1);
+//        System.out.println(estr.toString());
+//        TrComentarioDPAEstrategia cde = obt.obtenerComentarioDPAEstrategia(1);
+//        System.out.println(cde.toString());
+//    }
 
     /**
      * @return the con
