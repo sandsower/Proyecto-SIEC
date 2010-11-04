@@ -69,7 +69,7 @@
 
 
 <P><P><P>
-
+<!--
         <h2>Este es un encabezado H2</h2>
     <p>Este es otro parrafo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dignissim porttitor scelerisque. In consequat turpis sit amet mi fermentum dapibus.</p>
     <form id="form1" class="form" name="form1" method="post" action="/action">
@@ -125,7 +125,7 @@
     </form>
 	</div>
     </div>
-   </div><!-- Contenido -->
+   </div>--><!-- Contenido -->
    <div id="menur"><!-- Menu derecho -->
    <div class="cuadro">
 	<div class="theader">Cuadro 2</div>

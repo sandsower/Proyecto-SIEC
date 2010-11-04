@@ -41,6 +41,10 @@ public class crearAE extends HttpServlet {
         ArrayList listaPresesiones = this.llenarPresesiones(listaCriCo);
         //Filtramos las sesiones disponibles de acuerdo a las listas de presesiones y de maestroMateriaGrupo disponibles
         TrSesion sesion = this.filtrarSesiones(listaPresesiones, listaMMG);
+        //Obtenemos la lista de criterios basandonos en la sesion filtrada
+        TrPreSesion presesion = obti.obtenerPreSesion(sesion.getPreSesion_ID());
+        TrCriterioCompetencia crico = obti.obtenerCriterioCompetencia(presesion.getCriterioCompetencia_ID());
+        TcCriterios crit = obti.obtenerCriterio(crico.getCriterio_ID());
         //Comprobamos la existencia de valores de autoevaluacion en nuestra tabla de evaluaciones parciales
         //De no ser asi, creamos el campo con valores nulos
         //Si no, avanzamos al siguiente paso (modificacion de valores)
@@ -56,6 +60,11 @@ public class crearAE extends HttpServlet {
              //TODO: Cambiar valor estatico por variable de sesion
             eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), 1, alumno.getAlumnos_ID());
         }
+        //Obtenemos ademas los niveles de evaluacion disponibles para evaluar.
+        ArrayList niveles = obtc.obtenerEvaluacionesNiveles();
+        //Mandamos a la vista los valores con los que vamos a interactuar
+        req.setAttribute("Niveles", niveles);
+        req.setAttribute("Criterio", crit);
         req.setAttribute("Evaluacion", eva);
         RequestDispatcher view = req.getRequestDispatcher("AutoEva.jsp");
         view.forward(req, resp);
