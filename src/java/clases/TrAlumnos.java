@@ -5,8 +5,6 @@
 
 package clases;
 
-import MovimientosBD.ConexionBD;
-import java.sql.*;
 
 /**
  *
@@ -31,6 +29,7 @@ public class TrAlumnos
         this.setUsuario_ID(usuario_ID);
         
     }
+
     /**
      * @return the alumnos_ID
      */
