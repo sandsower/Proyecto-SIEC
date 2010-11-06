@@ -6,6 +6,8 @@ package MovimientosBD;
 
 import clases.*;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -283,6 +285,24 @@ public class ObtenerIndividuo {
             return ccm;
         } catch (SQLException ex) {
             System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
+    public TrGrupoAlumno obtenerGrupoAlumno(int id){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            TrGrupoAlumno gra = null;
+            String SQL = "SELECT * FROM tr_grupo_alumno WHERE GRUPO_ALUMNO_ID=".toLowerCase() + id;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                gra = new TrGrupoAlumno(rs.getInt("GRUPO_ALUMNO_ID"), rs.getInt("GRUPO_ID"), rs.getInt("ALUMNOS_ID"));
+            }
+            return gra;
+        } catch (SQLException ex) {
+            Logger.getLogger(ObtenerIndividuo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

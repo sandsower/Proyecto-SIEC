@@ -24,6 +24,60 @@ public class ObtenerConjunto {
         this.setCon(nuevaConexion.getCon());
     }
 
+    public ArrayList obtenerGrupoAlumnos(){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList gra = new ArrayList();
+            String SQL = "SELECT * FROM tr_grupo_alumno".toLowerCase();
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                gra.add(new TrGrupoAlumno(rs.getInt("GRUPO_ALUMNO_ID"), rs.getInt("GRUPO_ID"), rs.getInt("ALUMNOS_ID")));
+            }
+            return gra;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: " + ex.toString());
+        }
+        return null;
+    }
+
+    public ArrayList obtenerGrupoAlumnosbyGrupo(int id){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList gra = new ArrayList();
+            String SQL = "SELECT * FROM tr_grupo_alumno WHERE GRUPO_ID=".toLowerCase()+id;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                gra.add(new TrGrupoAlumno(rs.getInt("GRUPO_ALUMNO_ID"), rs.getInt("GRUPO_ID"), rs.getInt("ALUMNOS_ID")));
+            }
+            return gra;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: " + ex.toString());
+        }
+        return null;
+    }
+
+    public ArrayList obtenerGrupoAlumnosbyAlumno(int id){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList gra = new ArrayList();
+            String SQL = "SELECT * FROM tr_grupo_alumno WHERE ALUMNO_ID=".toLowerCase()+id;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                gra.add(new TrGrupoAlumno(rs.getInt("GRUPO_ALUMNO_ID"), rs.getInt("GRUPO_ID"), rs.getInt("ALUMNOS_ID")));
+            }
+            return gra;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: " + ex.toString());
+        }
+        return null;
+    }
+    
     public ArrayList obtenerCarreras() {
         try {
             Statement stmt = null;

@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controller.AutoEvaluacion;
 
 import java.io.IOException;
@@ -16,29 +15,32 @@ import clases.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.servlet.RequestDispatcher;
+
 /**
  *
  * @author sands
  */
 public class llenarMaterias extends HttpServlet {
 
+    private ObtenerIndividuo obti = new ObtenerIndividuo();
+    private ObtenerConjunto obtc = new ObtenerConjunto();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Obtenemos ID (asignado por default para pruebas)
         int id = Integer.parseInt(req.getParameter("ID"));
         //Inicializamos metodos de obtencion
-        ObtenerIndividuo obti = new ObtenerIndividuo();
-        ObtenerConjunto obtc = new ObtenerConjunto();
         //Obtenemos el alumno con el ID del usuario
         TrAlumnos alumno = obti.obtenerAlumnobyUsuarioID(id);
         //Obtenemos lista de MaestroMateriasGrupos por el ID de grupo sacado del alumno
-        ArrayList listaMMG = obtc.obtenerMaestrosMateriasGruposbyGrupo(alumno.getGrupo_ID());
+        //Actualizacion: Ahora se sacan la lista de materias basandonos en la lista de grupos en los que esta el alumno inscrito.
+        ArrayList listaMMG = this.llenarMaterias(alumno);
         //Creamos un iterador para la listaMMG
         Iterator it = listaMMG.iterator();
         //Creamos la lista donde se guardaran las materias
         ArrayList listaMaterias = new ArrayList();
         //Iterador
-        while(it.hasNext()){
+        while (it.hasNext()) {
             //Sacamos el objeto de la lista
             TrMaestroMateriaGrupo mmg = (TrMaestroMateriaGrupo) it.next();
             //Obtenemos la materia correspondiente al indice de nuestra lista inicial
@@ -50,5 +52,26 @@ public class llenarMaterias extends HttpServlet {
         req.setAttribute("Materias", listaMaterias);
         RequestDispatcher view = req.getRequestDispatcher("SeleccionMateria.jsp");
         view.forward(req, resp);
+    }
+
+    public ArrayList llenarMaterias(TrAlumnos al) {
+        //Inicializamos la lista de materias a llenarse
+        ArrayList materias = new ArrayList();
+        ArrayList grupos = new ArrayList();
+        //Obtenemos los grupos en los que puede estar el alumno
+        ArrayList grupoAl = obtc.obtenerGrupoAlumnosbyAlumno(al.getAlumnos_ID());
+        Iterator it = grupoAl.iterator();
+        //Filtramos los grupos
+        while (it.hasNext()) {
+            TrGrupoAlumno gra = (TrGrupoAlumno) it.next();
+            grupos.add(obti.obtenerGrupo(gra.getGrupo_ID()));
+        }
+        //Filtramos las materias que pueden evaluarse de esos grupos
+        it = grupos.iterator();
+        while (it.hasNext()) {
+            TcGrupo grp = (TcGrupo) it.next();
+            materias.add(obtc.obtenerMaestrosMateriasGruposbyGrupo(grp.getGrupo_ID()));
+        }
+        return materias;
     }
 }
