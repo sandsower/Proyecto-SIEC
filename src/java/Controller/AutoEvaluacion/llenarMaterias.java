@@ -28,26 +28,13 @@ public class llenarMaterias extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Obtenemos ID (asignado por default para pruebas)
-        int id = Integer.parseInt(req.getParameter("ID"));
+    int id = Integer.parseInt(req.getParameter("ID"));
         //Inicializamos metodos de obtencion
         //Obtenemos el alumno con el ID del usuario
         TrAlumnos alumno = obti.obtenerAlumnobyUsuarioID(id);
         //Obtenemos lista de MaestroMateriasGrupos por el ID de grupo sacado del alumno
         //Actualizacion: Ahora se sacan la lista de materias basandonos en la lista de grupos en los que esta el alumno inscrito.
-        ArrayList listaMMG = this.llenarMaterias(alumno);
-        //Creamos un iterador para la listaMMG
-        Iterator it = listaMMG.iterator();
-        //Creamos la lista donde se guardaran las materias
-        ArrayList listaMaterias = new ArrayList();
-        //Iterador
-        while (it.hasNext()) {
-            //Sacamos el objeto de la lista
-            TrMaestroMateriaGrupo mmg = (TrMaestroMateriaGrupo) it.next();
-            //Obtenemos la materia correspondiente al indice de nuestra lista inicial
-            TcMaterias mat = obti.obtenerMateria(mmg.getMateria_ID());
-            //Y lo añadimos a la lista que regresaremos
-            listaMaterias.add(mat);
-        }
+        ArrayList listaMaterias = this.llenarMaterias(alumno);
         //Regresamos la lista de materias a la vista SeleccionMateria.jsp
         req.setAttribute("Materias", listaMaterias);
         RequestDispatcher view = req.getRequestDispatcher("SeleccionMateria.jsp");
@@ -57,6 +44,7 @@ public class llenarMaterias extends HttpServlet {
     public ArrayList llenarMaterias(TrAlumnos al) {
         //Inicializamos la lista de materias a llenarse
         ArrayList materias = new ArrayList();
+        ArrayList mmgs = new ArrayList();
         ArrayList grupos = new ArrayList();
         //Obtenemos los grupos en los que puede estar el alumno
         ArrayList grupoAl = obtc.obtenerGrupoAlumnosbyAlumno(al.getAlumnos_ID());
@@ -66,11 +54,18 @@ public class llenarMaterias extends HttpServlet {
             TrGrupoAlumno gra = (TrGrupoAlumno) it.next();
             grupos.add(obti.obtenerGrupo(gra.getGrupo_ID()));
         }
-        //Filtramos las materias que pueden evaluarse de esos grupos
+        //Filtramos los campos que coincidan en nuestra tabla de relacion Maestro-Materia-Grupo
         it = grupos.iterator();
         while (it.hasNext()) {
             TcGrupo grp = (TcGrupo) it.next();
-            materias.add(obtc.obtenerMaestrosMateriasGruposbyGrupo(grp.getGrupo_ID()));
+            mmgs = obtc.obtenerMaestrosMateriasGruposbyGrupo(grp.getGrupo_ID());
+        }
+        it = mmgs.iterator();
+        //Filtramos las materias que pueden evaluarse de esos grupos
+        while(it.hasNext()){
+            TrMaestroMateriaGrupo mmg = (TrMaestroMateriaGrupo) it.next();
+            TcMaterias mat = obti.obtenerMateria(mmg.getMateria_ID());
+            materias.add(mat);
         }
         return materias;
     }
