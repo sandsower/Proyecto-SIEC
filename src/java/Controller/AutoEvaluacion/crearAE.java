@@ -34,9 +34,9 @@ public class crearAE extends HttpServlet {
         ArrayList listaCriCo = obtc.obtenerCriterioCompetenciasbyCompetenciaID(id);
         //Obtenemos el alumno con el ID del usuario
         //TODO: Cambiar valor estatico por variable de sesion
-        TrAlumnos alumno = obti.obtenerAlumnobyUsuarioID(5);
+        TrAlumnos alumno = obti.obtenerAlumnobyUsuarioID(7);
         //Obtenemos lista de MaestroMateriasGrupos por el ID de grupo sacado del alumno
-        ArrayList listaMMG = obtc.obtenerMaestrosMateriasGruposbyGrupo(alumno.getGrupo_ID());
+        ArrayList listaMMG = llenarMateriasMaestroGrupo(alumno);
         //Llenamos nuestra lista de presesiones con coincidencia en nuestra lista criterioCompetencia seleccionada
         ArrayList listaPresesiones = this.llenarPresesiones(listaCriCo);
         //Filtramos las sesiones disponibles de acuerdo a las listas de presesiones y de maestroMateriaGrupo disponibles
@@ -111,5 +111,27 @@ public class crearAE extends HttpServlet {
             return true;
         }
         return false;
+    }
+
+    public ArrayList llenarMateriasMaestroGrupo(TrAlumnos al) {
+        //Inicializamos la lista de materias a llenarse
+        ArrayList materias = new ArrayList();
+        ArrayList mmgs = new ArrayList();
+        ArrayList grupos = new ArrayList();
+        //Obtenemos los grupos en los que puede estar el alumno
+        ArrayList grupoAl = obtc.obtenerGrupoAlumnosbyAlumno(al.getAlumnos_ID());
+        Iterator it = grupoAl.iterator();
+        //Filtramos los grupos
+        while (it.hasNext()) {
+            TrGrupoAlumno gra = (TrGrupoAlumno) it.next();
+            grupos.add(obti.obtenerGrupo(gra.getGrupo_ID()));
+        }
+        //Filtramos los campos que coincidan en nuestra tabla de relacion Maestro-Materia-Grupo
+        it = grupos.iterator();
+        while (it.hasNext()) {
+            TcGrupo grp = (TcGrupo) it.next();
+            mmgs = obtc.obtenerMaestrosMateriasGruposbyGrupo(grp.getGrupo_ID());
+        }
+        return mmgs;
     }
 }

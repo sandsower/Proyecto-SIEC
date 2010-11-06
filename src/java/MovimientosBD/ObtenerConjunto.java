@@ -526,7 +526,7 @@ public class ObtenerConjunto {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ses.add(new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Ponderacion"), rs.getString("Criterio_Competencia_Id")));
+                ses.add(new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"),rs.getInt("Criterio_Competencia_Id"), rs.getString("Ponderacion")));
             }
             return ses;
         } catch (SQLException ex) {
@@ -541,11 +541,11 @@ public class ObtenerConjunto {
             ResultSet rs = null;
             ArrayList ses = new ArrayList();
             //SQL query command
-            String SQL = "SELECT * FROM Tr_PreSesion where criterio_competencia_criterio_competencia_id=".toLowerCase()+id;
+            String SQL = "SELECT * FROM Tr_PreSesion where Criterio_Competencia_Id=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ses.add(new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Criterio_Competencia_Criterio_Competencia_ID"), rs.getString("Ponderacion")));
+                ses.add(new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"),rs.getInt("Criterio_Competencia_Id"), rs.getString("Ponderacion")));
             }
             return ses;
         } catch (SQLException ex) {
