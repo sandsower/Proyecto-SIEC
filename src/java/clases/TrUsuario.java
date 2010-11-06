@@ -24,17 +24,19 @@ public class TrUsuario
     private String img;
     private int perfil_ID;
 
-    public TrUsuario(int usuario_ID,String Nombres, String apellidoPat, String apellidoMat, String fecha_Nac, String usuario, String password, String img, int perfil_ID){
-        this.setApellidoPat(apellidoPat);
-        this.setApellidoMat(apellidoMat);
-        this.setFecha_Nac(fecha_Nac);
-        this.setNombres(Nombres);
-        this.setPassword(password);
-        this.setPerfil_ID(perfil_ID);
-        this.setUsuario(usuario);
-        this.setImg(img);
-        this.setUsuario_ID(usuario_ID);
+    public TrUsuario(int usuario_ID, String Nombres, String apellidoPat, String apellidoMat, String fecha_Nac, String usuario, String password, String img, int perfil_ID) {
+        this.usuario_ID = usuario_ID;
+        this.Nombres = Nombres;
+        this.apellidoPat = apellidoPat;
+        this.apellidoMat = apellidoMat;
+        this.fecha_Nac = fecha_Nac;
+        this.usuario = usuario;
+        this.password = password;
+        this.img = img;
+        this.perfil_ID = perfil_ID;
     }
+
+    
 
     /**
      * @return the usuario_ID

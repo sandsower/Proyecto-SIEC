@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package clases;
 
 import MovimientosBD.ConexionBD;
@@ -12,19 +11,20 @@ import java.sql.*;
  *
  * @author Sandsower
  */
-public class TrEstrategias
-{
+public class TrEstrategias {
+
     private int estrategia_ID;
     private String fecha_Inicio_Registro;
     private String mensaje;
     private String fecha_fin;
 
-    public TrEstrategias(int estrategia_ID,String fecha_Inicio_Registro, String mensaje,String fecha_fin){
-        this.setEstrategia_ID(estrategia_ID);
-        this.setFecha_Inicio_Registro(fecha_Inicio_Registro);
-        this.setMensaje(mensaje);
-        this.setFecha_fin(fecha_fin);
+    public TrEstrategias(int estrategia_ID, String fecha_Inicio_Registro, String mensaje, String fecha_fin) {
+        this.estrategia_ID = estrategia_ID;
+        this.fecha_Inicio_Registro = fecha_Inicio_Registro;
+        this.mensaje = mensaje;
+        this.fecha_fin = fecha_fin;
     }
+
     /**
      * @return the estrategia_ID
      */
@@ -74,21 +74,19 @@ public class TrEstrategias
     public void setFecha_fin(String fecha_fin) {
         this.fecha_fin = fecha_fin;
     }
-    
 
     /**
      * @param evaluacion the evaluacion to set
      */
     @Override
-             public String toString()
-    {
-        String regresa="";
-        StringBuilder sb=new StringBuilder();
+    public String toString() {
+        String regresa = "";
+        StringBuilder sb = new StringBuilder();
         sb.append("estrategia_ID [").append(getEstrategia_ID()).append("], ");
         sb.append("fecha_Inicio_Registro [").append(getFecha_Inicio_Registro()).append("], ");
         sb.append("mensaje [").append(getMensaje()).append("], ");
         sb.append("Fecha Fin [").append(getFecha_fin()).append("], ");
-        regresa  = sb.toString();
+        regresa = sb.toString();
         return regresa;
 
     }

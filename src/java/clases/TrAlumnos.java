@@ -19,6 +19,11 @@ public class TrAlumnos
     private int usuario_ID;
     private int carrera_ID;
 
+    //Fix temporal al problema Grupo/Alumno
+    public int getGrupo_ID(){
+        return 1;
+    }
+
     public TrAlumnos(int alumnos_ID,String matricula, int usuario_ID, int carrera_ID){
         this.setAlumnos_ID(alumnos_ID);
         this.setCarrera_ID(carrera_ID);

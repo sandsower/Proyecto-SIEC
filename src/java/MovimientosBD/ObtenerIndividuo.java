@@ -17,7 +17,7 @@ public class ObtenerIndividuo {
 
     public ObtenerIndividuo() {
         ConexionBD nuevaConexion = new ConexionBD();
-        nuevaConexion.conectarBD("root", "gameover");
+        nuevaConexion.conectarBD("root", "13450811");
         this.setCon(nuevaConexion.getCon());
     }
 
@@ -468,7 +468,7 @@ public class ObtenerIndividuo {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                usr = new TrUsuario(rs.getInt("Usuario_ID"), rs.getString("Nombres"), rs.getString("Apellido_Paterno"),rs.getString("Apellido_Materno"), rs.getString("Fecha_Nac").toString(), rs.getString("Usuario"), rs.getString("Password"),rs.getString("Imagen"), rs.getInt("Perfil_ID"));
+                usr = new TrUsuario(rs.getInt("Usuario_ID"), rs.getString("Nombres"), rs.getString("Apellido_Paterno"), rs.getString("Apellido_Materno"), rs.getString("Fecha_Nac"), rs.getString("Usuario"), rs.getString("Password"), rs.getString("Imagen"), rs.getInt("Perfil_ID"));
             }
             return usr;
         } catch (SQLException ex) {

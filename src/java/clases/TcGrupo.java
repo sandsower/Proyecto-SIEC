@@ -17,15 +17,14 @@ public class TcGrupo
     private String des_Grupo;
     private int carrera_ID;
     private String grado;
-    
 
-    public TcGrupo(int grupo_ID, String des_Grupo, int carrera_ID, String grado){
-        this.setCarrera_ID(carrera_ID);
-        this.setGrado(grado);
-        this.setDes_Grupo(des_Grupo);
-        this.setGrupo_ID(grupo_ID);
-        
+    public TcGrupo(int grupo_ID, String des_Grupo, int carrera_ID, String grado) {
+        this.grupo_ID = grupo_ID;
+        this.des_Grupo = des_Grupo;
+        this.carrera_ID = carrera_ID;
+        this.grado = grado;
     }
+    
     /**
      * @return the grupo_ID
      */
