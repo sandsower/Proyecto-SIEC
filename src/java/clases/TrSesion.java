@@ -10,8 +10,9 @@ public class TrSesion {
     private int maestroMateriaGrupoSesion_ID;
     private int preSesion_ID;
     private int maeMatGrp_ID;
+    private int estado;
 
-    public TrSesion(int maestroMateriaGrupoSesion_ID, int preSesion_ID, int maeMatGrp_ID) {
+    public TrSesion(int maestroMateriaGrupoSesion_ID, int preSesion_ID, int maeMatGrp_ID,int estado) {
         this.maestroMateriaGrupoSesion_ID = maestroMateriaGrupoSesion_ID;
         this.preSesion_ID = preSesion_ID;
         this.maeMatGrp_ID = maeMatGrp_ID;
@@ -53,6 +54,14 @@ public class TrSesion {
         this.maeMatGrp_ID = maeMatGrp_ID;
     }
 
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
 
     @Override
     public String toString()
@@ -62,6 +71,7 @@ public class TrSesion {
         sb.append("maestroMateriaGrupoSesion_ID").append(getMaestroMateriaGrupoSesion_ID()).append("], ");
         sb.append("PreSesion_ID").append(getPreSesion_ID()).append("], ");
         sb.append("maeMatGrp_ID").append(getMaeMatGrp_ID()).append("]");
+        sb.append("estado").append(getEstado()).append("]");
         regresa  = sb.toString();
         return regresa;
 

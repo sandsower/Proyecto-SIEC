@@ -17,13 +17,11 @@ public class TrAlumnos
     private int alumnos_ID;
     private String matricula;
     private int usuario_ID;
-    private int grupo_ID;
     private int carrera_ID;
 
-    public TrAlumnos(int alumnos_ID,String matricula, int usuario_ID, int grupo_ID, int carrera_ID){
+    public TrAlumnos(int alumnos_ID,String matricula, int usuario_ID, int carrera_ID){
         this.setAlumnos_ID(alumnos_ID);
         this.setCarrera_ID(carrera_ID);
-        this.setGrupo_ID(grupo_ID);
         this.setMatricula(matricula);
         this.setUsuario_ID(usuario_ID);
         
@@ -70,19 +68,6 @@ public class TrAlumnos
         this.usuario_ID = usuario_ID;
     }
 
-    /**
-     * @return the grupo_ID
-     */
-    public int getGrupo_ID() {
-        return grupo_ID;
-    }
-
-    /**
-     * @param grupo_ID the grupo_ID to set
-     */
-    public void setGrupo_ID(int grupo_ID) {
-        this.grupo_ID = grupo_ID;
-    }
 
     /**
      * @return the carrera_ID
@@ -104,7 +89,6 @@ public class TrAlumnos
         sb.append("alumnos_ID").append(getAlumnos_ID()).append("], ");
         sb.append("matricula").append(getMatricula()).append("], ");
         sb.append("usuario_ID").append(getUsuario_ID()).append("], ");
-        sb.append("grupo_ID").append(getGrupo_ID()).append("], ");
         sb.append("carrera_ID").append(getCarrera_ID()).append("], ");
         return sb.toString();
     }

@@ -34,10 +34,10 @@ public class PruebasObtenerTodos {
         resultados = obt.obtenerCategorias();
         System.out.println(resultados.size());
 
-        i++;
-        System.out.println("Prueba #"+i);
-        resultados = obt.obtenerComentarioDPAEstrategias();
-        System.out.println(resultados.size());
+//        i++;
+//        System.out.println("Prueba #"+i);
+//        resultados = obt.obtenerComentarioDPAEstrategias();
+//        System.out.println(resultados.size());
 
         i++;
         System.out.println("Prueba #"+i);

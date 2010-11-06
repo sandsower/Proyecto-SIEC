@@ -47,7 +47,7 @@ public class PruebasIndividuo {
         //7-Grupo
         i++;
         System.out.println("Prueba #"+i);
-        TcGrupo grupo = obt.obtenerGrupo(3);
+        TcGrupo grupo = obt.obtenerGrupo(4);
         System.out.println(grupo.toString());
         //8-Materias
         i++;
@@ -72,47 +72,48 @@ public class PruebasIndividuo {
         //12a-Alumnos - ID
         i++;
         System.out.println("Prueba #"+i);
-        TrAlumnos alum = obt.obtenerAlumnobyID(2);
+        TrAlumnos alum = obt.obtenerAlumnobyID(12);
         System.out.println(alum.toString());
         //12b-Alumnos - Matricula
         i++;
         System.out.println("Prueba #"+i);
-        TrAlumnos alumno = obt.obtenerAlumnobyMatricula("UP080605");
+        TrAlumnos alumno = obt.obtenerAlumnobyMatricula("UP080394");
         System.out.println(alumno.toString());
-        //13 - Comentario_DPA_Estrategia
+        //13 - Comentario_DPA_Estrategia esta tabla ya no existe
+//        i++;
+//        System.out.println("Prueba #"+i);
+//        TrComentarioDPAEstrategia dpaEstrategia= obt.obtenerComentarioDPAEstrategia(1);
+//        System.out.println(dpaEstrategia.toString());
+        
+        //14-Usuario // error al convertir la fecha a String en el constructor
         i++;
         System.out.println("Prueba #"+i);
-        TrComentarioDPAEstrategia dpaEstrategia= obt.obtenerComentarioDPAEstrategia(1);
-        System.out.println(dpaEstrategia.toString());
-        //14-Usuario
-        i++;
-        System.out.println("Prueba #"+i);
-        TrUsuario usuario=obt.obtenerUsuario(3);
+        TrUsuario usuario=obt.obtenerUsuario(7);
         System.out.println(usuario.toString());
         //15-Sesion_Rechazada
         i++;
         System.out.println("Prueba #"+i);
-        TrPreSesionRechazada sRechazada=obt.obtenerPreSesionRechazada(2);
+        TrPreSesionRechazada sRechazada=obt.obtenerPreSesionRechazada(5);
         System.out.println(sRechazada.toString());
         //16-Sesion
         i++;
         System.out.println("Prueba #"+i);
-        TrPreSesion sesion=obt.obtenerPreSesion(1);
+        TrPreSesion sesion=obt.obtenerPreSesion(6);
         System.out.println(sesion.toString());
         //17-Maestros
         i++;
         System.out.println("Prueba #"+i);
-        TrMaestros maestros=obt.obtenerMaestro(4);
+        TrMaestros maestros=obt.obtenerMaestro(6);
         System.out.println(maestros.toString());
         //18-Maestro_Materia_Grupo_Sesion
         i++;
         System.out.println("Prueba #"+i);
-        TrSesion mGS=obt.obtenerSesion(1);
+        TrSesion mGS=obt.obtenerSesion(5);
         System.out.println(mGS.toString());
         //19-Maestro_Materia_Grupo
         i++;
         System.out.println("Prueba #"+i);
-        TrMaestroMateriaGrupo mMG=obt.obtenerMaestroMateriaGrupo(2);
+        TrMaestroMateriaGrupo mMG=obt.obtenerMaestroMateriaGrupo(9);
         System.out.println(mMG.toString());
         //20-Maestro_Materia (borrada)
         i++;
@@ -120,12 +121,12 @@ public class PruebasIndividuo {
         //21-Parcial_Acumulativa
         i++;
         System.out.println("Prueba #"+i);
-        TrEvaluacionParcialAcumulativa ePA=obt.obtenerEvaluacionParcialAcumulativa(2);
+        TrEvaluacionParcialAcumulativa ePA=obt.obtenerEvaluacionParcialAcumulativa(14);
         System.out.println(ePA.toString());
         //22-Evaluacion_Parcial
         i++;
         System.out.println("Prueba #"+i);
-        TrEvaluacionParcial eP=obt.obtenerEvaluacionParcial(3);
+        TrEvaluacionParcial eP=obt.obtenerEvaluacionParcial(12);
         System.out.println(eP.toString());
         //23-Evaluacion_Acumulativa
         i++;
@@ -135,7 +136,7 @@ public class PruebasIndividuo {
         //24-Estrategias
         i++;
         System.out.println("Prueba #"+i);
-        TrEstrategias estrategias=obt.obtenerEstrategia(12);
+        TrEstrategias estrategias=obt.obtenerEstrategia(16);
         System.out.println(estrategias.toString());
         //25-Criterio_Competencia
         i++;

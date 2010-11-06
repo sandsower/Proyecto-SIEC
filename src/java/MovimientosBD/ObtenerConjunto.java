@@ -20,7 +20,7 @@ public class ObtenerConjunto {
 
     public ObtenerConjunto() {
          ConexionBD nuevaConexion = new ConexionBD();
-        nuevaConexion.conectarBD("root", "13450811");
+        nuevaConexion.conectarBD("root", "gameover");
         this.setCon(nuevaConexion.getCon());
     }
 
@@ -129,7 +129,7 @@ public class ObtenerConjunto {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                grp.add(new TcGrupo(rs.getInt("Grupo_ID"), rs.getString("Des_Grupo"), rs.getInt("Carrera_ID"), rs.getString("Cuatrimestre"), rs.getString("Letra")));
+                grp.add(new TcGrupo(rs.getInt("GRUPO_ID"), rs.getString("DES_GRUPO"), rs.getInt("CARRERA_ID"), rs.getString("GRADO")));
             }
             return grp;
         } catch (SQLException ex) {
@@ -206,7 +206,7 @@ public class ObtenerConjunto {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                TrAlumnos alum = new TrAlumnos(rs.getInt("Alumnos_ID"), rs.getString("Matricula"), rs.getInt("Usuario_ID"), rs.getInt("Grupo_ID"), rs.getInt("Carrera_ID"));
+                TrAlumnos alum = new TrAlumnos(rs.getInt("Alumnos_ID"), rs.getString("Matricula"), rs.getInt("Usuario_ID"), rs.getInt("Carrera_ID"));
                 alm.add(alum);
             }
             return alm;
@@ -282,7 +282,7 @@ public class ObtenerConjunto {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                est.add(new TrEstrategias(rs.getInt("Estrategia_ID"), rs.getString("Fecha_Inicio_Registro"), rs.getString("Mensaje"), rs.getInt("Maestros_Maestro_ID")));
+                est.add(new TrEstrategias(rs.getInt("Estrategia_ID"), rs.getString("Fecha_Inicio_Registro"), rs.getString("Mensaje"), rs.getString("Fecha_Cambio")));
             }
             return est;
         } catch (SQLException ex) {
@@ -354,11 +354,11 @@ public class ObtenerConjunto {
             ResultSet rs = null;
             ArrayList mmg = new ArrayList();
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Maestro_Materia_Grupo".toLowerCase();
+            String SQL = "SELECT * FROM tr_maestro_grupo_materia".toLowerCase();
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mmg.add(new TrMaestroMateriaGrupo(rs.getInt("Maestro_Materia_Grupo_ID"), rs.getInt("Grupo_Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materia_ID")));
+                mmg.add(new TrMaestroMateriaGrupo(rs.getInt("MATERIA_GRUPO_MAESTRO_ID"), rs.getInt("Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materias_ID")));
             }
             return mmg;
         } catch (SQLException ex) {
@@ -415,7 +415,7 @@ public class ObtenerConjunto {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mmgs.add(new TrSesion(rs.getInt("Sesion_ID"),rs.getInt("PreSesion_ID"), rs.getInt("Mae_Mat_Grp_ID")));
+                mmgs.add(new TrSesion(rs.getInt("Sesion_ID"),rs.getInt("PreSesion_ID"), rs.getInt("Materia_Grupo_Maestro_ID"),rs.getInt("estado")));
             }
             return mmgs;
         } catch (SQLException ex) {
@@ -434,7 +434,7 @@ public class ObtenerConjunto {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mmgs.add(new TrSesion(rs.getInt("Sesion_ID"),rs.getInt("PreSesion_ID"), rs.getInt("Mae_Mat_Grp_ID")));
+                mmgs.add(new TrSesion(rs.getInt("MATERIA_GRUPO_MAESTRO_ID"), rs.getInt("Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materias_ID")));
             }
             return mmgs;
         } catch (SQLException ex) {
@@ -472,7 +472,7 @@ public class ObtenerConjunto {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ses.add(new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Criterio_Competencia_Criterio_Competencia_ID"), rs.getString("Ponderacion")));
+                ses.add(new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Ponderacion"), rs.getString("Criterio_Competencia_Id")));
             }
             return ses;
         } catch (SQLException ex) {
@@ -510,7 +510,7 @@ public class ObtenerConjunto {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                usr.add(new TrUsuario(rs.getInt("Usuario_ID"), rs.getString("Nombres"), rs.getString("Apellidos"), rs.getDate("Fecha_Nac").toString(), rs.getString("Usuario"), rs.getString("Password"), rs.getInt("Perfil_ID")));
+                usr.add(new TrUsuario(rs.getInt("Usuario_ID"), rs.getString("Nombres"), rs.getString("Apellido_Paterno"),rs.getString("Apellido_Materno"), rs.getString("Fecha_Nac").toString(), rs.getString("Usuario"), rs.getString("Password"),rs.getString("Imagen"), rs.getInt("Perfil_ID")));
             }
             return usr;
         } catch (SQLException ex) {
@@ -529,7 +529,7 @@ public class ObtenerConjunto {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ser.add(new TrPreSesionRechazada(rs.getInt("Sesion_Rechazada_ID"), rs.getString("Mensaje")));
+                ser.add(new TrPreSesionRechazada(rs.getInt("Sesion_Rechazada_ID"), rs.getString("Mensaje"), rs.getInt("PreSesion_Id")));
             }
             return ser;
         } catch (SQLException ex) {

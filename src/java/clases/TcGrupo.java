@@ -16,15 +16,15 @@ public class TcGrupo
     private int grupo_ID;
     private String des_Grupo;
     private int carrera_ID;
-    private String cuatrimestre;
-    private String letra;
+    private String grado;
+    
 
-    public TcGrupo(int grupo_ID, String des_Grupo, int carrera_ID, String cuatrimestr, String letra){
+    public TcGrupo(int grupo_ID, String des_Grupo, int carrera_ID, String grado){
         this.setCarrera_ID(carrera_ID);
-        this.setCuatrimestre(cuatrimestre);
+        this.setGrado(grado);
         this.setDes_Grupo(des_Grupo);
         this.setGrupo_ID(grupo_ID);
-        this.setLetra(letra);
+        
     }
     /**
      * @return the grupo_ID
@@ -71,30 +71,21 @@ public class TcGrupo
     /**
      * @return the cuatrimestre
      */
-    public String getCuatrimestre() {
-        return cuatrimestre;
+    public String getGrado() {
+        return grado;
     }
 
     /**
      * @param cuatrimestre the cuatrimestre to set
      */
-    public void setCuatrimestre(String cuatrimestre) {
-        this.cuatrimestre = cuatrimestre;
+    public void setGrado(String cuatrimestre) {
+        this.grado = grado;
     }
 
     /**
      * @return the letra
      */
-    public String getLetra() {
-        return letra;
-    }
-
-    /**
-     * @param letra the letra to set
-     */
-    public void setLetra(String letra) {
-        this.letra = letra;
-    }
+   
 
     @Override
        public String toString() {
@@ -102,8 +93,7 @@ public class TcGrupo
         sb.append("grupo_ID").append(getGrupo_ID()).append("], ");
         sb.append("des_Grupo").append(getDes_Grupo()).append("], ");
         sb.append("carrera_ID").append(getCarrera_ID()).append("], ");
-        sb.append("cuatrimestre").append(getCuatrimestre()).append("], ");
-        sb.append("letra").append(getLetra()).append("], ");
+        sb.append("Grado").append(getGrado()).append("], ");
         return sb.toString();
     }
        
