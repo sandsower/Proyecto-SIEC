@@ -4,6 +4,7 @@
     Author     : sands
 --%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
@@ -14,12 +15,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-        Valores obtenidos:
-        Calificacion: ${Evaluacion.calificacion}
-        Parcial: ${Evaluacion.parcial}
-        Evaluacion_Nivel: ${Evaluacion.evaluacion_nivel_ID}
-        Tipo_Evaluacion_ID: ${Evaluacion.tipo_evaluacion_ID}
-        Sesion_ID: ${Evaluacion.maestro_materia_grupo_sesion_ID}
-        Alumnos_ID: ${Evaluacion.alumnos_ID}
+        <h1>Favor de ingresar la calificacion deseada al criterio/competencia a evaluar:</h1>
+        <form action="guardarEvaluacion.do" method="POST">
+        Criterio:${Criterio.des_Criterio}<br/>
+        <select name="seleccionNivel">
+            <c:forEach items="${Niveles}" var="nivel">
+                <option value="${nivel.evaluacion_Nivel_ID}">${nivel.des_Evaluacion}</option>
+            </c:forEach>
+        </select>
+        <input type="hidden" name="idEvaluacion" value="${Evaluacion.evaluacion_parcial_ID}"/>
+        <input type="submit" value="Guardar"/>
+        </form>
     </body>
 </html>

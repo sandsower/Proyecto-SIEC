@@ -12,6 +12,10 @@
         <servlet-name>crearAE</servlet-name>
         <servlet-class>Controller.AutoEvaluacion.crearAE</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>guardarEvaluacion</servlet-name>
+        <servlet-class>Controller.AutoEvaluacion.guardarEvaluacion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>llenarMateriasAE</servlet-name>
         <url-pattern>/Evaluaciones/Autoevaluacion/llenarMaterias.do</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>crearAE</servlet-name>
         <url-pattern>/Evaluaciones/Autoevaluacion/crearAE.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>guardarEvaluacion</servlet-name>
+        <url-pattern>/Evaluaciones/Autoevaluacion/guardarEvaluacion.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
