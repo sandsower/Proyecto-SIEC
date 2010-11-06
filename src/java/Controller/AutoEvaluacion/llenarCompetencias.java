@@ -31,10 +31,15 @@ public class llenarCompetencias extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Obtenemos ID de la materia seleccionada
         int id = Integer.parseInt(req.getParameter("ID"));
+        //Obtenemos el alumno por el ID de usuario
+        //TODO: Cambiar el valor estatico por la variable de sesion
+        TrAlumnos al = obti.obtenerAlumnobyUsuarioID(7);
+        //Obtenemos la materia con el id
+        TcMaterias mat = obti.obtenerMateria(id);
         //Llenamos nuestra lista de la tabla MaestroMateriaGrupo
-        ArrayList listaMMG = obtc.obtenerMaestrosMateriasGruposbyMateria(id);
+        ArrayList listaMMG = this.llenarMateriasMaestroGrupo(al);
         //Filtramos nuestra lista por grupo
-        TrMaestroMateriaGrupo mmg = this.filterByGrupo(listaMMG);
+        TrMaestroMateriaGrupo mmg = this.filterByMateria(listaMMG,mat);
         //Obtenemos sesiones filtradas por mmg
         ArrayList sesiones = obtc.obtenerSesionesbyMaeMatGrpID(mmg.getMaestroMateriaGrupo_ID());
         //Obtenemos lista de presesiones basandonos en las sesiones
@@ -49,24 +54,15 @@ public class llenarCompetencias extends HttpServlet {
         view.forward(req, resp);
     }
 
-    protected TrMaestroMateriaGrupo filterByGrupo(ArrayList mmg){
-        //Obtenemos el alumno con el ID del usuario
-        //TODO: Cambiar valor estatico por variable de sesion
-        TrAlumnos alumno = obti.obtenerAlumnobyUsuarioID(5);
-        //Creamos un iterador para la listaMMG
+    protected TrMaestroMateriaGrupo filterByMateria(ArrayList mmg, TcMaterias mat){
         Iterator it = mmg.iterator();
-        //Filtramos la busqueda por el grupo
+        TrMaestroMateriaGrupo nuevoMmg = null;
         while(it.hasNext()){
-            //Guardamos el valor de la lista
-            TrMaestroMateriaGrupo item = (TrMaestroMateriaGrupo) it.next();
-            //Comparamos los valores de Grupo_ID
-            if(alumno.getGrupo_ID() == item.getGrupoGrupo_ID()){
-                //Si concuerdan, regresamos el item
-                return item;
-            }
+            nuevoMmg = (TrMaestroMateriaGrupo) it.next();
+            if(mat.getMaterias_ID() == nuevoMmg.getMateria_ID())
+                return nuevoMmg;
         }
-        //Si no hubo concordancia, regresamos null
-        return null;
+        return nuevoMmg;
     }
 
     protected ArrayList llenarPresesiones(ArrayList sesiones){
@@ -84,7 +80,8 @@ public class llenarCompetencias extends HttpServlet {
         Iterator it = presesiones.iterator();
         while(it.hasNext()){
             TrPreSesion presesion = (TrPreSesion) it.next();
-            listaCriterioCompetencias.add(obti.obtenerCriterioCompetencia(presesion.getCriterioCompetencia_ID()));
+            TrCriterioCompetencia crico = obti.obtenerCriterioCompetencia(presesion.getCriterioCompetencia_ID());
+            listaCriterioCompetencias.add(crico);
         }
         return listaCriterioCompetencias;
     }
@@ -97,5 +94,27 @@ public class llenarCompetencias extends HttpServlet {
             listaCompetencias.add(obti.obtenerCompetencia(criterioCompetencia.getCompetencia_ID()));
         }
         return listaCompetencias;
+    }
+
+    public ArrayList llenarMateriasMaestroGrupo(TrAlumnos al) {
+        //Inicializamos la lista de materias a llenarse
+        ArrayList materias = new ArrayList();
+        ArrayList mmgs = new ArrayList();
+        ArrayList grupos = new ArrayList();
+        //Obtenemos los grupos en los que puede estar el alumno
+        ArrayList grupoAl = obtc.obtenerGrupoAlumnosbyAlumno(al.getAlumnos_ID());
+        Iterator it = grupoAl.iterator();
+        //Filtramos los grupos
+        while (it.hasNext()) {
+            TrGrupoAlumno gra = (TrGrupoAlumno) it.next();
+            grupos.add(obti.obtenerGrupo(gra.getGrupo_ID()));
+        }
+        //Filtramos los campos que coincidan en nuestra tabla de relacion Maestro-Materia-Grupo
+        it = grupos.iterator();
+        while (it.hasNext()) {
+            TcGrupo grp = (TcGrupo) it.next();
+            mmgs = obtc.obtenerMaestrosMateriasGruposbyGrupo(grp.getGrupo_ID());
+        }
+        return mmgs;
     }
 }

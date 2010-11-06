@@ -484,11 +484,11 @@ public class ObtenerConjunto {
             ResultSet rs = null;
             ArrayList mmgs = new ArrayList();
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Sesion where Mae_Mat_Grp_ID=".toLowerCase()+id;
+            String SQL = "SELECT * FROM Tr_Sesion where MATERIA_GRUPO_MAESTRO_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mmgs.add(new TrSesion(rs.getInt("MATERIA_GRUPO_MAESTRO_ID"), rs.getInt("Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materias_ID")));
+                mmgs.add(new TrSesion(rs.getInt("Sesion_ID"),rs.getInt("PreSesion_ID"), rs.getInt("Materia_Grupo_Maestro_ID"),rs.getInt("estado")));
             }
             return mmgs;
         } catch (SQLException ex) {

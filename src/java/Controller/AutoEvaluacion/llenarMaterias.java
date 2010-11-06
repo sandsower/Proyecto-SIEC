@@ -34,14 +34,27 @@ public class llenarMaterias extends HttpServlet {
         TrAlumnos alumno = obti.obtenerAlumnobyUsuarioID(id);
         //Obtenemos lista de MaestroMateriasGrupos por el ID de grupo sacado del alumno
         //Actualizacion: Ahora se sacan la lista de materias basandonos en la lista de grupos en los que esta el alumno inscrito.
-        ArrayList listaMaterias = this.llenarMaterias(alumno);
+        ArrayList listaMMG = this.llenarMateriasMaestroGrupo(alumno);
+        //Creamos un iterador para la listaMMG
+        Iterator it = listaMMG.iterator();
+        //Creamos la lista donde se guardaran las materias
+        ArrayList listaMaterias = new ArrayList();
+        //Iterador
+        while (it.hasNext()) {
+            //Sacamos el objeto de la lista
+            TrMaestroMateriaGrupo mmg = (TrMaestroMateriaGrupo) it.next();
+            //Obtenemos la materia correspondiente al indice de nuestra lista inicial
+            TcMaterias mat = obti.obtenerMateria(mmg.getMateria_ID());
+            //Y lo añadimos a la lista que regresaremos
+            listaMaterias.add(mat);
+        }
         //Regresamos la lista de materias a la vista SeleccionMateria.jsp
         req.setAttribute("Materias", listaMaterias);
         RequestDispatcher view = req.getRequestDispatcher("SeleccionMateria.jsp");
         view.forward(req, resp);
     }
 
-    public ArrayList llenarMaterias(TrAlumnos al) {
+    public ArrayList llenarMateriasMaestroGrupo(TrAlumnos al) {
         //Inicializamos la lista de materias a llenarse
         ArrayList materias = new ArrayList();
         ArrayList mmgs = new ArrayList();
@@ -60,13 +73,6 @@ public class llenarMaterias extends HttpServlet {
             TcGrupo grp = (TcGrupo) it.next();
             mmgs = obtc.obtenerMaestrosMateriasGruposbyGrupo(grp.getGrupo_ID());
         }
-        it = mmgs.iterator();
-        //Filtramos las materias que pueden evaluarse de esos grupos
-        while(it.hasNext()){
-            TrMaestroMateriaGrupo mmg = (TrMaestroMateriaGrupo) it.next();
-            TcMaterias mat = obti.obtenerMateria(mmg.getMateria_ID());
-            materias.add(mat);
-        }
-        return materias;
+        return mmgs;
     }
 }
