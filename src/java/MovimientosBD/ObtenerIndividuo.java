@@ -469,7 +469,7 @@ public class ObtenerIndividuo {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ses = new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Ponderacion"), rs.getString("Criterio_Competencia_Id"));
+                ses = new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"),rs.getInt("Criterio_Competencia_Id"), rs.getString("Ponderacion"));
             }
             return ses;
         } catch (SQLException ex) {
