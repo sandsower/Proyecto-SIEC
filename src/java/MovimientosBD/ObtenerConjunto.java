@@ -24,6 +24,60 @@ public class ObtenerConjunto {
         this.setCon(nuevaConexion.getCon());
     }
 
+    public ArrayList obtenerGrupoAlumnos(){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList gra = new ArrayList();
+            String SQL = "SELECT * FROM tr_grupo_alumno".toLowerCase();
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                gra.add(new TrGrupoAlumno(rs.getInt("GRUPO_ALUMNO_ID"), rs.getInt("GRUPO_ID"), rs.getInt("ALUMNOS_ID")));
+            }
+            return gra;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: " + ex.toString());
+        }
+        return null;
+    }
+
+    public ArrayList obtenerGrupoAlumnosbyGrupo(int id){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList gra = new ArrayList();
+            String SQL = "SELECT * FROM tr_grupo_alumno WHERE GRUPO_ID=".toLowerCase()+id;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                gra.add(new TrGrupoAlumno(rs.getInt("GRUPO_ALUMNO_ID"), rs.getInt("GRUPO_ID"), rs.getInt("ALUMNOS_ID")));
+            }
+            return gra;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: " + ex.toString());
+        }
+        return null;
+    }
+
+    public ArrayList obtenerGrupoAlumnosbyAlumno(int id){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList gra = new ArrayList();
+            String SQL = "SELECT * FROM tr_grupo_alumno WHERE ALUMNOS_ID=".toLowerCase()+id;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                gra.add(new TrGrupoAlumno(rs.getInt("GRUPO_ALUMNO_ID"), rs.getInt("GRUPO_ID"), rs.getInt("ALUMNOS_ID")));
+            }
+            return gra;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: " + ex.toString());
+        }
+        return null;
+    }
+    
     public ArrayList obtenerCarreras() {
         try {
             Statement stmt = null;
@@ -373,11 +427,11 @@ public class ObtenerConjunto {
             ResultSet rs = null;
             ArrayList mmg = new ArrayList();
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Maestro_Materia_Grupo where Grupo_Grupo_ID=".toLowerCase()+id;
+            String SQL = "SELECT * FROM Tr_Maestro_Grupo_Materia where Grupo_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mmg.add(new TrMaestroMateriaGrupo(rs.getInt("Maestro_Materia_Grupo_ID"), rs.getInt("Grupo_Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materia_ID")));
+                mmg.add(new TrMaestroMateriaGrupo(rs.getInt("MATERIA_GRUPO_MAESTRO_ID"), rs.getInt("Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materias_ID")));
             }
             return mmg;
         } catch (SQLException ex) {
@@ -392,11 +446,11 @@ public class ObtenerConjunto {
             ResultSet rs = null;
             ArrayList mmg = new ArrayList();
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Maestro_Materia_Grupo where Materia_ID=".toLowerCase()+id;
+            String SQL = "SELECT * FROM Tr_Maestro_Materia_Grupo where Materias_ID=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                mmg.add(new TrMaestroMateriaGrupo(rs.getInt("Maestro_Materia_Grupo_ID"), rs.getInt("Grupo_Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materia_ID")));
+                mmg.add(new TrMaestroMateriaGrupo(rs.getInt("MATERIA_GRUPO_MAESTRO_ID"), rs.getInt("Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materias_ID")));
             }
             return mmg;
         } catch (SQLException ex) {
