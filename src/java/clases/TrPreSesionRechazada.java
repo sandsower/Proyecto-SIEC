@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package clases;
 
 import MovimientosBD.ConexionBD;
@@ -12,17 +11,18 @@ import java.sql.*;
  *
  * @author Sandsower
  */
-public class TrPreSesionRechazada
-{
+public class TrPreSesionRechazada {
+
     private int sesion_Rechazada_Id;
     private String mensaje;
     private int preSesionId;
 
-    public TrPreSesionRechazada(int sesion_Rechazada, String mensaje, int preSesionId){
-        this.setMensaje(mensaje);
-        this.setSesion_Rechazada(sesion_Rechazada);
-        this.setPreSesionId(preSesionId);
+    public TrPreSesionRechazada(int sesion_Rechazada_Id, String mensaje, int preSesionId) {
+        this.sesion_Rechazada_Id = sesion_Rechazada_Id;
+        this.mensaje = mensaje;
+        this.preSesionId = preSesionId;
     }
+
     /**
      * @return the sesion_Rechazada
      */
@@ -59,18 +59,14 @@ public class TrPreSesionRechazada
         this.preSesionId = preSesionId;
     }
 
-    
-
-
     @Override
-    public String toString()
-    {
-        String regresa="";
-        StringBuilder sb=new StringBuilder();
+    public String toString() {
+        String regresa = "";
+        StringBuilder sb = new StringBuilder();
         sb.append("sesion_Rechazada [").append(getSesion_Rechazada()).append("], ");
         sb.append("mensaje [").append(getMensaje()).append("], ");
         sb.append("PreSesionId [").append(getPreSesionId()).append("], ");
-        regresa  = sb.toString();
+        regresa = sb.toString();
         return regresa;
 
     }

@@ -5,9 +5,6 @@
 
 package clases;
 
-import MovimientosBD.ConexionBD;
-import java.sql.*;
-
 /**
  *
  * @author Sandsower
@@ -34,8 +31,6 @@ public class TrUsuario
         this.setUsuario_ID(usuario_ID);
     }
 
-    public TrUsuario(){
-    }
 
     /**
      * @return the usuario_ID

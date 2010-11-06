@@ -17,7 +17,7 @@ public class ObtenerIndividuo {
 
     public ObtenerIndividuo() {
         ConexionBD nuevaConexion = new ConexionBD();
-        nuevaConexion.conectarBD("root", "gameover");
+        nuevaConexion.conectarBD("root", "root");
         this.setCon(nuevaConexion.getCon());
     }
 
@@ -559,12 +559,15 @@ public class ObtenerIndividuo {
 
 
      public TrUsuario Login (String username, String password){
+         String SQL = null;
         try {
             Statement stmt = null;
             ResultSet rs = null;
             TrUsuario usr = null;
             //SQL query command
-            String SQL = String.format("SELECT * FROM Tr_Usuario WHERE USUARIO = '%s' AND PASSWORD = '%s'",username,password);
+            SQL = String.format("SELECT * FROM tr_usuario WHERE USUARIO = '%s' AND PASSWORD = '%s'",username,password);
+
+            System.out.println("SQL Exception: "+ SQL);
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
@@ -573,6 +576,8 @@ public class ObtenerIndividuo {
             return usr;
         } catch (SQLException ex) {
             System.out.println("SQL Exception: "+ ex.toString());
+        } catch (NullPointerException e){
+            System.out.println("Exception: "+ e.toString());
         }
         return null;
     }

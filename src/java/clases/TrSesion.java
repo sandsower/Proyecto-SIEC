@@ -1,9 +1,7 @@
-
 package clases;
 
 import MovimientosBD.ConexionBD;
 import java.sql.*;
-
 
 public class TrSesion {
 
@@ -12,10 +10,11 @@ public class TrSesion {
     private int maeMatGrp_ID;
     private int estado;
 
-    public TrSesion(int maestroMateriaGrupoSesion_ID, int preSesion_ID, int maeMatGrp_ID,int estado) {
+    public TrSesion(int maestroMateriaGrupoSesion_ID, int preSesion_ID, int maeMatGrp_ID, int estado) {
         this.maestroMateriaGrupoSesion_ID = maestroMateriaGrupoSesion_ID;
         this.preSesion_ID = preSesion_ID;
         this.maeMatGrp_ID = maeMatGrp_ID;
+        this.estado = estado;
     }
 
     public int getPreSesion_ID() {
@@ -25,6 +24,7 @@ public class TrSesion {
     public void setPreSesion_ID(int preSesion_ID) {
         this.preSesion_ID = preSesion_ID;
     }
+
     /**
      * @return the maestroMateriaGrupoSesion_ID
      */
@@ -38,7 +38,6 @@ public class TrSesion {
     public void setMaestroMateriaGrupoSesion_ID(int maestroMateriaGrupoSesion_ID) {
         this.maestroMateriaGrupoSesion_ID = maestroMateriaGrupoSesion_ID;
     }
-
 
     /**
      * @return the maeMatGrp_ID
@@ -62,17 +61,15 @@ public class TrSesion {
         this.estado = estado;
     }
 
-
     @Override
-    public String toString()
-    {
-        String regresa="";
-        StringBuilder sb=new StringBuilder();
+    public String toString() {
+        String regresa = "";
+        StringBuilder sb = new StringBuilder();
         sb.append("maestroMateriaGrupoSesion_ID").append(getMaestroMateriaGrupoSesion_ID()).append("], ");
         sb.append("PreSesion_ID").append(getPreSesion_ID()).append("], ");
         sb.append("maeMatGrp_ID").append(getMaeMatGrp_ID()).append("]");
         sb.append("estado").append(getEstado()).append("]");
-        regresa  = sb.toString();
+        regresa = sb.toString();
         return regresa;
 
     }

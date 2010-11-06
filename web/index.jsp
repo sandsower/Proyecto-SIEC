@@ -11,7 +11,7 @@
        {
            response.sendRedirect("systemIndex.jsp");
        }else{
-            objSesion.setAttribute("usuario", null);
+           objSesion.setAttribute("usuario", null);
        }
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -29,13 +29,14 @@
         <div class="h1login"><h1>Sistema de Evaluacion de Competencias SIEC</h1></div>
        <div id="login">
         <% //Imprime mensaje de error en caso de que el usuario no sea correcto
-            if(request.getAttribute("message") != null)
+        
+            if(request.getParameter("error") != null)
             {
-                out.print(request.getAttribute("message"));
+                out.print("Error, usuario o contraseña incorrectos");
 
             }
         %>
-        <form name="loginform" id="loginform" action="ServLogin.do" method="post">
+        <form name="loginform" id="loginform" action="login.jsp" method="post">
 
             <div>
                         <label>Nombre de usuario</label>
