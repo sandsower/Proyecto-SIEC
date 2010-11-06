@@ -26,6 +26,10 @@ public class TrAlumnos
         this.setUsuario_ID(usuario_ID);
         
     }
+
+    public int getGrupo_ID(){
+        return 1;
+    }
     /**
      * @return the alumnos_ID
      */
