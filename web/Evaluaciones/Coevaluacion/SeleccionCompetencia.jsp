@@ -14,11 +14,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Favor de seleccionar la competencia a evaluar:</h1>
-        <form action="crearAE.do" method="POST">
-            <select name="ID">
+        <h1>Favor de seleccionar la competencia y el alumno a evaluar:</h1>
+        <form action="crearCE.do" method="POST">
+            <select name="IDEvaluacion">
                 <c:forEach items="${Competencias}" var="competencia">
                     <option value="${competencia.competencia_ID}">${competencia.des_Competencia}</option>
+                </c:forEach>
+            </select>
+            <select name="IDAlumno">
+                <c:forEach items="${Alumnos}" var="alumno">
+                    <option value="${alumno.alumnos_ID}">${alumno.matricula}</option>
                 </c:forEach>
             </select>
             <input type="submit" value="Aceptar"/>

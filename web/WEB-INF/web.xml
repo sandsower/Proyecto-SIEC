@@ -26,7 +26,7 @@
     </servlet>
     <servlet>
         <servlet-name>crearCE</servlet-name>
-        <servlet-class>Controller.CoEvaluacion.crearAE</servlet-class>
+        <servlet-class>Controller.CoEvaluacion.crearCE</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>guardarEvaluacionCE</servlet-name>
@@ -58,7 +58,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>crearCE</servlet-name>
-        <url-pattern>/Evaluaciones/Coevaluacion/crearAE.do</url-pattern>
+        <url-pattern>/Evaluaciones/Coevaluacion/crearCE.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>guardarEvaluacionCE</servlet-name>

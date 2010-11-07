@@ -25,6 +25,7 @@ public class crearAE extends HttpServlet {
 
     private ObtenerIndividuo obti = new ObtenerIndividuo();
     private ObtenerConjunto obtc = new ObtenerConjunto();
+    private int tipoEvaluacion = 1;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -50,7 +51,7 @@ public class crearAE extends HttpServlet {
         //Si no, avanzamos al siguiente paso (modificacion de valores)
         TrEvaluacionParcial eva = null;
         if (!this.evaluadaAE(sesion,alumno)) {
-            eva = new TrEvaluacionParcial(0, 0, 0, 1, 1, sesion.getMaestroMateriaGrupoSesion_ID(), alumno.getAlumnos_ID());
+            eva = new TrEvaluacionParcial(0, 0, 0, 1, this.tipoEvaluacion, sesion.getMaestroMateriaGrupoSesion_ID(), alumno.getAlumnos_ID());
             InsertarNuevo ins = new InsertarNuevo();
             if(!ins.insertarNuevaEvaluacionParcial(eva)){
                 RequestDispatcher view = req.getRequestDispatcher("../../Error.jsp");
@@ -58,8 +59,9 @@ public class crearAE extends HttpServlet {
             }
         } else {
              //TODO: Cambiar valor estatico por variable de sesion
-            eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), 1, alumno.getAlumnos_ID());
+            eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), this.tipoEvaluacion, alumno.getAlumnos_ID());
         }
+        eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), this.tipoEvaluacion, alumno.getAlumnos_ID());
         //Obtenemos ademas los niveles de evaluacion disponibles para evaluar.
         ArrayList niveles = obtc.obtenerEvaluacionesNiveles();
         //Mandamos a la vista los valores con los que vamos a interactuar

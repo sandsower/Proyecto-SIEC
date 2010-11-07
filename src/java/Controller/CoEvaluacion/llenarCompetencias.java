@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controller.CoEvaluacion;
 
 import java.io.IOException;
@@ -26,8 +25,8 @@ public class llenarCompetencias extends HttpServlet {
     //Inicializamos metodos de obtencion
     private ObtenerIndividuo obti = new ObtenerIndividuo();
     private ObtenerConjunto obtc = new ObtenerConjunto();
-   
-     @Override
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Obtenemos ID de la materia seleccionada
         int id = Integer.parseInt(req.getParameter("ID"));
@@ -39,7 +38,7 @@ public class llenarCompetencias extends HttpServlet {
         //Llenamos nuestra lista de la tabla MaestroMateriaGrupo
         ArrayList listaMMG = this.llenarMateriasMaestroGrupo(al);
         //Filtramos nuestra lista por grupo
-        TrMaestroMateriaGrupo mmg = this.filterByMateria(listaMMG,mat);
+        TrMaestroMateriaGrupo mmg = this.filterByMateria(listaMMG, mat);
         //Obtenemos sesiones filtradas por mmg
         ArrayList sesiones = obtc.obtenerSesionesbyMaeMatGrpID(mmg.getMaestroMateriaGrupo_ID());
         //Obtenemos lista de presesiones basandonos en las sesiones
@@ -48,37 +47,41 @@ public class llenarCompetencias extends HttpServlet {
         ArrayList criterioCompetencias = this.llenarCriterioCompetencia(presesiones);
         //Obtenemos las competencias basandonos en nuestra lista de criteriosCompetencias
         ArrayList listaCompetencias = this.llenarCompetencias(criterioCompetencias);
-        //Regresamos la lista de competencias a la vista
+        //Filtramos los alumnos que esten estudiando en ese grupo
+        ArrayList listaAlumnos = this.filtrarAlumnos(mmg);
+        //Regresamos la lista de competencias y de alumnos a la vista
         req.setAttribute("Competencias", listaCompetencias);
+        req.setAttribute("Alumnos", listaAlumnos);
         RequestDispatcher view = req.getRequestDispatcher("SeleccionCompetencia.jsp");
         view.forward(req, resp);
     }
 
-    protected TrMaestroMateriaGrupo filterByMateria(ArrayList mmg, TcMaterias mat){
+    protected TrMaestroMateriaGrupo filterByMateria(ArrayList mmg, TcMaterias mat) {
         Iterator it = mmg.iterator();
         TrMaestroMateriaGrupo nuevoMmg = null;
-        while(it.hasNext()){
+        while (it.hasNext()) {
             nuevoMmg = (TrMaestroMateriaGrupo) it.next();
-            if(mat.getMaterias_ID() == nuevoMmg.getMateria_ID())
+            if (mat.getMaterias_ID() == nuevoMmg.getMateria_ID()) {
                 return nuevoMmg;
+            }
         }
         return nuevoMmg;
     }
 
-    protected ArrayList llenarPresesiones(ArrayList sesiones){
+    protected ArrayList llenarPresesiones(ArrayList sesiones) {
         ArrayList listaPresesiones = new ArrayList();
         Iterator it = sesiones.iterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             TrSesion sesion = (TrSesion) it.next();
             listaPresesiones.add(obti.obtenerPreSesion(sesion.getPreSesion_ID()));
         }
         return listaPresesiones;
     }
 
-    protected ArrayList llenarCriterioCompetencia(ArrayList presesiones){
+    protected ArrayList llenarCriterioCompetencia(ArrayList presesiones) {
         ArrayList listaCriterioCompetencias = new ArrayList();
         Iterator it = presesiones.iterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             TrPreSesion presesion = (TrPreSesion) it.next();
             TrCriterioCompetencia crico = obti.obtenerCriterioCompetencia(presesion.getCriterioCompetencia_ID());
             listaCriterioCompetencias.add(crico);
@@ -86,10 +89,10 @@ public class llenarCompetencias extends HttpServlet {
         return listaCriterioCompetencias;
     }
 
-    protected ArrayList llenarCompetencias(ArrayList criterioCompetencias){
+    protected ArrayList llenarCompetencias(ArrayList criterioCompetencias) {
         ArrayList listaCompetencias = new ArrayList();
         Iterator it = criterioCompetencias.iterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             TrCriterioCompetencia criterioCompetencia = (TrCriterioCompetencia) it.next();
             listaCompetencias.add(obti.obtenerCompetencia(criterioCompetencia.getCompetencia_ID()));
         }
@@ -116,5 +119,23 @@ public class llenarCompetencias extends HttpServlet {
             mmgs = obtc.obtenerMaestrosMateriasGruposbyGrupo(grp.getGrupo_ID());
         }
         return mmgs;
+    }
+
+    protected ArrayList filtrarAlumnos(TrMaestroMateriaGrupo mmg) {
+        //Instanciamos la lista donde guardaremos los alumnos filtrados
+        ArrayList alumnos = new ArrayList();
+        //Obtenemos la lista de relacion alumnos - grupo
+        ArrayList listaGrupoAlumnos = obtc.obtenerGrupoAlumnosbyGrupo(mmg.getGrupoGrupo_ID());
+        Iterator it = listaGrupoAlumnos.iterator();
+        while (it.hasNext()) {
+            TrGrupoAlumno gra = (TrGrupoAlumno) it.next();
+            TrAlumnos alumno = obti.obtenerAlumnobyID(gra.getAlumno_ID());
+            //Filtramos los alumnos que NO son el usuario conectado
+            //TODO:Cambiar valor estatico por variable de sesion
+            if (alumno.getUsuario_ID() != 7) {
+                alumnos.add(alumno);
+            }
+        }
+        return alumnos;
     }
 }
