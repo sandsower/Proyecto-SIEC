@@ -30,7 +30,6 @@ public class CriterioCompetencia {
         setIdCriterio(xIdCriterio);
         setIdCompetencia(xIdCompetencia);
     }
-
     public int getIdCompetencia() {
         return idCompetencia;
     }
@@ -49,8 +48,6 @@ public class CriterioCompetencia {
     public void setIdCriterioCompetencia(int idCriterioCompetencia) {
         this.idCriterioCompetencia = idCriterioCompetencia;
     }
-
-
     public ArrayList obtenerCriterioxCompetencia(int xId){
         
         try {
