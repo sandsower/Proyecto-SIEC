@@ -120,7 +120,7 @@
 	<div class="cuadcont">
             <ul>
            <c:forEach items="${CriterioCompetencia}" var="CriterioCompetencia">
-               <li>${CriterioCompetencia.idCriterio}&nbsp;                   
+               <li>${CriterioCompetencia.nombre}&nbsp;
                    <a href="eliminarCriterioCompetencia?idCriterio=${CriterioCompetencia.idCriterio}&idCompetencia=${idCompetencia}&nombre=${nombre}"><img src="../images/delete.png"/></a>
                 </c:forEach>
             </ul>
