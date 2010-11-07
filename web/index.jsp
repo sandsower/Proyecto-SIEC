@@ -29,11 +29,9 @@
         <div class="h1login"><h1>Sistema de Evaluacion de Competencias SIEC</h1></div>
        <div id="login">
         <% //Imprime mensaje de error en caso de que el usuario no sea correcto
-        
             if(request.getParameter("error") != null)
             {
                 out.print("Error, usuario o contraseña incorrectos");
-
             }
         %>
         <form name="loginform" id="loginform" action="login.jsp" method="post">
