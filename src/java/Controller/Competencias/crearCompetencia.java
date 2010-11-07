@@ -5,10 +5,12 @@
 
 package Controller.Competencias;
 
+import clases.Competencias.Categorias;
 import clases.Competencias.Competencias;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -32,21 +34,23 @@ public class crearCompetencia extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet crearCompetencia</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet crearCompetencia at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-            */
-        } finally { 
-            out.close();
+            Categorias cat = new Categorias();
+            ArrayList Categorias =null;
+            Categorias =cat.obtenerCategorias();
+            request.setAttribute("Categorias", Categorias);
+            RequestDispatcher view= null;
+            if(Categorias!=null){
+                view = request.getRequestDispatcher("crear.jsp");
+
+            }
+            else{
+                view = request.getRequestDispatcher("../Error.jsp");
+            }
+          view.forward(request, response);
+
+        } catch(Exception ex){
+            System.out.println(ex);
         }
     } 
 
