@@ -96,6 +96,74 @@
         <servlet-name>guardarEvaluacionEF</servlet-name>
         <url-pattern>/Evaluaciones/EvaluacionF/guardarEvaluacion.do</url-pattern>
     </servlet-mapping>
+
+    <!--Inicio Servlets de competencias-->
+    <servlet>
+        <servlet-name>crearCriterio</servlet-name>
+        <servlet-class>Controller.Competencias.crearCriterio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eliminarCriterio</servlet-name>
+        <servlet-class>Controller.Competencias.eliminarCriterio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>modificarCriterio</servlet-name>
+        <servlet-class>Controller.Competencias.modificarCriterio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>crearCompetencia</servlet-name>
+        <servlet-class>Controller.Competencias.crearCompetencia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>eliminarCompetencia</servlet-name>
+        <servlet-class>Controller.Competencias.eliminarCompetencia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>modificarCompetencia</servlet-name>
+        <servlet-class>Controller.Competencias.modificarCompetencia</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>agregarCriterios</servlet-name>
+        <servlet-class>Controller.Competencias.agregarCriterios</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>crearCriterioCompetencia</servlet-name>
+        <servlet-class>Controller.Competencias.crearCriterioCompetencia</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>crearCriterio</servlet-name>
+        <url-pattern>/competencias/criterios/crearCriterio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eliminarCriterio</servlet-name>
+        <url-pattern>/competencias/criterios/eliminarCriterio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificarCriterio</servlet-name>
+        <url-pattern>/competencias/criterios/modificarCriterio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crearCompetencia</servlet-name>
+        <url-pattern>/competencias/crearCompetencia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>eliminarCompetencia</servlet-name>
+        <url-pattern>/competencias/eliminarCompetencia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modificarCompetencia</servlet-name>
+        <url-pattern>/competencias/modificarCompetencia</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>agregarCriterios</servlet-name>
+        <url-pattern>/competencias/agregarCriterios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crearCriterioCompetencia</servlet-name>
+        <url-pattern>/competencias/crearCriterioCompetencia</url-pattern>
+    </servlet-mapping>
+
+    <!--Fin Servlets de competencias-->
     <session-config>
         <session-timeout>
             30

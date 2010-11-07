@@ -128,15 +128,17 @@
    </div>--><!-- Contenido -->
    <div id="menur"><!-- Menu derecho -->
    <div class="cuadro">
-	<div class="theader">Cuadro 2</div>
-	<div class="cuadcont">
-            <p>Info de cuadro 2</p>
-            <ul>
-		<li>Lista 1</li>
-                <li>Lista 2</li>
-                <li><a href="#">Este es un link</a></li>
+	<ul>
+		<li><a href="competencias/competencias.jsp">Competencias</a></li>
+                 <ul>
+                        <li><a href="competencias/crear.jsp">Crear Criterio</a></li>
+                    </ul>
+                <li><a href="criterios/criterios.jsp">Criterios</a>
+                    <ul>
+                        <li><a href="criterios/crear.jsp">Crear Criterio</a></li>
+                    </ul>
+                </li>
             </ul>
-	</div>
     </div>
    </div><!-- Menu derecho -->
    <div id="footerbox"></div>
