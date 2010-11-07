@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.AutoEvaluacion;
+package Controller.EvaluacionF;
 
 import java.io.IOException;
 import java.io.PrintWriter;

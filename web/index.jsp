@@ -36,6 +36,7 @@
         %>
         <form name="loginform" id="loginform" action="login.jsp" method="post">
 
+<<<<<<< HEAD
             <div>
                         <label>Nombre de usuario</label>
                         <input type="text" name="user" id="user_login" class="input" value="" size="20" tabindex="10" />
