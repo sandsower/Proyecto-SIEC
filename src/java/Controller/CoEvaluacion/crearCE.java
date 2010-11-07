@@ -20,7 +20,7 @@ import javax.servlet.RequestDispatcher;
  *
  * @author sands
  */
-public class crearAE extends HttpServlet {
+public class crearCE extends HttpServlet {
     //Inicializamos metodos de obtencion
 
     private ObtenerIndividuo obti = new ObtenerIndividuo();

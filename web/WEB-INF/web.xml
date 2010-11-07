@@ -13,8 +13,24 @@
         <servlet-class>Controller.AutoEvaluacion.crearAE</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>guardarEvaluacion</servlet-name>
+        <servlet-name>guardarEvaluacionAE</servlet-name>
         <servlet-class>Controller.AutoEvaluacion.guardarEvaluacion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>llenarMateriasCE</servlet-name>
+        <servlet-class>Controller.CoEvaluacion.llenarMaterias</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>llenarCompetenciasCE</servlet-name>
+        <servlet-class>Controller.CoEvaluacion.llenarCompetencias</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>crearCE</servlet-name>
+        <servlet-class>Controller.CoEvaluacion.crearAE</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>guardarEvaluacionCE</servlet-name>
+        <servlet-class>Controller.CoEvaluacion.guardarEvaluacion</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>llenarMateriasAE</servlet-name>
@@ -29,8 +45,24 @@
         <url-pattern>/Evaluaciones/Autoevaluacion/crearAE.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>guardarEvaluacion</servlet-name>
+        <servlet-name>guardarEvaluacionAE</servlet-name>
         <url-pattern>/Evaluaciones/Autoevaluacion/guardarEvaluacion.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>llenarMateriasCE</servlet-name>
+        <url-pattern>/Evaluaciones/Coevaluacion/llenarMaterias.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>llenarCompetenciasCE</servlet-name>
+        <url-pattern>/Evaluaciones/Coevaluacion/llenarCompetencias.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crearCE</servlet-name>
+        <url-pattern>/Evaluaciones/Coevaluacion/crearAE.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>guardarEvaluacionCE</servlet-name>
+        <url-pattern>/Evaluaciones/Coevaluacion/guardarEvaluacion.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
