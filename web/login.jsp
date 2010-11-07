@@ -12,7 +12,7 @@
     }
 
     if(u == null)
-        out.print("error");
+        response.sendRedirect("index.jsp?error=1");
     else
         response.sendRedirect("systemIndex.jsp");
 %>

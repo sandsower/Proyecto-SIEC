@@ -3,16 +3,33 @@
     Created on : 25/09/2010, 05:13:48 PM
     Author     : lugubrenator
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="clases.TrUsuario" %>
 <%
       HttpSession objSesion = request.getSession(true);
-       TrUsuario usuario = (TrUsuario)objSesion.getAttribute("usuario");
+      TrUsuario usuario = null;
        if(objSesion.getAttribute("usuario") == null){
            response.sendRedirect("index.jsp");
            objSesion.setAttribute("usuario", null);
-       }
+       } else
+           usuario = (TrUsuario)objSesion.getAttribute("usuario");
+%>
+<%@page import="clases.Tl_Menu" %>
+<%@page import="MovimientosBD.ObtenerConjunto" %>
+<%
+ObtenerConjunto obco = null;
+ArrayList per = new ArrayList();
+try {
+    obco = new ObtenerConjunto();
+    per = obco.obtenerMenu(usuario.getPerfil_ID());
+    }catch(NullPointerException e){
+        out.print("error, no hay menú disponible");
+    }
+//out.print(obco.obtenerMenu(usuario.getPerfil_ID()));
+request.setAttribute("per", per);
+//out.print(request.getAttribute("per"));
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="es">
@@ -22,6 +39,7 @@
 <link rel="stylesheet" type="text/css" href="css/siec.css" media="all">
 <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="js/siec.js"></script>
+<script type="text/javascript" src="js/menu.js"></script>
 </head>
 <body>
 <div id="top"><a name="top"></a></div>
@@ -41,7 +59,9 @@
 			</div>
            <div id="mprincipal">
     <ul>
-
+            <c:forEach items="${per}" var="menu">
+                <li><a href="${menu.url}" class="menuItem"><img alt=""  src="images/menu/${menu.img}.png" />${menu.menu}</a></li>
+            </c:forEach>
     </ul>
 	</div>
            <div id="mtopctrl">
