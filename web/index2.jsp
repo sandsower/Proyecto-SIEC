@@ -1,3 +1,13 @@
+<%
+       HttpSession objSesion = request.getSession(true);
+       if(objSesion.getAttribute("usuario") != null)
+       {
+           response.sendRedirect("systemIndex.jsp");
+       }else{
+           objSesion.setAttribute("usuario", null);
+           response.sendRedirect("index.jsp");
+       }
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="es">
 <head>

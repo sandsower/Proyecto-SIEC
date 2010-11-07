@@ -4,8 +4,6 @@
  */
 
 package clases;
-import MovimientosBD.ConexionBD;
-import java.sql.*;
 
 /**
  *

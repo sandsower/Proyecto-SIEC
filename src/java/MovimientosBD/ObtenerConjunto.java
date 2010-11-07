@@ -20,7 +20,7 @@ public class ObtenerConjunto {
 
     public ObtenerConjunto() {
          ConexionBD nuevaConexion = new ConexionBD();
-        nuevaConexion.conectarBD("root", "13450811");
+        nuevaConexion.conectarBD("root", "root");
         this.setCon(nuevaConexion.getCon());
     }
 
@@ -526,7 +526,7 @@ public class ObtenerConjunto {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ses.add(new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Ponderacion"), rs.getString("Criterio_Competencia_Id")));
+                ses.add(new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"),rs.getInt("Criterio_Competencia_Id"), rs.getString("Ponderacion")));
             }
             return ses;
         } catch (SQLException ex) {
@@ -541,11 +541,11 @@ public class ObtenerConjunto {
             ResultSet rs = null;
             ArrayList ses = new ArrayList();
             //SQL query command
-            String SQL = "SELECT * FROM Tr_PreSesion where criterio_competencia_criterio_competencia_id=".toLowerCase()+id;
+            String SQL = "SELECT * FROM Tr_PreSesion where Criterio_Competencia_Id=".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ses.add(new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Criterio_Competencia_Criterio_Competencia_ID"), rs.getString("Ponderacion")));
+                ses.add(new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"),rs.getInt("Criterio_Competencia_Id"), rs.getString("Ponderacion")));
             }
             return ses;
         } catch (SQLException ex) {
@@ -630,12 +630,81 @@ public class ObtenerConjunto {
         return null;
     }
 
+     public ArrayList obtenerMenu (int perfil){
+         String SQL="";
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList per = new ArrayList();
+            //SQL query command
+            SQL = "SELECT * FROM tl_menu WHERE tc_perfil_PERFIL_ID =  "+perfil;
+            System.out.print(SQL);
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                per.add(new Tl_Menu(rs.getInt("id_menu"), rs.getString("menu")
+                        ,rs.getString("url"), rs.getString("img"), rs.getInt(perfil)));
+            }
+            return per;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
+        public ArrayList getCarrerasGruposByIdMaestro(int idMaestro) {
+            String SQL;
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList car = new ArrayList();
+            //SQL query command
+            SQL = String.format("SELECT c.* FROM tc_carrera c, tc_grupo g, tr_maestro_grupo_materia mgm WHERE mgm.MAESTRO_ID = %d AND mgm.GRUPO_ID = g.GRUPO_ID AND g.CARRERA_id = c.CARRERA_ID", idMaestro);
+            System.out.println(SQL);
+            stmt = getCon().createStatement();
+            rs = stmt.executeQuery(SQL);
+            CarreraGrupo cg = null;
+            while (rs.next()) {
+                cg = new CarreraGrupo(idMaestro, new TcCarrera(rs.getInt("Carrera_ID"), rs.getString("Des_Carrera")));
+                cg.setGrupos(this.obtenerGruposByIDCarrera(rs.getInt("Carrera_ID")));
+                car.add(cg);
+
+            }
+            return car;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: " + ex.toString());
+        }
+        return null;
+    }
+
+
+     public ArrayList obtenerGruposByIDCarrera (int idCarrera){
+        String SQL;
+         try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList grp = new ArrayList();
+            //SQL query command
+            SQL = String.format("SELECT * FROM tc_grupo WHERE CARRERA_ID = %d", idCarrera);
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                grp.add(new TcGrupo(rs.getInt("GRUPO_ID"), rs.getString("DES_GRUPO"), rs.getInt("CARRERA_ID"), rs.getString("GRADO")));
+            }
+            return grp;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
     public Connection getCon() {
         return con;
     }
 
     public void setCon(Connection con) {
         this.con = con;
+
     }
 
 }

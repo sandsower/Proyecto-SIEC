@@ -459,6 +459,25 @@ public class ObtenerIndividuo {
         return null;
     }
 
+    public TrMaestros obtenerMaestroByUsuarioID (int id){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            TrMaestros mae = null;
+            //SQL query command
+            String SQL = "SELECT * FROM Tr_Maestros WHERE Usuario_ID=".toLowerCase()+id;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                mae = new TrMaestros(rs.getInt("Maestro_ID"), rs.getString("Codigo"), rs.getInt("Usuario_ID"));
+            }
+            return mae;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
      public TrPreSesion obtenerPreSesion (int id){
         try {
             Statement stmt = null;
@@ -469,7 +488,7 @@ public class ObtenerIndividuo {
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                ses = new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"), rs.getInt("Ponderacion"), rs.getString("Criterio_Competencia_Id"));
+                ses = new TrPreSesion(rs.getInt("PreSesion_ID"), rs.getString("mensaje"), rs.getInt("Estado"),rs.getInt("Criterio_Competencia_Id"), rs.getString("Ponderacion"));
             }
             return ses;
         } catch (SQLException ex) {

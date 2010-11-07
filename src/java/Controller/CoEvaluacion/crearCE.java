@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.AutoEvaluacion;
+package Controller.CoEvaluacion;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,17 +20,20 @@ import javax.servlet.RequestDispatcher;
  *
  * @author sands
  */
-public class crearAE extends HttpServlet {
+public class crearCE extends HttpServlet {
     //Inicializamos metodos de obtencion
 
     private ObtenerIndividuo obti = new ObtenerIndividuo();
     private ObtenerConjunto obtc = new ObtenerConjunto();
-    private int tipoEvaluacion = 1;
-
+    private int tipoEvaluacion = 2;
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //Obtenemos ID de la competencia seleccionada
-        int id = Integer.parseInt(req.getParameter("ID"));
+        //Obtenemos ID de la competencia y del alumno seleccionado
+        int id = Integer.parseInt(req.getParameter("IDEvaluacion"));
+        int idAlumno = Integer.parseInt(req.getParameter("IDAlumno"));
+        //Obtenemos el alumno a evaluar
+        TrAlumnos alumnoAEvaluar = obti.obtenerAlumnobyID(idAlumno);
         //Llenamos nuestra lista de la tabla CriterioCompetencias
         ArrayList listaCriCo = obtc.obtenerCriterioCompetenciasbyCompetenciaID(id);
         //Obtenemos el alumno con el ID del usuario
@@ -50,8 +53,8 @@ public class crearAE extends HttpServlet {
         //De no ser asi, creamos el campo con valores nulos
         //Si no, avanzamos al siguiente paso (modificacion de valores)
         TrEvaluacionParcial eva = null;
-        if (!this.evaluadaAE(sesion,alumno)) {
-            eva = new TrEvaluacionParcial(0, 0, 0, 1, this.tipoEvaluacion, sesion.getMaestroMateriaGrupoSesion_ID(), alumno.getAlumnos_ID());
+        if (!this.evaluadaAE(sesion,alumnoAEvaluar)) {
+            eva = new TrEvaluacionParcial(0, 0, 0, 1, this.tipoEvaluacion, sesion.getMaestroMateriaGrupoSesion_ID(), idAlumno);
             InsertarNuevo ins = new InsertarNuevo();
             if(!ins.insertarNuevaEvaluacionParcial(eva)){
                 RequestDispatcher view = req.getRequestDispatcher("../../Error.jsp");
@@ -59,16 +62,16 @@ public class crearAE extends HttpServlet {
             }
         } else {
              //TODO: Cambiar valor estatico por variable de sesion
-            eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), this.tipoEvaluacion, alumno.getAlumnos_ID());
+            eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), this.tipoEvaluacion, idAlumno);
         }
-        eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), this.tipoEvaluacion, alumno.getAlumnos_ID());
+        eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), this.tipoEvaluacion, idAlumno);
         //Obtenemos ademas los niveles de evaluacion disponibles para evaluar.
         ArrayList niveles = obtc.obtenerEvaluacionesNiveles();
         //Mandamos a la vista los valores con los que vamos a interactuar
         req.setAttribute("Niveles", niveles);
         req.setAttribute("Criterio", crit);
         req.setAttribute("Evaluacion", eva);
-        RequestDispatcher view = req.getRequestDispatcher("AutoEva.jsp");
+        RequestDispatcher view = req.getRequestDispatcher("CoEva.jsp");
         view.forward(req, resp);
     }
 
@@ -108,7 +111,7 @@ public class crearAE extends HttpServlet {
 
     protected boolean evaluadaAE(TrSesion sesion,TrAlumnos alumno) {
         //TODO: Cambiar valor estatico por variable de sesion
-        TrEvaluacionParcial eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), 1, alumno.getAlumnos_ID());
+        TrEvaluacionParcial eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), this.tipoEvaluacion, alumno.getAlumnos_ID());
         if (eva != null) {
             return true;
         }

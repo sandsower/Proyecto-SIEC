@@ -35,7 +35,7 @@ public class TrUsuario
     /**
      * @return the usuario_ID
      */
-    public int getUsuarioByID() {
+    public int getUsuario_ID() {
         return usuario_ID;
     }
 
@@ -134,7 +134,7 @@ public class TrUsuario
     {
         String regresa="";
         StringBuilder sb=new StringBuilder();
-        sb.append("usuario_ID").append(getUsuarioByID()).append("], ");
+        sb.append("usuario_ID").append(getUsuario_ID()).append("], ");
         sb.append("Nombres").append(getNombres()).append("], ");
         sb.append("Apellido Paterno").append(getApellidoPat()).append("], ");
         sb.append("Apellido Materno").append(getApellidoMat()).append("], ");
