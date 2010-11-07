@@ -2,8 +2,9 @@
 <%@page import="java.util.List"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% String idCompetencia=request.getParameter("id");
+<% String idCompetencia=request.getParameter("idCompetencia");
    String nombre= request.getParameter("nombre");
+   
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="es">
@@ -120,7 +121,7 @@
             <ul>
            <c:forEach items="${CriterioCompetencia}" var="CriterioCompetencia">
                <li>${CriterioCompetencia.idCriterio}&nbsp;                   
-                   <a href="eliminarCriterioCompetencia?id="><img src="../images/delete.png"/></a>
+                   <a href="eliminarCriterioCompetencia?idCriterio=${CriterioCompetencia.idCriterio}&idCompetencia=${idCompetencia}&nombre=${nombre}"><img src="../images/delete.png"/></a>
                 </c:forEach>
             </ul>
 	</div>

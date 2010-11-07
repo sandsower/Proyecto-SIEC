@@ -6,15 +6,12 @@
 package Controller.Competencias;
 
 import clases.Competencias.CriterioCompetencia;
-import clases.Competencias.Criterios;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author garrison
  */
-public class agregarCriterios extends HttpServlet {
+@WebServlet(name="eliminarCriterioCompetencia", urlPatterns={"/competencias/eliminarCriterioCompetencia"})
+public class eliminarCriterioCompetencia extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,10 +38,10 @@ public class agregarCriterios extends HttpServlet {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet agregarCriterios</title>");  
+            out.println("<title>Servlet eliminarCriterioCompetencia</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet agregarCriterios at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet eliminarCriterioCompetencia at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
             */
@@ -63,31 +61,35 @@ public class agregarCriterios extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        int idCompetencia=Integer.parseInt(request.getParameter("idCompetencia"));
-        String nombre = request.getParameter("nombre");        
-        RequestDispatcher view = null;
+        int idCompetencia=Integer.parseInt(request.getParameter("idCompetencia") );
+        int idCriterio=Integer.parseInt(request.getParameter("idCriterio"));        
+        String nombre = request.getParameter("nombre");
         CriterioCompetencia cc = new CriterioCompetencia();
         ArrayList CriterioCompetencia = new ArrayList();
-        
-        try {
-                CriterioCompetencia = cc.obtenerCriterioxCompetencia(idCompetencia);
-                request.setAttribute("CriterioCompetencia",CriterioCompetencia );
-                request.setAttribute("idCompetencia",idCompetencia);
-                request.setAttribute("nombre",nombre );
-                if(CriterioCompetencia != null){
-                    view = request.getRequestDispatcher("agregarCriterios.jsp");
-                    }
-                else{
-                 view = request.getRequestDispatcher("../error.jsp");
-                }
-                view.forward(request, response);
-            }
-        catch(Exception ex){
-            System.out.println(ex);
+
+        CriterioCompetencia  nuevoCriterio = new CriterioCompetencia();
+        RequestDispatcher view =null;
+
+       try {
+       int criterio = nuevoCriterio.eliminarCriterio(idCriterio);
+       CriterioCompetencia = cc.obtenerCriterioxCompetencia(idCompetencia);
+       
+       if(criterio > 0){
+           request.setAttribute("CriterioCompetencia",CriterioCompetencia );
+           request.setAttribute("idCompetencia",idCompetencia );
+           request.setAttribute("nombre",nombre );
+           view = request.getRequestDispatcher("agregarCriterios.jsp");
+
+       }
+       else{
+           view = request.getRequestDispatcher("../error.jsp");
+       }
+        view.forward(request, response);
+
         }
-        
-        
-        
+       catch(Exception ex){
+        System.out.println(ex);
+       }
     } 
 
     /** 
