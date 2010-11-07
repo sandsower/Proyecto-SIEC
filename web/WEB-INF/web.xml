@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <!--Inicio Servlets de evaluaciones-->
     <servlet>
         <servlet-name>llenarMateriasAE</servlet-name>
         <servlet-class>Controller.AutoEvaluacion.llenarMaterias</servlet-class>
@@ -47,6 +48,10 @@
     <servlet>
         <servlet-name>guardarEvaluacionCE</servlet-name>
         <servlet-class>Controller.CoEvaluacion.guardarEvaluacion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>llenarGruposEF</servlet-name>
+        <servlet-class>Controller.EvaluacionF.llenarGrupos</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>llenarMateriasAE</servlet-name>
@@ -96,6 +101,11 @@
         <servlet-name>guardarEvaluacionEF</servlet-name>
         <url-pattern>/Evaluaciones/EvaluacionF/guardarEvaluacion.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>llenarGruposEF</servlet-name>
+        <url-pattern>/Evaluaciones/EvaluacionEF/llenarGrupos.do</url-pattern>
+    </servlet-mapping>
+    <!--Fin Servlets de evaluaciones-->
 
     <!--Inicio Servlets de competencias-->
     <servlet>
@@ -162,7 +172,6 @@
         <servlet-name>crearCriterioCompetencia</servlet-name>
         <url-pattern>/competencias/crearCriterioCompetencia</url-pattern>
     </servlet-mapping>
-
     <!--Fin Servlets de competencias-->
     <session-config>
         <session-timeout>

@@ -14,7 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Bienvenido al modulo de CoEvaluacion</h1>
+        <h1>Bienvenido al modulo de Evaluacion Formativa</h1>
         Sigue las instrucciones que apareceran en las siguientes paginas para completar el registro de la autoevaluacion.
         <form action="llenarMaterias.do" method="POST">
             <input type="hidden" value="7" name="ID"/>
