@@ -17,6 +17,22 @@
         <servlet-class>Controller.AutoEvaluacion.guardarEvaluacion</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>llenarMateriasEF</servlet-name>
+        <servlet-class>Controller.EvaluacionF.llenarMaterias</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>llenarCompetenciasEF</servlet-name>
+        <servlet-class>Controller.EvaluacionF.llenarCompetencias</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>crearEF</servlet-name>
+        <servlet-class>Controller.EvaluacionF.crearEF</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>guardarEvaluacionEF</servlet-name>
+        <servlet-class>Controller.EvaluacionF.guardarEvaluacion</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>llenarMateriasCE</servlet-name>
         <servlet-class>Controller.CoEvaluacion.llenarMaterias</servlet-class>
     </servlet>
@@ -63,6 +79,22 @@
     <servlet-mapping>
         <servlet-name>guardarEvaluacionCE</servlet-name>
         <url-pattern>/Evaluaciones/Coevaluacion/guardarEvaluacion.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>llenarMateriasEF</servlet-name>
+        <url-pattern>/Evaluaciones/EvaluacionF/llenarMaterias.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>llenarCompetenciasEF</servlet-name>
+        <url-pattern>/Evaluaciones/EvaluacionF/llenarCompetencias.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>crearEF</servlet-name>
+        <url-pattern>/Evaluaciones/EvaluacionF/crearEF.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>guardarEvaluacionEF</servlet-name>
+        <url-pattern>/Evaluaciones/EvaluacionF/guardarEvaluacion.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
