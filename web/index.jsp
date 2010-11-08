@@ -41,7 +41,7 @@
            </div>
 	</div>
    </div>
-
+</div>
     <div id="menul"><!-- Menu izquierdo -->
     <div class="cuadro">
 	<div class="theader">Cuadro 1</div>
