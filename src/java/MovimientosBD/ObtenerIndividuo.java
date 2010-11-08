@@ -459,7 +459,7 @@ public class ObtenerIndividuo {
         return null;
     }
 
-    public TrMaestros obtenerMaestroByUsuarioID (int id){
+    public TrMaestros obtenerMaestrobyUsuario_ID(int id){
         try {
             Statement stmt = null;
             ResultSet rs = null;

@@ -6,6 +6,7 @@
 package Controller.Competencias;
 
 import clases.Competencias.CriterioCompetencia;
+import clases.Competencias.Criterios;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -64,18 +65,21 @@ public class eliminarCriterioCompetencia extends HttpServlet {
         int idCompetencia=Integer.parseInt(request.getParameter("idCompetencia") );
         int idCriterio=Integer.parseInt(request.getParameter("idCriterio"));        
         String nombre = request.getParameter("nombre");
+        Criterios c = new Criterios();
         CriterioCompetencia cc = new CriterioCompetencia();
         ArrayList CriterioCompetencia = new ArrayList();
-
+        ArrayList Criterios = new ArrayList();
         CriterioCompetencia  nuevoCriterio = new CriterioCompetencia();
         RequestDispatcher view =null;
 
        try {
        int criterio = nuevoCriterio.eliminarCriterio(idCriterio);
+       Criterios = c.obtenerCriterios();
        CriterioCompetencia = cc.obtenerCriterioxCompetencia(idCompetencia);
        
        if(criterio > 0){
            request.setAttribute("CriterioCompetencia",CriterioCompetencia );
+           request.setAttribute("Criterios", Criterios);
            request.setAttribute("idCompetencia",idCompetencia );
            request.setAttribute("nombre",nombre );
            view = request.getRequestDispatcher("agregarCriterios.jsp");

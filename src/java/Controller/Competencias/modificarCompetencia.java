@@ -9,6 +9,7 @@ import clases.Competencias.Competencias;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -61,7 +62,7 @@ public class modificarCompetencia extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("idCompetencia"));
         Competencias com = null;
         Competencias competencia = new Competencias();
         com = competencia.obtenerCompetencia(id);
@@ -98,6 +99,10 @@ public class modificarCompetencia extends HttpServlet {
             int competencia = modCompetencia.modificarCompetencia(modCompetencia);
             request.setAttribute("filas", competencia);
        if(competencia > 0){
+                Competencias com = new Competencias();
+                ArrayList Competencias =null;
+                Competencias =com.obtenerCompetencias();
+                request.setAttribute("Competencias", Competencias);
            view = request.getRequestDispatcher("competencias.jsp");
        }
        else{

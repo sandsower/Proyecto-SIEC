@@ -1,5 +1,4 @@
-<%@page import="java.util.List"%>
-<%@page import="clases.Competencias.Competencias"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="es">
@@ -41,7 +40,7 @@
 	<div class="theader">Navegación</div>
 	<div class="cuadcont">
             <ul>
-                <li><a href="./systemIndex.jsp">Inicio de Sistema</a></li>
+                <li><a href="../index.jsp">Inicio de Sistema</a></li>
             </ul>
 	</div>
     </div>
@@ -63,21 +62,17 @@
                                     </thead>
                                     <tbody align="center">
                                         <tr>
-                                        <%
-                                         Competencias com = new Competencias();
-                                         List<Competencias> competencia = com.obtenerCompetencias();
-                                         for(Competencias i: competencia)
-                                         {
-                                             out.print("<tr>");
-                                             out.print("<td><input type=\"checkbox\" disabled></td>");
-                                             out.print("<td>"+i.getNombre()+"</td>");
-                                             out.print("<td>"+i.getDescripcion()+"</td>");
-                                             out.print("<td>"+i.getIdCategoria()+"</td>");
-                                             out.print("<td><a href='eliminarCompetencia?id="+i.getIdCompetencia()+"' onClick='javascript: if(confirm('¿Esta seguro que desa borrar el registro?')){ return true; } else { return false;}'><img src='../images/delete.png'/></a></td>");
-                                             out.print("<td><a href='modificarCompetencia?id="+i.getIdCompetencia()+"'><img src='../images/page_edit.png'/></a></td>");
-                                             out.print("<td><a href='agregarCriterios?idCompetencia="+i.getIdCompetencia()+"&nombre="+i.getNombre()+"'><img src='../images/add.png'/></a></td>");
-                                        }
-                                        %>
+                                        <c:forEach items="${Competencias}" var="Competencias">
+                                        <tr>
+                                            <td><input type="checkbox" disabled/></td>
+                                            <td>${Competencias.nombre}</td>
+                                            <td>${Competencias.descripcion}</td>
+                                            <td>${Competencias.idCategoria}</td>
+                                            <td><a href="eliminarCompetencia?id=${Competencias.idCompetencia}"><img src="../images/delete.png" alt="Borrar competencia"/></td>
+                                            <td><a href="modificarCompetencia?idCompetencia=${Competencias.idCompetencia}"><img src="../images/page_edit.png" alt="Modificar Competencia"/></td>
+                                            <td><a href="agregarCriterios?idCompetencia=${Competencias.idCompetencia}&nombre=${Competencias.nombre}"><img src="../images/add.png" alt="Agregar Criterios"/></td>
+                                            </tr>
+                                        </c:forEach>
                                        </tr>
                                     </tbody>
                                 </table>
@@ -90,14 +85,14 @@
 	<div class="cuadcont">
             <p>Info de cuadro 2</p>
             <ul>
-		<li><a href="competencias.jsp">Competencias</a>
+		<li><a href="obtenerCompetencias">Competencias</a>
                     <ul>
-                        <li><a href="crear.jsp">Crear Competencia</a></li>
+                        <li><a href="crearCompetencia">Crear Competencia</a></li>
                     </ul>
                 </li>
-                <li><a href="criterios/criterios.jsp">Criterios</a>
+                <li><a href="criterios/criterios">Criterios</a>
                     <ul>
-                        <li><a href="criterios/crear.jsp">Crear Criterio</a></li>
+                        <li><a href="criterios/crearCriterio">Crear Criterio</a></li>
                     </ul>
                 </li>
             </ul>

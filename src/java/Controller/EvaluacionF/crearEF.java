@@ -25,22 +25,22 @@ public class crearEF extends HttpServlet {
 
     private ObtenerIndividuo obti = new ObtenerIndividuo();
     private ObtenerConjunto obtc = new ObtenerConjunto();
-    private int tipoEvaluacion = 2;
+    private int tipoEvaluacion = 3;
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //Obtenemos ID de la competencia y del alumno seleccionado
-        int id = Integer.parseInt(req.getParameter("IDEvaluacion"));
+        //Obtenemos los IDs de la vista
+        int idEvaluacion = Integer.parseInt(req.getParameter("IDEvaluacion"));
         int idAlumno = Integer.parseInt(req.getParameter("IDAlumno"));
+        int idGrupo = Integer.parseInt(req.getParameter("IDGrupo"));
+        int idMaestro = Integer.parseInt(req.getParameter("IDMaestro"));
+        int idMateria = Integer.parseInt(req.getParameter("IDMateria"));
         //Obtenemos el alumno a evaluar
         TrAlumnos alumnoAEvaluar = obti.obtenerAlumnobyID(idAlumno);
         //Llenamos nuestra lista de la tabla CriterioCompetencias
-        ArrayList listaCriCo = obtc.obtenerCriterioCompetenciasbyCompetenciaID(id);
-        //Obtenemos el alumno con el ID del usuario
-        //TODO: Cambiar valor estatico por variable de sesion
-        TrAlumnos alumno = obti.obtenerAlumnobyUsuarioID(7);
-        //Obtenemos lista de MaestroMateriasGrupos por el ID de grupo sacado del alumno
-        ArrayList listaMMG = llenarMateriasMaestroGrupo(alumno);
+        ArrayList listaCriCo = obtc.obtenerCriterioCompetenciasbyCompetenciaID(idEvaluacion);
+        //Obtenemos lista de MaestroMateriasGrupos por el grupo y maestro seleccionados
+        ArrayList listaMMG = obtc.obtenerMaestrosMateriasGruposbyGrupoANDMaestro(idGrupo, idMaestro);
         //Llenamos nuestra lista de presesiones con coincidencia en nuestra lista criterioCompetencia seleccionada
         ArrayList listaPresesiones = this.llenarPresesiones(listaCriCo);
         //Filtramos las sesiones disponibles de acuerdo a las listas de presesiones y de maestroMateriaGrupo disponibles
@@ -71,7 +71,7 @@ public class crearEF extends HttpServlet {
         req.setAttribute("Niveles", niveles);
         req.setAttribute("Criterio", crit);
         req.setAttribute("Evaluacion", eva);
-        RequestDispatcher view = req.getRequestDispatcher("CoEva.jsp");
+        RequestDispatcher view = req.getRequestDispatcher("EvaF.jsp");
         view.forward(req, resp);
     }
 

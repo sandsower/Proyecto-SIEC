@@ -41,7 +41,7 @@
 	<div class="theader">Navegación</div>
 	<div class="cuadcont">
             <ul>
-                <li><a href="./systemIndex.jsp">Inicio de Sistema</a></li>
+                <li><a href="../../index.jsp">Inicio de Sistema</a></li>
             </ul>
 	</div>
     </div>
@@ -77,9 +77,9 @@
 	<div class="cuadcont">
             <p>Info de cuadro 2</p>
             <ul>
-		<li><a href="../competencias.jsp">Competencias</a>
+		<li><a href="../obtenerCompetencias">Competencias</a>
                     <ul>
-                        <li><a href="../crear.jsp">Crear Competencias</a></li>
+                        <li><a href="../crearCompetencia">Crear Competencias</a></li>
                     </ul>
                 </li>
                 <li><a href="criterios.jsp">Criterios</a>

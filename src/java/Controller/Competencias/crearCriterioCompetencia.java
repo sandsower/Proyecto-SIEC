@@ -6,6 +6,7 @@
 package Controller.Competencias;
 
 import clases.Competencias.CriterioCompetencia;
+import clases.Competencias.Criterios;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -18,10 +19,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
+
 /**
  *
  * @author garrison
  */
+
 public class crearCriterioCompetencia extends HttpServlet {
    
     /** 
@@ -65,18 +68,21 @@ public class crearCriterioCompetencia extends HttpServlet {
         int idCompetencia=Integer.parseInt(request.getParameter("idCompetencia") );
         int idCriterio=Integer.parseInt(request.getParameter("idCriterio"));
         CriterioCompetencia cc = new CriterioCompetencia();
+        Criterios c = new Criterios();
         String nombre = request.getParameter("nombre");
         ArrayList CriterioCompetencia = new ArrayList();
-
+        ArrayList Criterios = new ArrayList();
         CriterioCompetencia  nuevoCriterio = new CriterioCompetencia();
         RequestDispatcher view =null;
 
        try {
        int criterio = nuevoCriterio.crearCriterioCompetencia(idCompetencia,idCriterio);
        CriterioCompetencia = cc.obtenerCriterioxCompetencia(idCompetencia);
+       Criterios = c.obtenerCriterios();
        request.setAttribute("CriterioCompetencia",CriterioCompetencia );
        if(criterio > 0){
-           request.setAttribute("id",idCompetencia );
+           request.setAttribute("idCompetencia",idCompetencia );
+           request.setAttribute("Criterios", Criterios);
            request.setAttribute("nombre",nombre );
            view = request.getRequestDispatcher("agregarCriterios.jsp");
 
