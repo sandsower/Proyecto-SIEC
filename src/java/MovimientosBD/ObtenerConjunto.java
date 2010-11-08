@@ -643,7 +643,7 @@ public class ObtenerConjunto {
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
                 per.add(new Tl_Menu(rs.getInt("id_menu"), rs.getString("menu")
-                        ,rs.getString("url"), rs.getString("img"), rs.getInt(perfil)));
+                        ,rs.getString("url"), rs.getString("img"), perfil));
             }
             return per;
         } catch (SQLException ex) {
@@ -677,7 +677,6 @@ public class ObtenerConjunto {
         return null;
     }
 
-
      public ArrayList obtenerGruposByIDCarrera (int idCarrera){
         String SQL;
          try {
@@ -690,6 +689,27 @@ public class ObtenerConjunto {
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
                 grp.add(new TcGrupo(rs.getInt("GRUPO_ID"), rs.getString("DES_GRUPO"), rs.getInt("CARRERA_ID"), rs.getString("GRADO")));
+            }
+            return grp;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
+     public ArrayList getMateriasByMaestroIDGrupoID (int idMaestro, int idGrupo){
+        String SQL;
+         try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList grp = new ArrayList();
+            //SQL query command
+            SQL = String.format("SELECT DISTINCT m.* FROM tc_materias m, tc_grupo g, tr_maestro_grupo_materia mgm WHERE mgm.MAESTRO_ID = %d AND mgm.GRUPO_ID = %d AND mgm.MATERIAS_ID = m.MATERIAS_ID" , idMaestro,idGrupo);
+            System.out.print(SQL);
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                grp.add(new TcMaterias(rs.getInt("MATERIAS_ID"), rs.getString("DES_MATERIAS"), rs.getInt("DEPARTAMENTO_ID")));
             }
             return grp;
         } catch (SQLException ex) {
