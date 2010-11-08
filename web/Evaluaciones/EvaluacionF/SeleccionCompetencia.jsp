@@ -15,7 +15,7 @@
     </head>
     <body>
         <h1>Favor de seleccionar la competencia y el alumno a evaluar:</h1>
-        <form action="crearCE.do" method="POST">
+        <form action="crearEF.do" method="POST">
             <select name="IDEvaluacion">
                 <c:forEach items="${Competencias}" var="competencia">
                     <option value="${competencia.competencia_ID}">${competencia.des_Competencia}</option>
@@ -26,6 +26,9 @@
                     <option value="${alumno.alumnos_ID}">${alumno.matricula}</option>
                 </c:forEach>
             </select>
+            <input type="hidden" name="IDMaestro" value="${IDMaestro}" />
+            <input type="hidden" name="IDMateria" value="${IDMateria}"/>
+            <input type="hidden" name="IDGrupo" value="${IDGrupo}"/>
             <input type="submit" value="Aceptar"/>
         </form>
     </body>

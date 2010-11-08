@@ -14,14 +14,15 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Por favor selecciona la materia a evaluar:</h1>
-        <form action="llenarGrupos.do" method="POST">
-            <select name="IDMateria">
-                <c:forEach items="${Materias}" var="materia">
-                    <option value="${materia.materias_ID}">${materia.des_Materias}</option>
+        <h1>Por favor selecciona el grupo:</h1>
+        <form action="llenarCompetencias.do" method="POST">
+            <select name="IDGrupo">
+                <c:forEach items="${Grupos}" var="grupo">
+                    <option value="${grupo.grupo_ID}">${grupo.des_Grupo}${grupo.grado}</option>
                 </c:forEach>
             </select>
             <input type="hidden" name="IDMaestro" value="${IDMaestro}" />
+            <input type="hidden" name="IDMateria" value="${IDMateria}"/>
             <input type="submit" value="Aceptar"/>
         </form>
     </body>

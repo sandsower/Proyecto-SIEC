@@ -28,15 +28,17 @@ public class llenarCompetencias extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //Obtenemos ID de la materia seleccionada
-        int id = Integer.parseInt(req.getParameter("ID"));
-        //Obtenemos el alumno por el ID de usuario
+        //Obtenemos ID de la materia, grupo y maestro
+        int idMateria = Integer.parseInt(req.getParameter("IDMateria"));
+        int idMaestro = Integer.parseInt(req.getParameter("IDMaestro"));
+        int idGrupo = Integer.parseInt(req.getParameter("IDGrupo"));
+        //Obtenemos el maestro por el ID de usuario
         //TODO: Cambiar el valor estatico por la variable de sesion
-        TrAlumnos al = obti.obtenerAlumnobyUsuarioID(7);
+        TrMaestros maestro = obti.obtenerMaestrobyUsuario_ID(idMaestro);
         //Obtenemos la materia con el id
-        TcMaterias mat = obti.obtenerMateria(id);
+        TcMaterias mat = obti.obtenerMateria(idMateria);
         //Llenamos nuestra lista de la tabla MaestroMateriaGrupo
-        ArrayList listaMMG = this.llenarMateriasMaestroGrupo(al);
+        ArrayList listaMMG = obtc.obtenerMaestrosMateriasGruposbyGrupoANDMaestro(idGrupo, maestro.getMaestro_ID());
         //Filtramos nuestra lista por grupo
         TrMaestroMateriaGrupo mmg = this.filterByMateria(listaMMG, mat);
         //Obtenemos sesiones filtradas por mmg
@@ -52,6 +54,9 @@ public class llenarCompetencias extends HttpServlet {
         //Regresamos la lista de competencias y de alumnos a la vista
         req.setAttribute("Competencias", listaCompetencias);
         req.setAttribute("Alumnos", listaAlumnos);
+        req.setAttribute("IDGrupo", idGrupo);
+        req.setAttribute("IDMaestro", maestro.getMaestro_ID());
+        req.setAttribute("IDMateria", idMateria);
         RequestDispatcher view = req.getRequestDispatcher("SeleccionCompetencia.jsp");
         view.forward(req, resp);
     }
@@ -130,11 +135,7 @@ public class llenarCompetencias extends HttpServlet {
         while (it.hasNext()) {
             TrGrupoAlumno gra = (TrGrupoAlumno) it.next();
             TrAlumnos alumno = obti.obtenerAlumnobyID(gra.getAlumno_ID());
-            //Filtramos los alumnos que NO son el usuario conectado
-            //TODO:Cambiar valor estatico por variable de sesion
-            if (alumno.getUsuario_ID() != 7) {
-                alumnos.add(alumno);
-            }
+            alumnos.add(alumno);
         }
         return alumnos;
     }

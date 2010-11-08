@@ -465,7 +465,26 @@ public class ObtenerConjunto {
             ResultSet rs = null;
             ArrayList mmg = new ArrayList();
             //SQL query command
-            String SQL = "SELECT * FROM Tr_Maestro_Materia_Grupo where Maestro_ID=".toLowerCase()+id;
+            String SQL = "SELECT * FROM Tr_Maestro_Grupo_Materia where Maestro_ID=".toLowerCase()+id;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                mmg.add(new TrMaestroMateriaGrupo(rs.getInt("MATERIA_GRUPO_MAESTRO_ID"), rs.getInt("Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materias_ID")));
+            }
+            return mmg;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
+    public ArrayList obtenerMaestrosMateriasGruposbyGrupoANDMaestro (int idGrupo, int idMaestro){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList mmg = new ArrayList();
+            //SQL query command
+            String SQL = "SELECT * FROM Tr_Maestro_Grupo_Materia where Grupo_ID=".toLowerCase()+idGrupo+" AND Maestro_ID=".toLowerCase()+idMaestro;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){

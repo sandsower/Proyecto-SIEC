@@ -101,12 +101,7 @@
         <servlet-name>guardarEvaluacionEF</servlet-name>
         <url-pattern>/Evaluaciones/EvaluacionF/guardarEvaluacion.do</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>llenarGruposEF</servlet-name>
-        <url-pattern>/Evaluaciones/EvaluacionEF/llenarGrupos.do</url-pattern>
-    </servlet-mapping>
     <!--Fin Servlets de evaluaciones-->
-
     <!--Inicio Servlets de competencias-->
     <servlet>
         <servlet-name>crearCriterio</servlet-name>
@@ -173,6 +168,10 @@
         <url-pattern>/competencias/crearCriterioCompetencia</url-pattern>
     </servlet-mapping>
     <!--Fin Servlets de competencias-->
+    <servlet-mapping>
+        <servlet-name>llenarGruposEF</servlet-name>
+        <url-pattern>/Evaluaciones/EvaluacionF/llenarGrupos.do</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

@@ -58,7 +58,7 @@
                             <iframe width="1200" height="900" src="Evaluaciones/Coevaluacion/BienvenidoCE.jsp" ></iframe>
                 	</div>
                         <div class="col1" id="PARRAFO3">
-                            <iframe width="1200" height="900" src="Evaluaciones/EvaAcumulativa.jsp" ></iframe>
+                            <iframe width="1200" height="900" src="Evaluaciones/EvaluacionF/BienvenidoEF.jsp" ></iframe>
                 	</div>
 			<div class="col1" id="PARRAFO4">
                             <iframe width="1200" height="900" src="Evaluaciones/EvaFormativa.jsp" ></iframe>
