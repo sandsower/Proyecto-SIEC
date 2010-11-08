@@ -129,7 +129,7 @@
    <div id="menur"><!-- Menu derecho -->
    <div class="cuadro">
 	<ul>
-		<li><a href="competencias/competencias.jsp">Competencias</a></li>
+		<li><a href="competencias/obtenerCompetencias">Competencias</a></li>
                  <ul>
                         <li><a href="competencias/crearCompetencia">Crear Competencia</a></li>
                     </ul>

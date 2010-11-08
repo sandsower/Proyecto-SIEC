@@ -9,21 +9,20 @@ import clases.Competencias.Categorias;
 import clases.Competencias.Competencias;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author RaiL
+ * @author garrison
  */
-public class crearCompetencia extends HttpServlet {
+@WebServlet(name="obtenerCompetencias", urlPatterns={"/competencias/obtenerCompetencias"})
+public class obtenerCompetencias extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -35,13 +34,13 @@ public class crearCompetencia extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         try {
-            Categorias cat = new Categorias();
-            ArrayList Categorias =null;
-            Categorias =cat.obtenerCategorias();
-            request.setAttribute("Categorias", Categorias);
+            Competencias com = new Competencias();
+            ArrayList Competencias =null;
+            Competencias =com.obtenerCompetencias();
+            request.setAttribute("Competencias", Competencias);
             RequestDispatcher view= null;
-            if(Categorias!=null){
-                view = request.getRequestDispatcher("crear.jsp");
+            if(Competencias!=null){
+                view = request.getRequestDispatcher("competencias.jsp");
 
             }
             else{
@@ -78,31 +77,8 @@ public class crearCompetencia extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String nombre = request.getParameter("nombre");
-        String descripcion = request.getParameter("descripcion");
-        int idCategoria = Integer.parseInt(request.getParameter("categoria"));
-        RequestDispatcher view = null;
-        Competencias  nuevaCompetencia = new Competencias(nombre,descripcion,idCategoria);
-
-            try {
-                int comp = nuevaCompetencia.crearCompetencia(nuevaCompetencia);
-                request.setAttribute("filas",comp );
-                Competencias com = new Competencias();
-                ArrayList Competencias =null;
-                Competencias =com.obtenerCompetencias();
-                request.setAttribute("Competencias", Competencias);
-                if((comp > 0)&&(Competencias!=null)){
-                    view = request.getRequestDispatcher("competencias.jsp");
-                    }
-                else{
-                 view = request.getRequestDispatcher("http://localhost:8083/siecCompetencias/error.jsp");
-                }
-                view.forward(request, response);
-            } catch (SQLException ex) {
-                Logger.getLogger(crearCompetencia.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } 
-    
+        processRequest(request, response);
+    }
 
     /** 
      * Returns a short description of the servlet.

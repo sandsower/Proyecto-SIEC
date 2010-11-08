@@ -76,7 +76,7 @@
 	<div class="cuadcont">
             <p>Info de cuadro 2</p>
             <ul>
-		<li><a href="../competencias.jsp">Competencias</a>
+		<li><a href="../obtenerCompetencias">Competencias</a>
                     <ul>
                         <li><a href="../crear.jsp">Crear Competencia</a></li>
                     </ul>

@@ -9,6 +9,7 @@ import clases.Competencias.Competencias;
 import clases.Competencias.Criterios;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -63,7 +64,10 @@ public class eliminarCompetencia extends HttpServlet {
         Competencias com = new Competencias();
         int res = com.eliminarCompetencia(id);
         RequestDispatcher view = null;
-        if(res > 0){
+        if(res > 0){            
+                ArrayList Competencias =null;
+                Competencias =com.obtenerCompetencias();
+                request.setAttribute("Competencias", Competencias);
            view = request.getRequestDispatcher("competencias.jsp");
         }
        else{

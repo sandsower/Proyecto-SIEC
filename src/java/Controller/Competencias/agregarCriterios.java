@@ -66,11 +66,12 @@ public class agregarCriterios extends HttpServlet {
         int idCompetencia=Integer.parseInt(request.getParameter("idCompetencia"));
         String nombre = request.getParameter("nombre");        
         RequestDispatcher view = null;
-        Criterios cc = new Criterios();
+        //Criterios cc = new Criterios();
+        CriterioCompetencia cc2 = new CriterioCompetencia();
         ArrayList CriterioCompetencia = new ArrayList();
         
         try {
-                CriterioCompetencia = cc.obtenerCriteriosxCompetencia(idCompetencia);
+                CriterioCompetencia = cc2.obtenerCriterioxCompetencia(idCompetencia);
                 request.setAttribute("CriterioCompetencia",CriterioCompetencia );
                 request.setAttribute("idCompetencia",idCompetencia);
                 request.setAttribute("nombre",nombre );
