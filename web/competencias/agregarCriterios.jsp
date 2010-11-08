@@ -1,11 +1,5 @@
-<%@page import="clases.Competencias.Criterios"%>
-<%@page import="java.util.List"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% String idCompetencia=request.getParameter("idCompetencia");
-   String nombre= request.getParameter("nombre");
-   
-%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="es">
 <head>
@@ -70,26 +64,21 @@
                           <th width="100">Nombre </th>
                           <th width="100">Descripcion</th>
                           <th width="100">Ponderacion</th>
-                          <th width="100" alt="Agregar">Agregar a la competencia</th>
-                          
+                          <th width="100" alt="Agregar">Agregar a la competencia</th>                          
                        </tr>
                    </thead>
                        <tbody align="center">
-                                        <tr>
-                                        <%
-                                         Criterios cri = new Criterios();
-                                         List<Criterios> criterios = cri.obtenerCriterios();
-                                         for(Criterios i: criterios)
-                                         {
-                                             out.print("<tr>");                                             
-                                             out.print("<td>"+i.getNombre()+"</td>");
-                                             out.print("<td>"+i.getDescripcion()+"</td>");
-                                             out.print("<td>"+i.getPonderacion()+"</td>");
-                                             out.print("<td><a href='crearCriterioCompetencia?idCriterio="+i.getId()+"&idCompetencia="+idCompetencia+"&nombre="+nombre+" ' onClick='javascript: if(confirm('¿Esta seguro que desa borrar el registro?')){ return true; } else { return false;}'><img src='../images/add.png'/></a></td>");
-                                             
-                                        }
+                   <tr>
+                       <c:forEach items="${Criterios}" var="Criterios">
+                       <tr>
+                           <td>${Criterios.nombre}</td>
+                           <td>${Criterios.descripcion}</td>
+                           <td>${Criterios.ponderacion}</td>
+                           <td><a href="crearCriterioCompetencia?idCriterio=${Criterios.id}&idCompetencia=${idCompetencia}&nombre=${nombre}"><img src="../images/add.png" alt="Agregar Criterio"/></a></td>
 
-                                        %>
+                       </tr>
+                       </c:forEach>
+                                        
                    </tr>
               </tbody>
           </table>
@@ -120,7 +109,7 @@
 	<div class="cuadcont">
             <ul>
            <c:forEach items="${CriterioCompetencia}" var="CriterioCompetencia">
-               <li>${CriterioCompetencia.nombre}&nbsp;
+               <li>${CriterioCompetencia.idCriterio}&nbsp;
                    <a href="eliminarCriterioCompetencia?idCriterio=${CriterioCompetencia.idCriterio}&idCompetencia=${idCompetencia}&nombre=${nombre}"><img src="../images/delete.png"/></a>
                 </c:forEach>
             </ul>

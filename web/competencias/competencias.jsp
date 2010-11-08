@@ -69,7 +69,7 @@
                                             <td>${Competencias.descripcion}</td>
                                             <td>${Competencias.idCategoria}</td>
                                             <td><a href="eliminarCompetencia?id=${Competencias.idCompetencia}"><img src="../images/delete.png" alt="Borrar competencia"/></td>
-                                            <td><a href="modificarCompetencia?id=${Competencias.idCategoria}"><img src="../images/page_edit.png" alt="Modificar Competencia"/></td>
+                                            <td><a href="modificarCompetencia?idCompetencia=${Competencias.idCompetencia}"><img src="../images/page_edit.png" alt="Modificar Competencia"/></td>
                                             <td><a href="agregarCriterios?idCompetencia=${Competencias.idCompetencia}&nombre=${Competencias.nombre}"><img src="../images/add.png" alt="Agregar Criterios"/></td>
                                             </tr>
                                         </c:forEach>
@@ -87,7 +87,7 @@
             <ul>
 		<li><a href="obtenerCompetencias">Competencias</a>
                     <ul>
-                        <li><a href="crear.jsp">Crear Competencia</a></li>
+                        <li><a href="crearCompetencia">Crear Competencia</a></li>
                     </ul>
                 </li>
                 <li><a href="criterios/criterios.jsp">Criterios</a>

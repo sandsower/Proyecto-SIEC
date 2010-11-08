@@ -79,7 +79,7 @@
             <ul>
 		<li><a href="../obtenerCompetencias">Competencias</a>
                     <ul>
-                        <li><a href="../crear.jsp">Crear Competencias</a></li>
+                        <li><a href="../crearCompetencia">Crear Competencias</a></li>
                     </ul>
                 </li>
                 <li><a href="criterios.jsp">Criterios</a>
