@@ -102,7 +102,7 @@
 	<div class="cuadcont">
             <p>Info de cuadro 2</p>
             <ul>
-		<li><a href="competencias.jsp">Competencias</a>
+		<li><a href="obtenerCompetencias">Competencias</a>
                     <ul>
                         <li><a href="crear.jsp">Crear Competencia</a></li>
                     </ul>
@@ -120,7 +120,7 @@
 	<div class="cuadcont">
             <ul>
            <c:forEach items="${CriterioCompetencia}" var="CriterioCompetencia">
-               <li>${CriterioCompetencia.idCriterio}&nbsp;                   
+               <li>${CriterioCompetencia.nombre}&nbsp;
                    <a href="eliminarCriterioCompetencia?idCriterio=${CriterioCompetencia.idCriterio}&idCompetencia=${idCompetencia}&nombre=${nombre}"><img src="../images/delete.png"/></a>
                 </c:forEach>
             </ul>

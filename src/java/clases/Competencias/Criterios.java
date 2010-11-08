@@ -16,6 +16,10 @@ public class Criterios {
     public Criterios(String xNombre){
     setNombre(xNombre);
     }
+    public Criterios(int xId,String xNombre){
+    setId(xId);
+    setNombre(xNombre);
+    }
     public Criterios(String xNombre, String xDescripcion, int xPonderacion){
     setNombre(xNombre);
     setDescripcion(xDescripcion);
@@ -180,7 +184,30 @@ public class Criterios {
         }
         return null;
     }
-   
+
+   public ArrayList obtenerCriteriosxCompetencia (int xId){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ConexionBD connect = new ConexionBD();
+            Connection con = connect.getConnect();
+            ArrayList cri = new ArrayList();
+              //SQL query command
+            String SQL = "SELECT tc_criterios.CRITERIO_ID, tc_criterios.DES_CRITERIO"+
+                        " FROM tc_criterios,tr_criterio_competencia"+
+                        " WHERE tc_criterios.CRITERIO_ID = tr_criterio_competencia.CRITERIO_ID "+
+                        "AND tr_criterio_competencia.COMPETENCIA_ID=" +xId;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                cri.add(new Criterios(rs.getInt("Criterio_ID"), rs.getString("Des_Criterio")));
+            }
+            return cri;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
    
    @Override
    public String toString() {
@@ -196,6 +223,8 @@ public class Criterios {
    protected void finalize() throws Throwable {
         super.finalize();
     }
+
+    
 
 
 }
