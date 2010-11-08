@@ -39,7 +39,6 @@
            </div>
 	</div>
    </div>
-</div>
     <div id="menul"><!-- Menu izquierdo -->
     <div class="cuadro">
 	<div class="theader">Cuadro 1</div>
@@ -124,6 +123,7 @@
 	</div>
     </div>
    </div>--><!-- Contenido -->
+</div>
    <div id="menur"><!-- Menu derecho -->
    <div class="cuadro">
 	<ul>

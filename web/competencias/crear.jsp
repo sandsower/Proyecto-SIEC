@@ -41,7 +41,7 @@
 	<div class="theader">Navegación</div>
 	<div class="cuadcont">
             <ul>
-                <li><a href="./systemIndex.jsp">Inicio de Sistema</a></li>
+                <li><a href="../index.jsp">Inicio de Sistema</a></li>
             </ul>
 	</div>
     </div>
