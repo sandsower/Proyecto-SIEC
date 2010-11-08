@@ -29,9 +29,7 @@
               <ul>
 		<li><a id="Opcion1">AutoEvaluacion</a></li>
 		<li><a id="Opcion2">CoEvaluacion</a></li>
-		<li><a id="Opcion3">EvaluacionAcumulativa</a></li>
-		<li><a id="Opcion4">EvaluacionFormativa</a></li>
-		<li><a id="Opcion5">Integrantes</a></li>
+		<li><a id="Opcion3">Evaluacion Acumulativa</a></li>
              </ul>
            </div>
            <div id="mtopctrl">
