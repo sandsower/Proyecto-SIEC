@@ -7,10 +7,10 @@
             this.bgColor="";
         });
         $(".menuItem").click(function(e){
-        e.preventDefault();
-        //alert(this.href);
-        $("#mitte").load(this.href);
-    });
+            e.preventDefault();
+            //alert(this.href);
+            $("#mitte").load(this.href);
+        });
     });
 </script>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

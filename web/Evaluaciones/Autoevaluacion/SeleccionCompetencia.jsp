@@ -4,24 +4,25 @@
     Author     : sands
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+<script type="text/javascript" >
+    $("document").ready(function(){
 
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Favor de seleccionar la competencia a evaluar:</h1>
-        <form action="crearAE.do" method="POST">
-            <select name="ID">
-                <c:forEach items="${Competencias}" var="competencia">
-                    <option value="${competencia.competencia_ID}">${competencia.des_Competencia}</option>
-                </c:forEach>
-            </select>
-            <input type="submit" value="Aceptar"/>
-        </form>
-    </body>
-</html>
+        $("#formItem").submit(function(e){
+            e.preventDefault();
+            //alert(this.href);
+            $.post(this.action, $("#formItem").serialize(), function(data){
+                $("#mitte").html(data);
+            });
+            //$("#mitte").load(this.action);
+        });
+    });
+</script>
+<h1>Favor de seleccionar la competencia a evaluar:</h1>
+<form action="Evaluaciones/Autoevaluacion/crearAE.do" method="POST" id="formItem">
+    <select name="ID">
+        <c:forEach items="${Competencias}" var="competencia">
+            <option value="${competencia.competencia_ID}">${competencia.des_Competencia}</option>
+        </c:forEach>
+    </select>
+    <input type="submit" value="Aceptar"/>
+</form>

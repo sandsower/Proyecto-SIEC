@@ -27,7 +27,7 @@ public class InsertarNuevo {
 
     public InsertarNuevo() {
         ConexionBD nuevaConexion = new ConexionBD();
-        nuevaConexion.conectarBD("root", "13450811");
+        nuevaConexion.conectarBD("root", "root");
         this.setCon(nuevaConexion.getCon());
     }
 

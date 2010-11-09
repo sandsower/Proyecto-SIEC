@@ -27,7 +27,7 @@ try {
     }catch(NullPointerException e){
         out.print("error, no hay menú disponible");
     }
-out.print(obco.obtenerMenu(usuario.getPerfil_ID()));
+//out.print(obco.obtenerMenu(usuario.getPerfil_ID()));
 request.setAttribute("per", per);
 //out.print(request.getAttribute("per"));
 %>
