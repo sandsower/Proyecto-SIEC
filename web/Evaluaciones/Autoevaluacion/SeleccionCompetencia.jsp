@@ -24,5 +24,5 @@
             <option value="${competencia.competencia_ID}">${competencia.des_Competencia}</option>
         </c:forEach>
     </select>
-    <input type="submit" value="Aceptar"/>
+    <input type="image" src="images/botones/siguiente.gif"/>
 </form>

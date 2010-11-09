@@ -24,5 +24,5 @@
             <option value="${materia.materias_ID}">${materia.des_Materias}</option>
         </c:forEach>
     </select>
-    <input type="submit" value="Aceptar"/>
+    <input type="image" src="images/botones/siguiente.gif"/>
 </form>

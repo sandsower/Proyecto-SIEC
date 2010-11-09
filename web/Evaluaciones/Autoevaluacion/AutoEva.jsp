@@ -27,5 +27,5 @@
         </c:forEach>
     </select>
     <input type="hidden" name="idEvaluacion" value="${Evaluacion.evaluacion_parcial_ID}"/>
-    <input type="submit" value="Guardar"/>
+    <input type="image" src="images/botones/siguiente.gif"/>
 </form>
