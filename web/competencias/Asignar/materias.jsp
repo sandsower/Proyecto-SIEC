@@ -20,7 +20,7 @@
     TcGrupo g = null;
     ArrayList cg = new ArrayList();
     try{
-        int idm = obin.obtenerMaestroByUsuarioID(usuario.getUsuario_ID()).getMaestro_ID();
+        int idm = obin.obtenerMaestrobyUsuario_ID(usuario.getUsuario_ID()).getMaestro_ID();
         cg = obco.getMateriasByMaestroIDGrupoID(idm, Integer.parseInt(request.getParameter("id")));
         if(request.getParameter("id") != null)
             g = obin.obtenerGrupo(Integer.parseInt(request.getParameter("id")));
