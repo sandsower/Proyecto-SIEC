@@ -13,7 +13,7 @@ import java.sql.*;
 public class ConexionBD {
 
     public ConexionBD(){
-        this.conectarBD("root", "13450811");
+        this.conectarBD("root", "");
     }
 
     private Connection connect = null;

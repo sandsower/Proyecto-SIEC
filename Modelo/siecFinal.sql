@@ -1,28 +1,42 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.7deb1
+-- version 3.2.4
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 09, 2010 at 04:50 PM
--- Server version: 5.1.49
--- PHP Version: 5.3.3-1ubuntu9.1
+-- Servidor: localhost
+-- Tiempo de generación: 12-11-2010 a las 10:28:17
+-- Versión del servidor: 5.1.41
+-- Versión de PHP: 5.3.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
 --
--- Database: `siec`
+-- Base de datos: `siec`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tc_carrera`
+-- Estructura de tabla para la tabla `presesion_maestro`
+--
+
+CREATE TABLE IF NOT EXISTS `presesion_maestro` (
+  `idpresesion_maestro` int(11) NOT NULL AUTO_INCREMENT,
+  `tr_presesion__ID` int(11) NOT NULL,
+  `tr_maestros_ID` int(11) NOT NULL,
+  PRIMARY KEY (`idpresesion_maestro`),
+  KEY `fk_presesion_maestro_tr_presesion1` (`tr_presesion__ID`),
+  KEY `fk_presesion_maestro_tr_maestros1` (`tr_maestros_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Volcar la base de datos para la tabla `presesion_maestro`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tc_carrera`
 --
 
 CREATE TABLE IF NOT EXISTS `tc_carrera` (
@@ -32,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `tc_carrera` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `tc_carrera`
+-- Volcar la base de datos para la tabla `tc_carrera`
 --
 
 INSERT INTO `tc_carrera` (`CARRERA_ID`, `DES_CARRERA`) VALUES
@@ -47,7 +61,7 @@ INSERT INTO `tc_carrera` (`CARRERA_ID`, `DES_CARRERA`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tc_categorias`
+-- Estructura de tabla para la tabla `tc_categorias`
 --
 
 CREATE TABLE IF NOT EXISTS `tc_categorias` (
@@ -59,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `tc_categorias` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `tc_categorias`
+-- Volcar la base de datos para la tabla `tc_categorias`
 --
 
 INSERT INTO `tc_categorias` (`CATEGORIA_ID`, `DES_CATEGORIA`, `DESCRIPCION`, `ORDEN`) VALUES
@@ -69,7 +83,7 @@ INSERT INTO `tc_categorias` (`CATEGORIA_ID`, `DES_CATEGORIA`, `DESCRIPCION`, `OR
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tc_competencias`
+-- Estructura de tabla para la tabla `tc_competencias`
 --
 
 CREATE TABLE IF NOT EXISTS `tc_competencias` (
@@ -82,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `tc_competencias` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `tc_competencias`
+-- Volcar la base de datos para la tabla `tc_competencias`
 --
 
 INSERT INTO `tc_competencias` (`COMPETENCIA_ID`, `DES_COMPETENCIA`, `DESCRIPCION`, `CATEGORIA_ID`) VALUES
@@ -95,7 +109,7 @@ INSERT INTO `tc_competencias` (`COMPETENCIA_ID`, `DES_COMPETENCIA`, `DESCRIPCION
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tc_criterios`
+-- Estructura de tabla para la tabla `tc_criterios`
 --
 
 CREATE TABLE IF NOT EXISTS `tc_criterios` (
@@ -107,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `tc_criterios` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `tc_criterios`
+-- Volcar la base de datos para la tabla `tc_criterios`
 --
 
 INSERT INTO `tc_criterios` (`CRITERIO_ID`, `DES_CRITERIO`, `DESCRIPCION`, `Ponderacion`) VALUES
@@ -120,7 +134,7 @@ INSERT INTO `tc_criterios` (`CRITERIO_ID`, `DES_CRITERIO`, `DESCRIPCION`, `Ponde
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tc_departamentos`
+-- Estructura de tabla para la tabla `tc_departamentos`
 --
 
 CREATE TABLE IF NOT EXISTS `tc_departamentos` (
@@ -130,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `tc_departamentos` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `tc_departamentos`
+-- Volcar la base de datos para la tabla `tc_departamentos`
 --
 
 INSERT INTO `tc_departamentos` (`DEPARTAMENTO_ID`, `DES_DEPARTAMENTO`) VALUES
@@ -141,7 +155,7 @@ INSERT INTO `tc_departamentos` (`DEPARTAMENTO_ID`, `DES_DEPARTAMENTO`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tc_evaluacion_nivel`
+-- Estructura de tabla para la tabla `tc_evaluacion_nivel`
 --
 
 CREATE TABLE IF NOT EXISTS `tc_evaluacion_nivel` (
@@ -151,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `tc_evaluacion_nivel` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `tc_evaluacion_nivel`
+-- Volcar la base de datos para la tabla `tc_evaluacion_nivel`
 --
 
 INSERT INTO `tc_evaluacion_nivel` (`EVALUACION_NIVEL_ID`, `DES_EVALUACION`) VALUES
@@ -164,7 +178,7 @@ INSERT INTO `tc_evaluacion_nivel` (`EVALUACION_NIVEL_ID`, `DES_EVALUACION`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tc_grupo`
+-- Estructura de tabla para la tabla `tc_grupo`
 --
 
 CREATE TABLE IF NOT EXISTS `tc_grupo` (
@@ -177,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `tc_grupo` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `tc_grupo`
+-- Volcar la base de datos para la tabla `tc_grupo`
 --
 
 INSERT INTO `tc_grupo` (`GRUPO_ID`, `DES_GRUPO`, `CARRERA_ID`, `GRADO`) VALUES
@@ -189,7 +203,7 @@ INSERT INTO `tc_grupo` (`GRUPO_ID`, `DES_GRUPO`, `CARRERA_ID`, `GRADO`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tc_materias`
+-- Estructura de tabla para la tabla `tc_materias`
 --
 
 CREATE TABLE IF NOT EXISTS `tc_materias` (
@@ -201,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `tc_materias` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `tc_materias`
+-- Volcar la base de datos para la tabla `tc_materias`
 --
 
 INSERT INTO `tc_materias` (`MATERIAS_ID`, `DES_MATERIAS`, `DEPARTAMENTO_ID`) VALUES
@@ -212,30 +226,29 @@ INSERT INTO `tc_materias` (`MATERIAS_ID`, `DES_MATERIAS`, `DEPARTAMENTO_ID`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tc_perfil`
+-- Estructura de tabla para la tabla `tc_perfil`
 --
 
 CREATE TABLE IF NOT EXISTS `tc_perfil` (
   `PERFIL_ID` int(11) NOT NULL AUTO_INCREMENT,
   `DES_PERFIL` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`PERFIL_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `tc_perfil`
+-- Volcar la base de datos para la tabla `tc_perfil`
 --
 
 INSERT INTO `tc_perfil` (`PERFIL_ID`, `DES_PERFIL`) VALUES
-(1, 'alumno'),
-(2, 'maestro'),
-(3, 'tutor'),
-(4, 'DPA'),
-(5, 'jefe de carrera');
+(1, 'Maestro'),
+(2, 'Alumno'),
+(3, 'Dpa'),
+(4, 'Administrador');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tc_reportes`
+-- Estructura de tabla para la tabla `tc_reportes`
 --
 
 CREATE TABLE IF NOT EXISTS `tc_reportes` (
@@ -247,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `tc_reportes` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `tc_reportes`
+-- Volcar la base de datos para la tabla `tc_reportes`
 --
 
 INSERT INTO `tc_reportes` (`REPORTES_ID`, `DES_REPORTES`, `PERFIL_ID`) VALUES
@@ -259,7 +272,7 @@ INSERT INTO `tc_reportes` (`REPORTES_ID`, `DES_REPORTES`, `PERFIL_ID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tc_tipo_evaluacion`
+-- Estructura de tabla para la tabla `tc_tipo_evaluacion`
 --
 
 CREATE TABLE IF NOT EXISTS `tc_tipo_evaluacion` (
@@ -269,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `tc_tipo_evaluacion` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `tc_tipo_evaluacion`
+-- Volcar la base de datos para la tabla `tc_tipo_evaluacion`
 --
 
 INSERT INTO `tc_tipo_evaluacion` (`TIPO_EVALUACION_ID`, `DES_TIPO_EVALUACION`) VALUES
@@ -280,7 +293,45 @@ INSERT INTO `tc_tipo_evaluacion` (`TIPO_EVALUACION_ID`, `DES_TIPO_EVALUACION`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_alumnos`
+-- Estructura de tabla para la tabla `tl_menu`
+--
+
+CREATE TABLE IF NOT EXISTS `tl_menu` (
+  `id_menu` int(11) NOT NULL,
+  `menu` varchar(45) DEFAULT NULL,
+  `url` varchar(45) DEFAULT NULL,
+  `img` varchar(45) DEFAULT NULL,
+  `tc_perfil_PERFIL_ID` int(11) NOT NULL,
+  PRIMARY KEY (`id_menu`),
+  KEY `fk_tl_menu_tc_perfil1` (`tc_perfil_PERFIL_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcar la base de datos para la tabla `tl_menu`
+--
+
+INSERT INTO `tl_menu` (`id_menu`, `menu`, `url`, `img`, `tc_perfil_PERFIL_ID`) VALUES
+(1, 'Competencias', 'Competencias/Asignar/grupos.jsp', 'competencias', 1),
+(2, 'Reportes', 'reportes.jsp', 'reportes', 1),
+(3, 'Evaluaciones Formativas', 'evaluacionesf.jsp', 'formativas', 1),
+(4, 'Evaluaciones Acumulativa', 'evaluacionesa.jsp', 'acumulativas', 1),
+(5, 'Estrategias', 'estrategias.jsp', 'estrategias', 1),
+(6, 'Auto-Evaluacion', 'competencias.jsp', 'autoevaluacion', 2),
+(7, 'Evaluaciones Formaticas', 'evaluaciones.jsp', 'formativas', 2),
+(8, 'Competencias', 'competencias.jsp', 'competencias', 3),
+(9, 'Revisiones', 'revisiones.jsp', 'revisiones', 3),
+(10, 'Criterios', 'criterios.jsp', 'criterios', 3),
+(11, 'Reportes', 'reportes.jsp', 'reportes', 3),
+(12, 'Estrategias', 'evaluaciones.jsp', 'estrategias', 3),
+(13, 'Competencias', 'competencias.jsp', 'competencias', 4),
+(14, 'Criterios', 'criterios.jsp', 'criterios', 4),
+(15, 'Reportes', 'reportes.jsp', 'reportes', 4),
+(16, 'Estrategias', 'evaluaciones.jsp', 'estrategias', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tr_alumnos`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_alumnos` (
@@ -291,20 +342,17 @@ CREATE TABLE IF NOT EXISTS `tr_alumnos` (
   PRIMARY KEY (`ALUMNOS_ID`),
   KEY `fk_TC_ALUMNOS_TC_USUARIO1` (`USUARIO_ID`),
   KEY `fk_TR_ALUMNOS_TC_CARRERA1` (`CARRERA_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `tr_alumnos`
+-- Volcar la base de datos para la tabla `tr_alumnos`
 --
 
-INSERT INTO `tr_alumnos` (`ALUMNOS_ID`, `MATRICULA`, `USUARIO_ID`, `CARRERA_ID`) VALUES
-(11, 'up080394', 7, 1),
-(12, 'up080293', 8, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_criterio_competencia`
+-- Estructura de tabla para la tabla `tr_criterio_competencia`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_criterio_competencia` (
@@ -315,46 +363,43 @@ CREATE TABLE IF NOT EXISTS `tr_criterio_competencia` (
   PRIMARY KEY (`CRITERIO_COMPETENCIA_ID`),
   KEY `fk_TR_CRITERIO_COMPETENCIA_TC_CRITERIOS1` (`CRITERIO_ID`),
   KEY `fk_TR_CRITERIO_COMPETENCIA_TC_COMPETENCIAS1` (`COMPETENCIA_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `tr_criterio_competencia`
+-- Volcar la base de datos para la tabla `tr_criterio_competencia`
 --
 
 INSERT INTO `tr_criterio_competencia` (`CRITERIO_COMPETENCIA_ID`, `PONDERACION_CRITERIO`, `CRITERIO_ID`, `COMPETENCIA_ID`) VALUES
 (2, '9', 1, 1),
 (3, '10', 2, 2),
 (4, '9', 3, 3),
-(5, '8', 4, 4),
-(6, NULL, 5, 5),
-(7, NULL, 4, 5),
-(8, NULL, 1, 5);
+(5, '8', 4, 4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_estrategias`
+-- Estructura de tabla para la tabla `tr_estrategias`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_estrategias` (
   `ESTRATEGIA_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `FECHA_INICIO_REGISTRO` varchar(10) DEFAULT NULL,
+  `FECHA_INICIO_REGISTRO` date DEFAULT NULL,
   `MENSAJE` varchar(45) DEFAULT NULL,
-  `FECHA_CAMBIO` varchar(10) DEFAULT NULL,
+  `FECHA_CAMBIO` date DEFAULT NULL,
   PRIMARY KEY (`ESTRATEGIA_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
--- Dumping data for table `tr_estrategias`
+-- Volcar la base de datos para la tabla `tr_estrategias`
 --
 
 INSERT INTO `tr_estrategias` (`ESTRATEGIA_ID`, `FECHA_INICIO_REGISTRO`, `MENSAJE`, `FECHA_CAMBIO`) VALUES
-(16, '10-01-2010', 'Estudiar mas', '10-02-2010');
+(16, '0000-00-00', 'Estudiar mas', '0000-00-00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_estra_mgm`
+-- Estructura de tabla para la tabla `tr_estra_mgm`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_estra_mgm` (
@@ -369,14 +414,14 @@ CREATE TABLE IF NOT EXISTS `tr_estra_mgm` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `tr_estra_mgm`
+-- Volcar la base de datos para la tabla `tr_estra_mgm`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_est_alumno`
+-- Estructura de tabla para la tabla `tr_est_alumno`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_est_alumno` (
@@ -389,14 +434,14 @@ CREATE TABLE IF NOT EXISTS `tr_est_alumno` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `tr_est_alumno`
+-- Volcar la base de datos para la tabla `tr_est_alumno`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_evaluacion_acumulativa`
+-- Estructura de tabla para la tabla `tr_evaluacion_acumulativa`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_evaluacion_acumulativa` (
@@ -407,7 +452,7 @@ CREATE TABLE IF NOT EXISTS `tr_evaluacion_acumulativa` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `tr_evaluacion_acumulativa`
+-- Volcar la base de datos para la tabla `tr_evaluacion_acumulativa`
 --
 
 INSERT INTO `tr_evaluacion_acumulativa` (`EVALUACION_ACUMULATIVA_ID`, `PARCIAL`, `CALIFICACION`) VALUES
@@ -419,7 +464,7 @@ INSERT INTO `tr_evaluacion_acumulativa` (`EVALUACION_ACUMULATIVA_ID`, `PARCIAL`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_evaluacion_parcial`
+-- Estructura de tabla para la tabla `tr_evaluacion_parcial`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_evaluacion_parcial` (
@@ -435,22 +480,17 @@ CREATE TABLE IF NOT EXISTS `tr_evaluacion_parcial` (
   KEY `fk_tr_evaluacion_parcial_tc_tipo_evaluacion1` (`TIPO_EVALUACION_ID`),
   KEY `fk_tr_evaluacion_parcial_tr_alumnos1` (`ALUMNOS_ID`),
   KEY `fk_tr_evaluacion_parcial_tr_sesion1` (`sesion_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `tr_evaluacion_parcial`
+-- Volcar la base de datos para la tabla `tr_evaluacion_parcial`
 --
 
-INSERT INTO `tr_evaluacion_parcial` (`EVALUACION_PARCIAL_ID`, `CALIFICACION`, `PARCIAL`, `EVALUACION_NIVEL_ID`, `TIPO_EVALUACION_ID`, `ALUMNOS_ID`, `sesion_id`) VALUES
-(12, 0, 1, 2, 1, 11, 5),
-(20, 0, 1, 3, 2, 12, 5),
-(21, 0, 1, 4, 3, 11, 5),
-(22, 0, 1, 4, 3, 12, 5);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_evaluacion_parcial_acumulativa`
+-- Estructura de tabla para la tabla `tr_evaluacion_parcial_acumulativa`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_evaluacion_parcial_acumulativa` (
@@ -460,19 +500,17 @@ CREATE TABLE IF NOT EXISTS `tr_evaluacion_parcial_acumulativa` (
   PRIMARY KEY (`EVALUACION_PARCIAL_ACUMULATIVA_ID`),
   KEY `fk_tr_evaluacion_parcial_acumulativa_tr_evaluacion_parcial1` (`EVALUACION_PARCIAL_ID`),
   KEY `fk_tr_evaluacion_parcial_acumulativa_tr_evaluacion_acumulativa1` (`EVALUACION_ACUMULATIVA_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `tr_evaluacion_parcial_acumulativa`
+-- Volcar la base de datos para la tabla `tr_evaluacion_parcial_acumulativa`
 --
 
-INSERT INTO `tr_evaluacion_parcial_acumulativa` (`EVALUACION_PARCIAL_ACUMULATIVA_ID`, `EVALUACION_PARCIAL_ID`, `EVALUACION_ACUMULATIVA_ID`) VALUES
-(14, 12, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_grupo_alumno`
+-- Estructura de tabla para la tabla `tr_grupo_alumno`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_grupo_alumno` (
@@ -482,20 +520,17 @@ CREATE TABLE IF NOT EXISTS `tr_grupo_alumno` (
   PRIMARY KEY (`GRUPO_ALUMNO_ID`),
   KEY `fk_tr_grupo_alumno_tc_grupo1` (`GRUPO_ID`),
   KEY `fk_tr_grupo_alumno_tr_alumnos1` (`ALUMNOS_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `tr_grupo_alumno`
+-- Volcar la base de datos para la tabla `tr_grupo_alumno`
 --
 
-INSERT INTO `tr_grupo_alumno` (`GRUPO_ALUMNO_ID`, `GRUPO_ID`, `ALUMNOS_ID`) VALUES
-(2, 4, 11),
-(3, 4, 12);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_grupo_carrera`
+-- Estructura de tabla para la tabla `tr_grupo_carrera`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_grupo_carrera` (
@@ -505,25 +540,17 @@ CREATE TABLE IF NOT EXISTS `tr_grupo_carrera` (
   PRIMARY KEY (`GRUPO_CARRERA_ID`),
   KEY `fk_TR_GRUPO_CARRERA_tc_carrera` (`CARRERA_ID`),
   KEY `fk_TR_GRUPO_CARRERA_tc_grupo1` (`GRUPO_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `tr_grupo_carrera`
+-- Volcar la base de datos para la tabla `tr_grupo_carrera`
 --
 
-INSERT INTO `tr_grupo_carrera` (`GRUPO_CARRERA_ID`, `CARRERA_ID`, `GRUPO_ID`) VALUES
-(1, 1, 4),
-(2, 2, 5),
-(3, 3, 5),
-(4, 6, 6),
-(5, 4, 5),
-(6, 5, 7),
-(7, 1, 4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_maestros`
+-- Estructura de tabla para la tabla `tr_maestros`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_maestros` (
@@ -532,19 +559,17 @@ CREATE TABLE IF NOT EXISTS `tr_maestros` (
   `USUARIO_ID` int(11) NOT NULL,
   PRIMARY KEY (`MAESTRO_ID`),
   KEY `fk_tr_maestros_tr_usuario1` (`USUARIO_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `tr_maestros`
+-- Volcar la base de datos para la tabla `tr_maestros`
 --
 
-INSERT INTO `tr_maestros` (`MAESTRO_ID`, `CODIGO`, `USUARIO_ID`) VALUES
-(6, 'adsjkh', 9);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_maestro_grupo_materia`
+-- Estructura de tabla para la tabla `tr_maestro_grupo_materia`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_maestro_grupo_materia` (
@@ -556,19 +581,17 @@ CREATE TABLE IF NOT EXISTS `tr_maestro_grupo_materia` (
   KEY `fk_tr_materia_grupo_materia_tc_grupo1` (`GRUPO_ID`),
   KEY `fk_tr_materia_grupo_materia_tc_materias1` (`MATERIAS_ID`),
   KEY `fk_tr_materia_grupo_materia_tr_maestros1` (`MAESTRO_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `tr_maestro_grupo_materia`
+-- Volcar la base de datos para la tabla `tr_maestro_grupo_materia`
 --
 
-INSERT INTO `tr_maestro_grupo_materia` (`MATERIA_GRUPO_MAESTRO_ID`, `GRUPO_ID`, `MATERIAS_ID`, `MAESTRO_ID`) VALUES
-(9, 4, 1, 6);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_materia_maestro_grupo_alumno`
+-- Estructura de tabla para la tabla `tr_materia_maestro_grupo_alumno`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_materia_maestro_grupo_alumno` (
@@ -576,19 +599,19 @@ CREATE TABLE IF NOT EXISTS `tr_materia_maestro_grupo_alumno` (
   `MATERIA_GRUPO_MAESTRO_ID` int(11) NOT NULL,
   `tr_grupo_alumno_GRUPO_ALUMNO_ID` int(11) NOT NULL,
   PRIMARY KEY (`materia_maestro_grupo_alumno_id`),
-  KEY `fk_tr_materia_maestro_grupo_alumno_tr_grupo_alumno1` (`tr_grupo_alumno_GRUPO_ALUMNO_ID`),
-  KEY `fk_tr_materia_maestro_grupo_alumno_tr_materia_grupo_materia1` (`MATERIA_GRUPO_MAESTRO_ID`)
+  KEY `fk_tr_materia_maestro_grupo_alumno_tr_materia_grupo_materia1` (`MATERIA_GRUPO_MAESTRO_ID`),
+  KEY `fk_tr_materia_maestro_grupo_alumno_tr_grupo_alumno1` (`tr_grupo_alumno_GRUPO_ALUMNO_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `tr_materia_maestro_grupo_alumno`
+-- Volcar la base de datos para la tabla `tr_materia_maestro_grupo_alumno`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_presesion`
+-- Estructura de tabla para la tabla `tr_presesion`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_presesion` (
@@ -602,7 +625,7 @@ CREATE TABLE IF NOT EXISTS `tr_presesion` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `tr_presesion`
+-- Volcar la base de datos para la tabla `tr_presesion`
 --
 
 INSERT INTO `tr_presesion` (`PRESESION_ID`, `MENSAJE`, `ESTADO`, `PONDERACION`, `CRITERIO_COMPETENCIA_ID`) VALUES
@@ -614,7 +637,7 @@ INSERT INTO `tr_presesion` (`PRESESION_ID`, `MENSAJE`, `ESTADO`, `PONDERACION`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_presesion_rechazada`
+-- Estructura de tabla para la tabla `tr_presesion_rechazada`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_presesion_rechazada` (
@@ -626,7 +649,7 @@ CREATE TABLE IF NOT EXISTS `tr_presesion_rechazada` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `tr_presesion_rechazada`
+-- Volcar la base de datos para la tabla `tr_presesion_rechazada`
 --
 
 INSERT INTO `tr_presesion_rechazada` (`SESION_RECHAZADA_ID`, `MENSAJE`, `PRESESION_ID`) VALUES
@@ -635,7 +658,7 @@ INSERT INTO `tr_presesion_rechazada` (`SESION_RECHAZADA_ID`, `MENSAJE`, `PRESESI
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_sesion`
+-- Estructura de tabla para la tabla `tr_sesion`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_sesion` (
@@ -646,19 +669,17 @@ CREATE TABLE IF NOT EXISTS `tr_sesion` (
   PRIMARY KEY (`sesion_id`),
   KEY `fk_tr_sesion_tr_materia_grupo_materia1` (`MATERIA_GRUPO_MAESTRO_ID`),
   KEY `fk_tr_sesion_tr_presesion1` (`PRESESION_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `tr_sesion`
+-- Volcar la base de datos para la tabla `tr_sesion`
 --
 
-INSERT INTO `tr_sesion` (`sesion_id`, `MATERIA_GRUPO_MAESTRO_ID`, `PRESESION_ID`, `ESTADO`) VALUES
-(5, 9, 6, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_usuario`
+-- Estructura de tabla para la tabla `tr_usuario`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_usuario` (
@@ -673,55 +694,66 @@ CREATE TABLE IF NOT EXISTS `tr_usuario` (
   `PERFIL_ID` int(11) NOT NULL,
   PRIMARY KEY (`USUARIO_ID`),
   KEY `fk_tr_usuario_tc_perfil1` (`PERFIL_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `tr_usuario`
+-- Volcar la base de datos para la tabla `tr_usuario`
 --
 
 INSERT INTO `tr_usuario` (`USUARIO_ID`, `NOMBRES`, `APELLIDO_PATERNO`, `APELLIDO_MATERNO`, `FECHA_NAC`, `USUARIO`, `PASSWORD`, `IMAGEN`, `PERFIL_ID`) VALUES
-(7, 'carlos', 'bolanos', 'lopez', '2010-10-10', 'garrison', 'gameover', 'asd', 1),
-(8, 'victor', 'valenzuela', 'martinez', '2001-01-02', 'sanders', 'sands', 'asd', 2),
-(9, 'Maria', 'Teran', 'algo', '2003-04-02', 'rteran', 'r', 'asd', 3);
+(1, 'Esteban Alberto', 'Uscanga', 'Olea', '10/10/10', 'darknavi', 'darknavi', 'dsadsa.jpg', 1);
 
 --
--- Constraints for dumped tables
+-- Filtros para las tablas descargadas (dump)
 --
 
 --
--- Constraints for table `tc_competencias`
+-- Filtros para la tabla `presesion_maestro`
+--
+ALTER TABLE `presesion_maestro`
+  ADD CONSTRAINT `fk_presesion_maestro_tr_maestros1` FOREIGN KEY (`tr_maestros_ID`) REFERENCES `tr_maestros` (`MAESTRO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_presesion_maestro_tr_presesion1` FOREIGN KEY (`tr_presesion__ID`) REFERENCES `tr_presesion` (`PRESESION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `tc_competencias`
 --
 ALTER TABLE `tc_competencias`
   ADD CONSTRAINT `fk_TC_COMPETENCIAS_CATEGORIAS` FOREIGN KEY (`CATEGORIA_ID`) REFERENCES `tc_categorias` (`CATEGORIA_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tc_materias`
+-- Filtros para la tabla `tc_materias`
 --
 ALTER TABLE `tc_materias`
   ADD CONSTRAINT `fk_tc_materias_tc_departamentos1` FOREIGN KEY (`DEPARTAMENTO_ID`) REFERENCES `tc_departamentos` (`DEPARTAMENTO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tc_reportes`
+-- Filtros para la tabla `tc_reportes`
 --
 ALTER TABLE `tc_reportes`
   ADD CONSTRAINT `fk_TC_REPORTES_TC_PERFIL1` FOREIGN KEY (`PERFIL_ID`) REFERENCES `tc_perfil` (`PERFIL_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tr_alumnos`
+-- Filtros para la tabla `tl_menu`
+--
+ALTER TABLE `tl_menu`
+  ADD CONSTRAINT `fk_tl_menu_tc_perfil1` FOREIGN KEY (`tc_perfil_PERFIL_ID`) REFERENCES `tc_perfil` (`PERFIL_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `tr_alumnos`
 --
 ALTER TABLE `tr_alumnos`
   ADD CONSTRAINT `fk_TC_ALUMNOS_TC_USUARIO1` FOREIGN KEY (`USUARIO_ID`) REFERENCES `tr_usuario` (`USUARIO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_TR_ALUMNOS_TC_CARRERA1` FOREIGN KEY (`CARRERA_ID`) REFERENCES `tc_carrera` (`CARRERA_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tr_criterio_competencia`
+-- Filtros para la tabla `tr_criterio_competencia`
 --
 ALTER TABLE `tr_criterio_competencia`
   ADD CONSTRAINT `fk_TR_CRITERIO_COMPETENCIA_TC_COMPETENCIAS1` FOREIGN KEY (`COMPETENCIA_ID`) REFERENCES `tc_competencias` (`COMPETENCIA_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_TR_CRITERIO_COMPETENCIA_TC_CRITERIOS1` FOREIGN KEY (`CRITERIO_ID`) REFERENCES `tc_criterios` (`CRITERIO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tr_estra_mgm`
+-- Filtros para la tabla `tr_estra_mgm`
 --
 ALTER TABLE `tr_estra_mgm`
   ADD CONSTRAINT `fk_estra_mgm_tr_estrategias1` FOREIGN KEY (`ESTRATEGIA_ID`) REFERENCES `tr_estrategias` (`ESTRATEGIA_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -729,13 +761,13 @@ ALTER TABLE `tr_estra_mgm`
   ADD CONSTRAINT `fk_tr_estra_mgm_tr_materia_maestro_grupo_alumno1` FOREIGN KEY (`mgma_id`) REFERENCES `tr_materia_maestro_grupo_alumno` (`materia_maestro_grupo_alumno_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tr_est_alumno`
+-- Filtros para la tabla `tr_est_alumno`
 --
 ALTER TABLE `tr_est_alumno`
   ADD CONSTRAINT `fk_EST_ALUMNO_tr_estrategias1` FOREIGN KEY (`ESTRATEGIA_ID`) REFERENCES `tr_estrategias` (`ESTRATEGIA_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tr_evaluacion_parcial`
+-- Filtros para la tabla `tr_evaluacion_parcial`
 --
 ALTER TABLE `tr_evaluacion_parcial`
   ADD CONSTRAINT `fk_tr_evaluacion_parcial_tc_evaluacion_nivel1` FOREIGN KEY (`EVALUACION_NIVEL_ID`) REFERENCES `tc_evaluacion_nivel` (`EVALUACION_NIVEL_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -744,34 +776,34 @@ ALTER TABLE `tr_evaluacion_parcial`
   ADD CONSTRAINT `fk_tr_evaluacion_parcial_tr_sesion1` FOREIGN KEY (`sesion_id`) REFERENCES `tr_sesion` (`sesion_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tr_evaluacion_parcial_acumulativa`
+-- Filtros para la tabla `tr_evaluacion_parcial_acumulativa`
 --
 ALTER TABLE `tr_evaluacion_parcial_acumulativa`
   ADD CONSTRAINT `fk_tr_evaluacion_parcial_acumulativa_tr_evaluacion_acumulativa1` FOREIGN KEY (`EVALUACION_ACUMULATIVA_ID`) REFERENCES `tr_evaluacion_acumulativa` (`EVALUACION_ACUMULATIVA_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_tr_evaluacion_parcial_acumulativa_tr_evaluacion_parcial1` FOREIGN KEY (`EVALUACION_PARCIAL_ID`) REFERENCES `tr_evaluacion_parcial` (`EVALUACION_PARCIAL_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tr_grupo_alumno`
+-- Filtros para la tabla `tr_grupo_alumno`
 --
 ALTER TABLE `tr_grupo_alumno`
   ADD CONSTRAINT `fk_tr_grupo_alumno_tc_grupo1` FOREIGN KEY (`GRUPO_ID`) REFERENCES `tc_grupo` (`GRUPO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_tr_grupo_alumno_tr_alumnos1` FOREIGN KEY (`ALUMNOS_ID`) REFERENCES `tr_alumnos` (`ALUMNOS_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tr_grupo_carrera`
+-- Filtros para la tabla `tr_grupo_carrera`
 --
 ALTER TABLE `tr_grupo_carrera`
   ADD CONSTRAINT `fk_TR_GRUPO_CARRERA_tc_carrera` FOREIGN KEY (`CARRERA_ID`) REFERENCES `tc_carrera` (`CARRERA_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_TR_GRUPO_CARRERA_tc_grupo1` FOREIGN KEY (`GRUPO_ID`) REFERENCES `tc_grupo` (`GRUPO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tr_maestros`
+-- Filtros para la tabla `tr_maestros`
 --
 ALTER TABLE `tr_maestros`
   ADD CONSTRAINT `fk_tr_maestros_tr_usuario1` FOREIGN KEY (`USUARIO_ID`) REFERENCES `tr_usuario` (`USUARIO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tr_maestro_grupo_materia`
+-- Filtros para la tabla `tr_maestro_grupo_materia`
 --
 ALTER TABLE `tr_maestro_grupo_materia`
   ADD CONSTRAINT `fk_tr_materia_grupo_materia_tc_grupo1` FOREIGN KEY (`GRUPO_ID`) REFERENCES `tc_grupo` (`GRUPO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -779,33 +811,33 @@ ALTER TABLE `tr_maestro_grupo_materia`
   ADD CONSTRAINT `fk_tr_materia_grupo_materia_tr_maestros1` FOREIGN KEY (`MAESTRO_ID`) REFERENCES `tr_maestros` (`MAESTRO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tr_materia_maestro_grupo_alumno`
+-- Filtros para la tabla `tr_materia_maestro_grupo_alumno`
 --
 ALTER TABLE `tr_materia_maestro_grupo_alumno`
   ADD CONSTRAINT `fk_tr_materia_maestro_grupo_alumno_tr_grupo_alumno1` FOREIGN KEY (`tr_grupo_alumno_GRUPO_ALUMNO_ID`) REFERENCES `tr_grupo_alumno` (`GRUPO_ALUMNO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_tr_materia_maestro_grupo_alumno_tr_materia_grupo_materia1` FOREIGN KEY (`MATERIA_GRUPO_MAESTRO_ID`) REFERENCES `tr_maestro_grupo_materia` (`MATERIA_GRUPO_MAESTRO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tr_presesion`
+-- Filtros para la tabla `tr_presesion`
 --
 ALTER TABLE `tr_presesion`
   ADD CONSTRAINT `fk_tr_presesion_tr_criterio_competencia1` FOREIGN KEY (`CRITERIO_COMPETENCIA_ID`) REFERENCES `tr_criterio_competencia` (`CRITERIO_COMPETENCIA_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tr_presesion_rechazada`
+-- Filtros para la tabla `tr_presesion_rechazada`
 --
 ALTER TABLE `tr_presesion_rechazada`
   ADD CONSTRAINT `fk_tr_presesion_rechazada_tr_presesion1` FOREIGN KEY (`PRESESION_ID`) REFERENCES `tr_presesion` (`PRESESION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tr_sesion`
+-- Filtros para la tabla `tr_sesion`
 --
 ALTER TABLE `tr_sesion`
   ADD CONSTRAINT `fk_tr_sesion_tr_materia_grupo_materia1` FOREIGN KEY (`MATERIA_GRUPO_MAESTRO_ID`) REFERENCES `tr_maestro_grupo_materia` (`MATERIA_GRUPO_MAESTRO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_tr_sesion_tr_presesion1` FOREIGN KEY (`PRESESION_ID`) REFERENCES `tr_presesion` (`PRESESION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `tr_usuario`
+-- Filtros para la tabla `tr_usuario`
 --
 ALTER TABLE `tr_usuario`
   ADD CONSTRAINT `fk_tr_usuario_tc_perfil1` FOREIGN KEY (`PERFIL_ID`) REFERENCES `tc_perfil` (`PERFIL_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
