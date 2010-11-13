@@ -841,3 +841,6 @@ ALTER TABLE `tr_sesion`
 --
 ALTER TABLE `tr_usuario`
   ADD CONSTRAINT `fk_tr_usuario_tc_perfil1` FOREIGN KEY (`PERFIL_ID`) REFERENCES `tc_perfil` (`PERFIL_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ -- Actualizaciones Estrategias Equipo 5
+ UPDATE `siec`.`tl_menu` SET `url` =  'estrategias/estrategias.jsp'  WHERE `tl_menu`.`id_menu` =5;
