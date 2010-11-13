@@ -3,22 +3,48 @@
     Created on : Oct 6, 2010, 8:42:22 AM
     Author     : Esteban
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.*, clasesUsuarios.*, clasesEstrategias.*" %>
+<%@page import="clases.TrUsuario,clases.TrMaestros,clases.TcGrupo,clases.TcMaterias,clases.TrMaestroMateriaGrupo,MovimientosBD.ObtenerIndividuo, MovimientosBD.ObtenerConjunto" %>
+
+
 <%
+       /* Obtiene objeto usuario de variable de sesion usuario */
        HttpSession objSesion = request.getSession(true);
-       Usuarios usuario = (Usuarios)objSesion.getAttribute("user");
+       TrUsuario usuario = null;
+       if(objSesion.getAttribute("usuario") == null){
+           response.sendRedirect("index.jsp");
+           objSesion.setAttribute("usuario", null);
+       }else
+           usuario = (TrUsuario)objSesion.getAttribute("usuario");
 
-        Maestro miMaestro = new Maestro();
-        miMaestro = miMaestro.ObtenerMaestro(usuario.getId());
-        Materia miMateria = new Materia();
+       /* Crea objetos para obtener individuos o conjuntos */
+           ObtenerIndividuo getIndividuo = new ObtenerIndividuo();
+           ObtenerConjunto getGroup = new ObtenerConjunto();
 
-        List<Materia> misMaterias = miMateria.ObtenerMaterias(miMaestro.getIdMaestro());
 
-        session.removeAttribute("idg");
-        session.removeAttribute("idm");
-        session.removeAttribute("alumnos");
+           TrMaestros miMaestro = getIndividuo.obtenerMaestrobyUsuario_ID(usuario.getUsuario_ID()); // Obtiene Maestro
+           // Obtiene una lista de MaestrosMateriasGrupos y maestros a traves de la id de maestro
+           ArrayList<TrMaestroMateriaGrupo> trMMG = getGroup.obtenerMaestrosMateriasGruposbyMaestro(miMaestro.getUsuario_ID());
+           
+           
+           ArrayList<TcGrupo> Grupos = null;
+
+           //Obtiene los grupos a partir de la lista MaestrosMateriasGrupos y maestros
+           for(TrMaestroMateriaGrupo i: trMMG){
+               Grupos.add(getIndividuo.obtenerGrupo(i.getGrupoGrupo_ID()));
+           }
+
+           // Obtiene menu y lo ponee en per D:
+           ArrayList per = new ArrayList();
+            try {
+                per = getGroup.obtenerMenu(usuario.getPerfil_ID());
+                }catch(NullPointerException e){
+                    out.print("error, no hay menú disponible");
+                }
+            request.setAttribute("per", per);
+        
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="es">
@@ -29,30 +55,7 @@
 <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="../js/siec.js"></script>
          <script type="text/javascript">
-           function change(){
-                document.getElementById('grupos').innerHTML ="<option value = null >Grupos</option>";
-
-          <%
-               out.print("id_materia = document.form1.materias.value;");
-               for(int i=0; i< misMaterias.size(); i++)
-               {
-                   List<Grupo> grupos = misMaterias.get(i).getGrupos();
-                   for(int j=0; j< grupos.size(); j++)
-                    {
-
-                        out.print(" if( id_materia == "+misMaterias.get(i).getId_materia()+" ) ");
-                        out.print("{");
-                        out.print("document.getElementById('grupos').innerHTML+= ");
-                        out.print(" '<option");
-                        out.print(" id="+grupos.get(j).getId_grupo()+" value = "+grupos.get(i).getId_grupo()+" ");
-                        out.print(">"+grupos.get(j).getNumero()+" "+grupos.get(i).getLetra()+"</option>'; ");
-                        out.print("}");
-
-                         }
-                 }
-
-            %>
-            }
+          
         </script>
 
 </head>
@@ -68,18 +71,15 @@
 				<div class="fr topbar">
 					<ul>
 						<li><a href="../logout.jsp">Desconectarse</a></li>
-                                                <li>Bienvenido <span class="nameuser"><%= usuario.toString() %></span></li>
+                                                <li>Bienvenido <span class="nameuser"><%= usuario.getNombres() + " " + usuario.getApellidoPat() %></span></li>
 					</ul>
 				</div>
 			</div>
            <div id="mprincipal">
               <ul>
-		<%
-                usuario.setPerfil(Integer.parseInt(objSesion.getAttribute("perfil").toString()));
-                    String [][] menu = usuario.getMenu();
-                    for(int i = 0; i< menu.length; i++) { %>
-                <li><a href="<%=menu[i][1]%>" class="<%=menu[i][2]%>"><%=menu[i][0]%></a></li>
-                <% } %>
+		<c:forEach items="${per}" var="menu">
+                        <li><a class="${menu.img}" href="${menu.url}">${menu.menu}</a></li>
+                </c:forEach>
              </ul>
            </div>
            <div id="mtopctrl">
@@ -149,20 +149,9 @@
             <form name="form1" class="form" action="../AlumnosServ" method="post">
                 <div class="select">
                     <label>Seleccione la Asignatura</label>
-                        <select id="materias" name="materias" onchange="change()" >
+                        <select id="materias" name="materias" >
                              <option value = null >Asignaturas</option>
-                            <%
-                                    for(int i=0; i< misMaterias.size(); i++)
-                                    {
-                                       StringBuilder op1 = new StringBuilder();
-                                            op1.append("<option id ='"+misMaterias.get(i).getId_materia()+"'");
-                                            op1.append(" value = '"+misMaterias.get(i).getId_materia()+"' ");
-                                            op1.append( "name = '"+misMaterias.get(i).getId_materia()+"'>");
-                                            op1.append(""+misMaterias.get(i).getNombre()+"</option>");
-                                        out.print(op1);
-                                    }
-
-                                %>
+                            
                         </select>
 
                 </div>

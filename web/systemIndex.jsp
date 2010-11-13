@@ -14,7 +14,8 @@
            response.sendRedirect("index.jsp");
            objSesion.setAttribute("usuario", null);
        } else
-           usuario = (TrUsuario)objSesion.getAttribute("usuario");
+
+      usuario = (TrUsuario)objSesion.getAttribute("usuario");
 %>
 <%@page import="clases.Tl_Menu" %>
 <%@page import="MovimientosBD.ObtenerConjunto" %>
