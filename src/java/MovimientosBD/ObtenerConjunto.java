@@ -439,6 +439,24 @@ public class ObtenerConjunto {
         }
         return null;
     }
+    public ArrayList obtenerMaestrosMateriasGruposbyMaestro (int id){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList mmg = new ArrayList();
+            //SQL query command
+            String SQL = "SELECT * FROM Tr_Maestro_Grupo_Materia where MAESTRO_ID = ".toLowerCase()+id;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                mmg.add(new TrMaestroMateriaGrupo(rs.getInt("MATERIA_GRUPO_MAESTRO_ID"), rs.getInt("Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materias_ID")));
+            }
+            return mmg;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
 
     public ArrayList obtenerMaestrosMateriasGruposbyMateria (int id){
         try {
@@ -459,24 +477,7 @@ public class ObtenerConjunto {
         return null;
     }
 
-    public ArrayList obtenerMaestrosMateriasGruposbyMaestro (int id){
-        try {
-            Statement stmt = null;
-            ResultSet rs = null;
-            ArrayList mmg = new ArrayList();
-            //SQL query command
-            String SQL = "SELECT * FROM Tr_Maestro_Grupo_Materia where Maestro_ID=".toLowerCase()+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                mmg.add(new TrMaestroMateriaGrupo(rs.getInt("MATERIA_GRUPO_MAESTRO_ID"), rs.getInt("Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materias_ID")));
-            }
-            return mmg;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
+    
 
     public ArrayList obtenerMaestrosMateriasGruposbyGrupoANDMaestro (int idGrupo, int idMaestro){
         try {
