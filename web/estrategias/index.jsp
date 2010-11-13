@@ -8,11 +8,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="clases.TrUsuario,clases.TrMaestros,clases.TcGrupo,clases.TcMaterias,clases.TrMaestroMateriaGrupo,MovimientosBD.ObtenerIndividuo, MovimientosBD.ObtenerConjunto" %>
 
-
 <%
        /* Obtiene objeto usuario de variable de sesion usuario */
        HttpSession objSesion = request.getSession(true);
-       TrUsuario usuario = null;
+      TrUsuario  usuario = null;
        if(objSesion.getAttribute("usuario") == null){
            response.sendRedirect("index.jsp");
            objSesion.setAttribute("usuario", null);
@@ -71,7 +70,7 @@
 				<div class="fr topbar">
 					<ul>
 						<li><a href="../logout.jsp">Desconectarse</a></li>
-                                                <li>Bienvenido <span class="nameuser"><%= usuario.getNombres() + " " + usuario.getApellidoPat() %></span></li>
+                                                <li>Bienvenido <span class="nameuser"><%--<%= usuario.getNombres() + " " + usuario.getApellidoPat() %>--%></span></li>
 					</ul>
 				</div>
 			</div>

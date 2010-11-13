@@ -3,11 +3,17 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-11-2010 a las 10:28:17
--- Versión del servidor: 5.1.41
--- Versión de PHP: 5.3.1
+-- Tiempo de generaciÃ³n: 13-11-2010 a las 16:02:06
+-- VersiÃ³n del servidor: 5.0.67
+-- VersiÃ³n de PHP: 5.3.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `siec`
@@ -20,10 +26,10 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `presesion_maestro` (
-  `idpresesion_maestro` int(11) NOT NULL AUTO_INCREMENT,
+  `idpresesion_maestro` int(11) NOT NULL auto_increment,
   `tr_presesion__ID` int(11) NOT NULL,
   `tr_maestros_ID` int(11) NOT NULL,
-  PRIMARY KEY (`idpresesion_maestro`),
+  PRIMARY KEY  (`idpresesion_maestro`),
   KEY `fk_presesion_maestro_tr_presesion1` (`tr_presesion__ID`),
   KEY `fk_presesion_maestro_tr_maestros1` (`tr_maestros_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -40,9 +46,9 @@ CREATE TABLE IF NOT EXISTS `presesion_maestro` (
 --
 
 CREATE TABLE IF NOT EXISTS `tc_carrera` (
-  `CARRERA_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `DES_CARRERA` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`CARRERA_ID`)
+  `CARRERA_ID` int(11) NOT NULL auto_increment,
+  `DES_CARRERA` varchar(45) default NULL,
+  PRIMARY KEY  (`CARRERA_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
@@ -65,11 +71,11 @@ INSERT INTO `tc_carrera` (`CARRERA_ID`, `DES_CARRERA`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tc_categorias` (
-  `CATEGORIA_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `DES_CATEGORIA` varchar(45) DEFAULT NULL,
-  `DESCRIPCION` varchar(255) DEFAULT NULL,
-  `ORDEN` int(11) DEFAULT NULL,
-  PRIMARY KEY (`CATEGORIA_ID`)
+  `CATEGORIA_ID` int(11) NOT NULL auto_increment,
+  `DES_CATEGORIA` varchar(45) default NULL,
+  `DESCRIPCION` varchar(255) default NULL,
+  `ORDEN` int(11) default NULL,
+  PRIMARY KEY  (`CATEGORIA_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
@@ -87,11 +93,11 @@ INSERT INTO `tc_categorias` (`CATEGORIA_ID`, `DES_CATEGORIA`, `DESCRIPCION`, `OR
 --
 
 CREATE TABLE IF NOT EXISTS `tc_competencias` (
-  `COMPETENCIA_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `DES_COMPETENCIA` varchar(45) DEFAULT NULL,
-  `DESCRIPCION` varchar(255) DEFAULT NULL,
+  `COMPETENCIA_ID` int(11) NOT NULL auto_increment,
+  `DES_COMPETENCIA` varchar(45) default NULL,
+  `DESCRIPCION` varchar(255) default NULL,
   `CATEGORIA_ID` int(11) NOT NULL,
-  PRIMARY KEY (`COMPETENCIA_ID`),
+  PRIMARY KEY  (`COMPETENCIA_ID`),
   KEY `fk_TC_COMPETENCIAS_CATEGORIAS` (`CATEGORIA_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
@@ -113,11 +119,11 @@ INSERT INTO `tc_competencias` (`COMPETENCIA_ID`, `DES_COMPETENCIA`, `DESCRIPCION
 --
 
 CREATE TABLE IF NOT EXISTS `tc_criterios` (
-  `CRITERIO_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `DES_CRITERIO` varchar(50) DEFAULT NULL,
-  `DESCRIPCION` varchar(255) DEFAULT NULL,
+  `CRITERIO_ID` int(11) NOT NULL auto_increment,
+  `DES_CRITERIO` varchar(50) default NULL,
+  `DESCRIPCION` varchar(255) default NULL,
   `Ponderacion` int(11) NOT NULL,
-  PRIMARY KEY (`CRITERIO_ID`)
+  PRIMARY KEY  (`CRITERIO_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
@@ -138,9 +144,9 @@ INSERT INTO `tc_criterios` (`CRITERIO_ID`, `DES_CRITERIO`, `DESCRIPCION`, `Ponde
 --
 
 CREATE TABLE IF NOT EXISTS `tc_departamentos` (
-  `DEPARTAMENTO_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `DES_DEPARTAMENTO` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`DEPARTAMENTO_ID`)
+  `DEPARTAMENTO_ID` int(11) NOT NULL auto_increment,
+  `DES_DEPARTAMENTO` varchar(45) default NULL,
+  PRIMARY KEY  (`DEPARTAMENTO_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
@@ -159,9 +165,9 @@ INSERT INTO `tc_departamentos` (`DEPARTAMENTO_ID`, `DES_DEPARTAMENTO`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tc_evaluacion_nivel` (
-  `EVALUACION_NIVEL_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `DES_EVALUACION` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`EVALUACION_NIVEL_ID`)
+  `EVALUACION_NIVEL_ID` int(11) NOT NULL auto_increment,
+  `DES_EVALUACION` varchar(45) default NULL,
+  PRIMARY KEY  (`EVALUACION_NIVEL_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
@@ -182,11 +188,11 @@ INSERT INTO `tc_evaluacion_nivel` (`EVALUACION_NIVEL_ID`, `DES_EVALUACION`) VALU
 --
 
 CREATE TABLE IF NOT EXISTS `tc_grupo` (
-  `GRUPO_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `DES_GRUPO` varchar(45) DEFAULT NULL,
+  `GRUPO_ID` int(11) NOT NULL auto_increment,
+  `DES_GRUPO` varchar(45) default NULL,
   `CARRERA_ID` int(11) NOT NULL,
-  `GRADO` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`GRUPO_ID`),
+  `GRADO` varchar(45) default NULL,
+  PRIMARY KEY  (`GRUPO_ID`),
   KEY `fk_TC_GRUPO_TC_CARRERA1` (`CARRERA_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
@@ -207,12 +213,12 @@ INSERT INTO `tc_grupo` (`GRUPO_ID`, `DES_GRUPO`, `CARRERA_ID`, `GRADO`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tc_materias` (
-  `MATERIAS_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `DES_MATERIAS` varchar(45) DEFAULT NULL,
+  `MATERIAS_ID` int(11) NOT NULL auto_increment,
+  `DES_MATERIAS` varchar(45) default NULL,
   `DEPARTAMENTO_ID` int(11) NOT NULL,
-  PRIMARY KEY (`MATERIAS_ID`),
+  PRIMARY KEY  (`MATERIAS_ID`),
   KEY `fk_tc_materias_tc_departamentos1` (`DEPARTAMENTO_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcar la base de datos para la tabla `tc_materias`
@@ -221,7 +227,8 @@ CREATE TABLE IF NOT EXISTS `tc_materias` (
 INSERT INTO `tc_materias` (`MATERIAS_ID`, `DES_MATERIAS`, `DEPARTAMENTO_ID`) VALUES
 (1, 'PROGRAMACION II', 3),
 (2, 'CALCULO INTEGRAL', 1),
-(3, 'INGLES VI', 2);
+(3, 'INGLES VI', 2),
+(4, 'Programacion V', 3);
 
 -- --------------------------------------------------------
 
@@ -230,9 +237,9 @@ INSERT INTO `tc_materias` (`MATERIAS_ID`, `DES_MATERIAS`, `DEPARTAMENTO_ID`) VAL
 --
 
 CREATE TABLE IF NOT EXISTS `tc_perfil` (
-  `PERFIL_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `DES_PERFIL` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`PERFIL_ID`)
+  `PERFIL_ID` int(11) NOT NULL auto_increment,
+  `DES_PERFIL` varchar(45) default NULL,
+  PRIMARY KEY  (`PERFIL_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
@@ -252,10 +259,10 @@ INSERT INTO `tc_perfil` (`PERFIL_ID`, `DES_PERFIL`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tc_reportes` (
-  `REPORTES_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `DES_REPORTES` varchar(45) DEFAULT NULL,
+  `REPORTES_ID` int(11) NOT NULL auto_increment,
+  `DES_REPORTES` varchar(45) default NULL,
   `PERFIL_ID` int(11) NOT NULL,
-  PRIMARY KEY (`REPORTES_ID`),
+  PRIMARY KEY  (`REPORTES_ID`),
   KEY `fk_TC_REPORTES_TC_PERFIL1` (`PERFIL_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
@@ -276,9 +283,9 @@ INSERT INTO `tc_reportes` (`REPORTES_ID`, `DES_REPORTES`, `PERFIL_ID`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tc_tipo_evaluacion` (
-  `TIPO_EVALUACION_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `DES_TIPO_EVALUACION` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`TIPO_EVALUACION_ID`)
+  `TIPO_EVALUACION_ID` int(11) NOT NULL auto_increment,
+  `DES_TIPO_EVALUACION` varchar(45) default NULL,
+  PRIMARY KEY  (`TIPO_EVALUACION_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
@@ -298,11 +305,11 @@ INSERT INTO `tc_tipo_evaluacion` (`TIPO_EVALUACION_ID`, `DES_TIPO_EVALUACION`) V
 
 CREATE TABLE IF NOT EXISTS `tl_menu` (
   `id_menu` int(11) NOT NULL,
-  `menu` varchar(45) DEFAULT NULL,
-  `url` varchar(45) DEFAULT NULL,
-  `img` varchar(45) DEFAULT NULL,
+  `menu` varchar(45) default NULL,
+  `url` varchar(45) default NULL,
+  `img` varchar(45) default NULL,
   `tc_perfil_PERFIL_ID` int(11) NOT NULL,
-  PRIMARY KEY (`id_menu`),
+  PRIMARY KEY  (`id_menu`),
   KEY `fk_tl_menu_tc_perfil1` (`tc_perfil_PERFIL_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -315,7 +322,7 @@ INSERT INTO `tl_menu` (`id_menu`, `menu`, `url`, `img`, `tc_perfil_PERFIL_ID`) V
 (2, 'Reportes', 'reportes.jsp', 'reportes', 1),
 (3, 'Evaluaciones Formativas', 'evaluacionesf.jsp', 'formativas', 1),
 (4, 'Evaluaciones Acumulativa', 'evaluacionesa.jsp', 'acumulativas', 1),
-(5, 'Estrategias', 'estrategias.jsp', 'estrategias', 1),
+(5, 'Estrategias', 'estrategias/', 'estrategias', 1),
 (6, 'Auto-Evaluacion', 'competencias.jsp', 'autoevaluacion', 2),
 (7, 'Evaluaciones Formaticas', 'evaluaciones.jsp', 'formativas', 2),
 (8, 'Competencias', 'competencias.jsp', 'competencias', 3),
@@ -335,11 +342,11 @@ INSERT INTO `tl_menu` (`id_menu`, `menu`, `url`, `img`, `tc_perfil_PERFIL_ID`) V
 --
 
 CREATE TABLE IF NOT EXISTS `tr_alumnos` (
-  `ALUMNOS_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `MATRICULA` varchar(45) DEFAULT NULL,
+  `ALUMNOS_ID` int(11) NOT NULL auto_increment,
+  `MATRICULA` varchar(45) default NULL,
   `USUARIO_ID` int(11) NOT NULL,
   `CARRERA_ID` int(11) NOT NULL,
-  PRIMARY KEY (`ALUMNOS_ID`),
+  PRIMARY KEY  (`ALUMNOS_ID`),
   KEY `fk_TC_ALUMNOS_TC_USUARIO1` (`USUARIO_ID`),
   KEY `fk_TR_ALUMNOS_TC_CARRERA1` (`CARRERA_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -356,11 +363,11 @@ CREATE TABLE IF NOT EXISTS `tr_alumnos` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_criterio_competencia` (
-  `CRITERIO_COMPETENCIA_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `PONDERACION_CRITERIO` varchar(45) DEFAULT NULL,
+  `CRITERIO_COMPETENCIA_ID` int(11) NOT NULL auto_increment,
+  `PONDERACION_CRITERIO` varchar(45) default NULL,
   `CRITERIO_ID` int(11) NOT NULL,
   `COMPETENCIA_ID` int(11) NOT NULL,
-  PRIMARY KEY (`CRITERIO_COMPETENCIA_ID`),
+  PRIMARY KEY  (`CRITERIO_COMPETENCIA_ID`),
   KEY `fk_TR_CRITERIO_COMPETENCIA_TC_CRITERIOS1` (`CRITERIO_ID`),
   KEY `fk_TR_CRITERIO_COMPETENCIA_TC_COMPETENCIAS1` (`COMPETENCIA_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
@@ -382,11 +389,11 @@ INSERT INTO `tr_criterio_competencia` (`CRITERIO_COMPETENCIA_ID`, `PONDERACION_C
 --
 
 CREATE TABLE IF NOT EXISTS `tr_estrategias` (
-  `ESTRATEGIA_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `FECHA_INICIO_REGISTRO` date DEFAULT NULL,
-  `MENSAJE` varchar(45) DEFAULT NULL,
-  `FECHA_CAMBIO` date DEFAULT NULL,
-  PRIMARY KEY (`ESTRATEGIA_ID`)
+  `ESTRATEGIA_ID` int(11) NOT NULL auto_increment,
+  `FECHA_INICIO_REGISTRO` date default NULL,
+  `MENSAJE` varchar(45) default NULL,
+  `FECHA_CAMBIO` date default NULL,
+  PRIMARY KEY  (`ESTRATEGIA_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
@@ -403,11 +410,11 @@ INSERT INTO `tr_estrategias` (`ESTRATEGIA_ID`, `FECHA_INICIO_REGISTRO`, `MENSAJE
 --
 
 CREATE TABLE IF NOT EXISTS `tr_estra_mgm` (
-  `estra_mgm_id` int(11) NOT NULL AUTO_INCREMENT,
+  `estra_mgm_id` int(11) NOT NULL auto_increment,
   `ESTRATEGIA_ID` int(11) NOT NULL,
   `MATERIA_GRUPO_MAESTRO_ID` int(11) NOT NULL,
   `mgma_id` int(11) NOT NULL,
-  PRIMARY KEY (`estra_mgm_id`),
+  PRIMARY KEY  (`estra_mgm_id`),
   KEY `fk_estra_mgm_tr_estrategias1` (`ESTRATEGIA_ID`),
   KEY `fk_estra_mgm_tr_materia_grupo_materia1` (`MATERIA_GRUPO_MAESTRO_ID`),
   KEY `fk_tr_estra_mgm_tr_materia_maestro_grupo_alumno1` (`mgma_id`)
@@ -425,10 +432,10 @@ CREATE TABLE IF NOT EXISTS `tr_estra_mgm` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_est_alumno` (
-  `EST_ALUMNO_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `EST_ALUMNO_ID` int(11) NOT NULL auto_increment,
   `ESTRATEGIA_ID` int(11) NOT NULL,
   `MGMA_ID` int(11) NOT NULL,
-  PRIMARY KEY (`EST_ALUMNO_ID`),
+  PRIMARY KEY  (`EST_ALUMNO_ID`),
   KEY `fk_EST_ALUMNO_tr_estrategias1` (`ESTRATEGIA_ID`),
   KEY `fk_EST_ALUMNO_tr_materia_maestro_grupo_alumno1` (`MGMA_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -445,10 +452,10 @@ CREATE TABLE IF NOT EXISTS `tr_est_alumno` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_evaluacion_acumulativa` (
-  `EVALUACION_ACUMULATIVA_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `PARCIAL` int(11) DEFAULT NULL,
-  `CALIFICACION` int(11) DEFAULT NULL,
-  PRIMARY KEY (`EVALUACION_ACUMULATIVA_ID`)
+  `EVALUACION_ACUMULATIVA_ID` int(11) NOT NULL auto_increment,
+  `PARCIAL` int(11) default NULL,
+  `CALIFICACION` int(11) default NULL,
+  PRIMARY KEY  (`EVALUACION_ACUMULATIVA_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
@@ -468,14 +475,14 @@ INSERT INTO `tr_evaluacion_acumulativa` (`EVALUACION_ACUMULATIVA_ID`, `PARCIAL`,
 --
 
 CREATE TABLE IF NOT EXISTS `tr_evaluacion_parcial` (
-  `EVALUACION_PARCIAL_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `CALIFICACION` int(11) DEFAULT NULL,
-  `PARCIAL` int(11) DEFAULT NULL,
+  `EVALUACION_PARCIAL_ID` int(11) NOT NULL auto_increment,
+  `CALIFICACION` int(11) default NULL,
+  `PARCIAL` int(11) default NULL,
   `EVALUACION_NIVEL_ID` int(11) NOT NULL,
   `TIPO_EVALUACION_ID` int(11) NOT NULL,
   `ALUMNOS_ID` int(11) NOT NULL,
   `sesion_id` int(11) NOT NULL,
-  PRIMARY KEY (`EVALUACION_PARCIAL_ID`),
+  PRIMARY KEY  (`EVALUACION_PARCIAL_ID`),
   KEY `fk_tr_evaluacion_parcial_tc_evaluacion_nivel1` (`EVALUACION_NIVEL_ID`),
   KEY `fk_tr_evaluacion_parcial_tc_tipo_evaluacion1` (`TIPO_EVALUACION_ID`),
   KEY `fk_tr_evaluacion_parcial_tr_alumnos1` (`ALUMNOS_ID`),
@@ -494,10 +501,10 @@ CREATE TABLE IF NOT EXISTS `tr_evaluacion_parcial` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_evaluacion_parcial_acumulativa` (
-  `EVALUACION_PARCIAL_ACUMULATIVA_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `EVALUACION_PARCIAL_ACUMULATIVA_ID` int(11) NOT NULL auto_increment,
   `EVALUACION_PARCIAL_ID` int(11) NOT NULL,
   `EVALUACION_ACUMULATIVA_ID` int(11) NOT NULL,
-  PRIMARY KEY (`EVALUACION_PARCIAL_ACUMULATIVA_ID`),
+  PRIMARY KEY  (`EVALUACION_PARCIAL_ACUMULATIVA_ID`),
   KEY `fk_tr_evaluacion_parcial_acumulativa_tr_evaluacion_parcial1` (`EVALUACION_PARCIAL_ID`),
   KEY `fk_tr_evaluacion_parcial_acumulativa_tr_evaluacion_acumulativa1` (`EVALUACION_ACUMULATIVA_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -514,10 +521,10 @@ CREATE TABLE IF NOT EXISTS `tr_evaluacion_parcial_acumulativa` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_grupo_alumno` (
-  `GRUPO_ALUMNO_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `GRUPO_ALUMNO_ID` int(11) NOT NULL auto_increment,
   `GRUPO_ID` int(11) NOT NULL,
   `ALUMNOS_ID` int(11) NOT NULL,
-  PRIMARY KEY (`GRUPO_ALUMNO_ID`),
+  PRIMARY KEY  (`GRUPO_ALUMNO_ID`),
   KEY `fk_tr_grupo_alumno_tc_grupo1` (`GRUPO_ID`),
   KEY `fk_tr_grupo_alumno_tr_alumnos1` (`ALUMNOS_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -534,10 +541,10 @@ CREATE TABLE IF NOT EXISTS `tr_grupo_alumno` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_grupo_carrera` (
-  `GRUPO_CARRERA_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `GRUPO_CARRERA_ID` int(11) NOT NULL auto_increment,
   `CARRERA_ID` int(11) NOT NULL,
   `GRUPO_ID` int(11) NOT NULL,
-  PRIMARY KEY (`GRUPO_CARRERA_ID`),
+  PRIMARY KEY  (`GRUPO_CARRERA_ID`),
   KEY `fk_TR_GRUPO_CARRERA_tc_carrera` (`CARRERA_ID`),
   KEY `fk_TR_GRUPO_CARRERA_tc_grupo1` (`GRUPO_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -554,17 +561,19 @@ CREATE TABLE IF NOT EXISTS `tr_grupo_carrera` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_maestros` (
-  `MAESTRO_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `CODIGO` varchar(45) DEFAULT NULL,
+  `MAESTRO_ID` int(11) NOT NULL auto_increment,
+  `CODIGO` varchar(45) default NULL,
   `USUARIO_ID` int(11) NOT NULL,
-  PRIMARY KEY (`MAESTRO_ID`),
+  PRIMARY KEY  (`MAESTRO_ID`),
   KEY `fk_tr_maestros_tr_usuario1` (`USUARIO_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Volcar la base de datos para la tabla `tr_maestros`
 --
 
+INSERT INTO `tr_maestros` (`MAESTRO_ID`, `CODIGO`, `USUARIO_ID`) VALUES
+(1, 'ma131221', 2);
 
 -- --------------------------------------------------------
 
@@ -573,20 +582,22 @@ CREATE TABLE IF NOT EXISTS `tr_maestros` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_maestro_grupo_materia` (
-  `MATERIA_GRUPO_MAESTRO_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `MATERIA_GRUPO_MAESTRO_ID` int(11) NOT NULL auto_increment,
   `GRUPO_ID` int(11) NOT NULL,
   `MATERIAS_ID` int(11) NOT NULL,
   `MAESTRO_ID` int(11) NOT NULL,
-  PRIMARY KEY (`MATERIA_GRUPO_MAESTRO_ID`),
+  PRIMARY KEY  (`MATERIA_GRUPO_MAESTRO_ID`),
   KEY `fk_tr_materia_grupo_materia_tc_grupo1` (`GRUPO_ID`),
   KEY `fk_tr_materia_grupo_materia_tc_materias1` (`MATERIAS_ID`),
   KEY `fk_tr_materia_grupo_materia_tr_maestros1` (`MAESTRO_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Volcar la base de datos para la tabla `tr_maestro_grupo_materia`
 --
 
+INSERT INTO `tr_maestro_grupo_materia` (`MATERIA_GRUPO_MAESTRO_ID`, `GRUPO_ID`, `MATERIAS_ID`, `MAESTRO_ID`) VALUES
+(1, 4, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -595,10 +606,10 @@ CREATE TABLE IF NOT EXISTS `tr_maestro_grupo_materia` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_materia_maestro_grupo_alumno` (
-  `materia_maestro_grupo_alumno_id` int(11) NOT NULL AUTO_INCREMENT,
+  `materia_maestro_grupo_alumno_id` int(11) NOT NULL auto_increment,
   `MATERIA_GRUPO_MAESTRO_ID` int(11) NOT NULL,
   `tr_grupo_alumno_GRUPO_ALUMNO_ID` int(11) NOT NULL,
-  PRIMARY KEY (`materia_maestro_grupo_alumno_id`),
+  PRIMARY KEY  (`materia_maestro_grupo_alumno_id`),
   KEY `fk_tr_materia_maestro_grupo_alumno_tr_materia_grupo_materia1` (`MATERIA_GRUPO_MAESTRO_ID`),
   KEY `fk_tr_materia_maestro_grupo_alumno_tr_grupo_alumno1` (`tr_grupo_alumno_GRUPO_ALUMNO_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -615,12 +626,12 @@ CREATE TABLE IF NOT EXISTS `tr_materia_maestro_grupo_alumno` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_presesion` (
-  `PRESESION_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `MENSAJE` varchar(255) DEFAULT NULL,
-  `ESTADO` int(11) DEFAULT NULL,
-  `PONDERACION` varchar(45) DEFAULT NULL,
+  `PRESESION_ID` int(11) NOT NULL auto_increment,
+  `MENSAJE` varchar(255) default NULL,
+  `ESTADO` int(11) default NULL,
+  `PONDERACION` varchar(45) default NULL,
   `CRITERIO_COMPETENCIA_ID` int(11) NOT NULL,
-  PRIMARY KEY (`PRESESION_ID`),
+  PRIMARY KEY  (`PRESESION_ID`),
   KEY `fk_tr_presesion_tr_criterio_competencia1` (`CRITERIO_COMPETENCIA_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
@@ -641,10 +652,10 @@ INSERT INTO `tr_presesion` (`PRESESION_ID`, `MENSAJE`, `ESTADO`, `PONDERACION`, 
 --
 
 CREATE TABLE IF NOT EXISTS `tr_presesion_rechazada` (
-  `SESION_RECHAZADA_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `MENSAJE` varchar(45) DEFAULT NULL,
+  `SESION_RECHAZADA_ID` int(11) NOT NULL auto_increment,
+  `MENSAJE` varchar(45) default NULL,
   `PRESESION_ID` int(11) NOT NULL,
-  PRIMARY KEY (`SESION_RECHAZADA_ID`),
+  PRIMARY KEY  (`SESION_RECHAZADA_ID`),
   KEY `fk_tr_presesion_rechazada_tr_presesion1` (`PRESESION_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
@@ -662,11 +673,11 @@ INSERT INTO `tr_presesion_rechazada` (`SESION_RECHAZADA_ID`, `MENSAJE`, `PRESESI
 --
 
 CREATE TABLE IF NOT EXISTS `tr_sesion` (
-  `sesion_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sesion_id` int(11) NOT NULL auto_increment,
   `MATERIA_GRUPO_MAESTRO_ID` int(11) NOT NULL,
   `PRESESION_ID` int(11) NOT NULL,
-  `ESTADO` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`sesion_id`),
+  `ESTADO` tinyint(1) default NULL,
+  PRIMARY KEY  (`sesion_id`),
   KEY `fk_tr_sesion_tr_materia_grupo_materia1` (`MATERIA_GRUPO_MAESTRO_ID`),
   KEY `fk_tr_sesion_tr_presesion1` (`PRESESION_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -683,25 +694,26 @@ CREATE TABLE IF NOT EXISTS `tr_sesion` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_usuario` (
-  `USUARIO_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NOMBRES` varchar(45) DEFAULT NULL,
-  `APELLIDO_PATERNO` varchar(45) DEFAULT NULL,
-  `APELLIDO_MATERNO` varchar(45) DEFAULT NULL,
-  `FECHA_NAC` varchar(10) DEFAULT NULL,
-  `USUARIO` varchar(45) DEFAULT NULL,
-  `PASSWORD` varchar(45) DEFAULT NULL,
-  `IMAGEN` varchar(45) DEFAULT NULL,
+  `USUARIO_ID` int(11) NOT NULL auto_increment,
+  `NOMBRES` varchar(45) default NULL,
+  `APELLIDO_PATERNO` varchar(45) default NULL,
+  `APELLIDO_MATERNO` varchar(45) default NULL,
+  `FECHA_NAC` varchar(10) default NULL,
+  `USUARIO` varchar(45) default NULL,
+  `PASSWORD` varchar(45) default NULL,
+  `IMAGEN` varchar(45) default NULL,
   `PERFIL_ID` int(11) NOT NULL,
-  PRIMARY KEY (`USUARIO_ID`),
+  PRIMARY KEY  (`USUARIO_ID`),
   KEY `fk_tr_usuario_tc_perfil1` (`PERFIL_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Volcar la base de datos para la tabla `tr_usuario`
 --
 
 INSERT INTO `tr_usuario` (`USUARIO_ID`, `NOMBRES`, `APELLIDO_PATERNO`, `APELLIDO_MATERNO`, `FECHA_NAC`, `USUARIO`, `PASSWORD`, `IMAGEN`, `PERFIL_ID`) VALUES
-(1, 'Esteban Alberto', 'Uscanga', 'Olea', '10/10/10', 'darknavi', 'darknavi', 'dsadsa.jpg', 1);
+(1, 'Esteban Alberto', 'Uscanga', 'Olea', '10/10/10', 'darknavi', 'darknavi', 'dsadsa.jpg', 2),
+(2, 'Omar ', 'Rosales', 'Hernandez', '10/10/1950', 'omar', 'omar', 'dasvas.jpg', 1);
 
 --
 -- Filtros para las tablas descargadas (dump)
@@ -842,5 +854,6 @@ ALTER TABLE `tr_sesion`
 ALTER TABLE `tr_usuario`
   ADD CONSTRAINT `fk_tr_usuario_tc_perfil1` FOREIGN KEY (`PERFIL_ID`) REFERENCES `tc_perfil` (`PERFIL_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
- -- Actualizaciones Estrategias Equipo 5
- UPDATE `siec`.`tl_menu` SET `url` =  'estrategias/'  WHERE `tl_menu`.`id_menu` =5;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
