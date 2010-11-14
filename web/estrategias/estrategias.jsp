@@ -1,16 +1,30 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="clasesUsuarios.*, clasesEstrategias.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="clases.*" %>
+<%@page import="MovimientosBD.*" %>
 <%@page import="java.util.*" %>
 <%
-        HttpSession objSesion = request.getSession(true);
-        Usuarios usuario = (Usuarios)objSesion.getAttribute("user");
-        Maestro miMaestro = new Maestro();
-        miMaestro = miMaestro.ObtenerMaestro(usuario.getId());
-        int idg = Integer.parseInt(session.getAttribute("idg").toString());
-        int idm = Integer.parseInt(session.getAttribute("idm").toString());
-        Estrategia estr = new Estrategia();
-        List<Estrategia> est = estr.ObtenerEstrategias(idg, idm, miMaestro.getIdMaestro());
+      HttpSession objSesion = request.getSession(true);
+      TrUsuario usuario = (TrUsuario)objSesion.getAttribute("usuario");
+
+      int idg = Integer.parseInt(session.getAttribute("idg").toString());
+      int idm = Integer.parseInt(session.getAttribute("idm").toString());
+      /* Crea objetos para obtener individuos o conjuntos */
+      ObtenerIndividuo getIndividuo = new ObtenerIndividuo();
+      ObtenerConjunto getGroup = new ObtenerConjunto();
+      TrMaestros miMaestro = getIndividuo.obtenerMaestrobyUsuario_ID(usuario.getUsuario_ID()); // Obtiene Maestro
+
+      ArrayList<TrEstrategias> est = getGroup.obtenerEstrategiasGrupales(idm,miMaestro.getMaestro_ID(), idg);
+
+      getGroup = new ObtenerConjunto();
+      ArrayList per = new ArrayList();
+            try {
+                per = getGroup.obtenerMenu(usuario.getPerfil_ID());
+                }catch(NullPointerException e){
+                    out.print("error, no hay menú disponible");
+                }
+            request.setAttribute("per", per);
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="es">
@@ -33,19 +47,16 @@
 				<h1 class="hidden">SIEC</h1>
 				<div class="fr topbar">
 					<ul>
-						<li><a href="logout.jsp">Desconectarse</a></li>
-                                                <li>Bienvenido <span class="nameuser"><%= usuario.toString() %></span></li>
+						<li><a href="../logout.jsp">Desconectarse</a></li>
+                                                <li>Bienvenido <span class="nameuser"><%= usuario.getNombres()+" "+usuario.getApellidoPat() %></span></li>
 					</ul>
 				</div>
 			</div>
            <div id="mprincipal">
               <ul>
-		<%
-                usuario.setPerfil(Integer.parseInt(objSesion.getAttribute("perfil").toString()));
-                    String [][] menu = usuario.getMenu();
-                    for(int i = 0; i< menu.length; i++) { %>
-                <li><a href="<%=menu[i][1]%>" class="<%=menu[i][2]%>"><%=menu[i][0]%></a></li>
-                <% } %>
+		<c:forEach items="${per}" var="menu">
+                        <li><a class="${menu.img}" href="../${menu.url}">${menu.menu}</a></li>
+                </c:forEach>
              </ul>
            </div>
            <div id="mtopctrl">
@@ -76,19 +87,21 @@
                     <tr>
                         <th>Estrategia</th>
                         <th>Fecha</th>
+                        <th>Ultima Actualizacion</th>
                     </tr>
                 <%
-                for(Estrategia i: est)
+                for(TrEstrategias i: est)
                 {
                     out.print("<tr>");
                     out.print("<td>"+i.getMensaje()+"</td>");
-                    out.print("<td>"+i.getFecha()+"</td>");
+                    out.print("<td>"+i.getFecha_Inicio_Registro()+"</td>");
+                    out.print("<td>"+i.getFecha_fin()+"</td>");
                     out.print("</tr>");
                 }
                     %>
                 </table>
             </div>
-                <a href="listaalumnos.jsp">regresar</a>
+               
       </div>
 
 			</div><!-- Contenido -->
@@ -98,10 +111,8 @@
 	<div class="cuadcont">
             <p>Info de cuadro 2</p>
             <ul>
-                <li><a href="Estrategias.jsp">Ver Estrategias al Grupo</a></li>
-                <li><a href="EstrategiasAlumnos.jsp">Ver Estrategias de los alumnos</a></li>
-                <li><a href="estrategias/estrategiasalumnos.jsp">Estrategias de Alumnos</a></li>
-                <li><a href="estrategias/estrategias.jsp">Estrategias</a></li>
+                <li><a href="estrategias.jsp">Estrategias Grupales</a></li>
+                <li><a href="estrategiasalumnos.jsp">Estrategias de los Alumnos</a></li>
             </ul>
 	</div>
     </div>

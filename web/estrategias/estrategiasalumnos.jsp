@@ -1,25 +1,37 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="clasesUsuarios.*, clasesEstrategias.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="clases.*" %>
+<%@page import="MovimientosBD.*" %>
 <%@page import="java.util.*" %>
 <%
-        HttpSession objSesion = request.getSession(true);
-        Usuarios usuario = (Usuarios)objSesion.getAttribute("user");
-        Maestro miMaestro = new Maestro();
-        miMaestro = miMaestro.ObtenerMaestro(usuario.getId());
-        int idg = Integer.parseInt(session.getAttribute("idg").toString());
-        int idm = Integer.parseInt(session.getAttribute("idm").toString());
-        Estrategia estr = new Estrategia();
-        List<Estrategia> est = estr.ObtenerEstrategias(idg, idm, miMaestro.getIdMaestro());
+      HttpSession objSesion = request.getSession(true);
+      TrUsuario usuario = (TrUsuario)objSesion.getAttribute("usuario");
+
+      int idg = Integer.parseInt(session.getAttribute("idg").toString());
+      int idm = Integer.parseInt(session.getAttribute("idm").toString());
+      /* Crea objetos para obtener individuos o conjuntos */
+      ObtenerIndividuo getIndividuo = new ObtenerIndividuo();
+      ObtenerConjunto getGroup = new ObtenerConjunto();
+      TrMaestros miMaestro = getIndividuo.obtenerMaestrobyUsuario_ID(usuario.getUsuario_ID()); // Obtiene Maestro
+      getGroup = new ObtenerConjunto();
+      ArrayList<TrEstrategiaAlumno> est = getGroup.obtenerEstrategiasAlumnos(idm, miMaestro.getMaestro_ID() , idg);
+      ArrayList per = new ArrayList();
+            try {
+                per = getGroup.obtenerMenu(usuario.getPerfil_ID());
+                }catch(NullPointerException e){
+                    out.print("error, no hay menú disponible");
+                }
+            request.setAttribute("per", per);
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="es">
 <head>
 <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
 	<title>SIEC &bull; Nombre de la Página</title>
-<link rel="stylesheet" type="text/css" href="css/siec.css" media="all">
-<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="js/siec.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/siec.css" media="all">
+<script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../js/siec.js"></script>
 </head>
 <body>
 <div id="top"><a name="top"></a></div>
@@ -32,19 +44,16 @@
 				<h1 class="hidden">SIEC</h1>
 				<div class="fr topbar">
 					<ul>
-						<li><a href="logout.jsp">Desconectarse</a></li>
-                                                <li>Bienvenido <span class="nameuser"><%= usuario.toString() %></span></li>
+						<li><a href="../logout.jsp">Desconectarse</a></li>
+                                                <li>Bienvenido <span class="nameuser"><%= usuario.getNombres()+" "+usuario.getApellidoPat() %></span></li>
 					</ul>
 				</div>
 			</div>
            <div id="mprincipal">
               <ul>
-		<%
-                usuario.setPerfil(Integer.parseInt(objSesion.getAttribute("perfil").toString()));
-                    String [][] menu = usuario.getMenu();
-                    for(int i = 0; i< menu.length; i++) { %>
-                <li><a href="<%=menu[i][1]%>" class="<%=menu[i][2]%>"><%=menu[i][0]%></a></li>
-                <% } %>
+		<c:forEach items="${per}" var="menu">
+                        <li><a class="${menu.img}" href="../${menu.url}">${menu.menu}</a></li>
+                </c:forEach>
              </ul>
            </div>
            <div id="mtopctrl">
@@ -76,28 +85,29 @@
                         <th>Apellido Materno</th>
                         <th>Mensaje</th>
                         <th>Fecha</th>
+                        <th>Ultima Actualizacion</th>
                     </tr>
                    
              <%
-                Alumno alum = new Alumno();
-                for(Estrategia i: est)
+                
+                for(TrEstrategiaAlumno i: est)
                 {
-                    Alumno al = new Alumno();
-                    al = alum.ObtenerAlumno(i.getId_alumno());
-                    Usuarios us = new Usuarios();
-                    us = us.obtenerUsuario(al.getUsuario_id());
+
+                    TrUsuario us = getIndividuo.obtenerUsuario(i.getUsuario_id());
+                    TrAlumnos al = getIndividuo.obtenerAlumnobyID(i.getAlumno_id());
+                    TrEstrategias es = getIndividuo.obtenerEstrategia(i.getEstrategia_id());
                     out.print("<tr>");
                     out.print("<td>"+al.getMatricula()+"</td>");
-                    out.print("<td>"+us.getNombre()+"</td>");
-                    out.print("<td>"+us.getAppaterno()+"</td>");
-                    out.print("<td>"+us.getApmaterno()+"</td>");
-                    out.print("<td>"+i.getMensaje()+"</td>");
-                    out.print("<td>"+i.getFecha()+"</td>");
+                    out.print("<td>"+us.getNombres()+"</td>");
+                    out.print("<td>"+us.getApellidoPat()+"</td>");
+                    out.print("<td>"+us.getApellidoMat()+"</td>");
+                    out.print("<td>"+es.getMensaje()+"</td>");
+                    out.print("<td>"+es.getFecha_Inicio_Registro()+"</td>");
+                    out.print("<td>"+es.getFecha_fin()+"</td>");
                     out.print("</tr>");
                 }
                     %>
                     </table>
-        <a href="ListaAlumnos.jsp">regresar</a>
       </div>
 
 			</div><!-- Contenido -->
@@ -106,10 +116,9 @@
 	<div class="theader">Cuadro 2</div>
 	<div class="cuadcont">
             <p>Info de cuadro 2</p>
-            <ul>
-		<li>Lista 1</li>
-                <li>Lista 2</li>
-                <li><a href="#">Este es un link</a></li>
+           <ul>
+                <li><a href="estrategias.jsp">Estrategias Grupales</a></li>
+                <li><a href="estrategiasalumnos.jsp">Estrategias de los Alumnos</a></li>
             </ul>
 	</div>
     </div>

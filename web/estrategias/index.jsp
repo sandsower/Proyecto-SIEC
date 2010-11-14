@@ -3,7 +3,7 @@
     Created on : Oct 6, 2010, 8:42:22 AM
     Author     : Esteban
 --%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="clases.TrUsuario,clases.TrMaestros,clases.TcGrupo,clases.TcMaterias,clases.TrMaestroMateriaGrupo,MovimientosBD.ObtenerIndividuo, MovimientosBD.ObtenerConjunto" %>
@@ -11,29 +11,26 @@
 <%
        /* Obtiene objeto usuario de variable de sesion usuario */
        HttpSession objSesion = request.getSession(true);
+
       TrUsuario  usuario = null;
        if(objSesion.getAttribute("usuario") == null){
            response.sendRedirect("index.jsp");
            objSesion.setAttribute("usuario", null);
        }else
            usuario = (TrUsuario)objSesion.getAttribute("usuario");
-
+           objSesion.removeAttribute("idm");
+           objSesion.removeAttribute("idg");
+           session.removeAttribute("alumnos");
        /* Crea objetos para obtener individuos o conjuntos */
            ObtenerIndividuo getIndividuo = new ObtenerIndividuo();
            ObtenerConjunto getGroup = new ObtenerConjunto();
 
 
            TrMaestros miMaestro = getIndividuo.obtenerMaestrobyUsuario_ID(usuario.getUsuario_ID()); // Obtiene Maestro
-           // Obtiene una lista de MaestrosMateriasGrupos y maestros a traves de la id de maestro
-           ArrayList<TrMaestroMateriaGrupo> trMMG = getGroup.obtenerMaestrosMateriasGruposbyMaestro(miMaestro.getUsuario_ID());
-           
-           
-           ArrayList<TcGrupo> Grupos = null;
-
-           //Obtiene los grupos a partir de la lista MaestrosMateriasGrupos y maestros
-           for(TrMaestroMateriaGrupo i: trMMG){
-               Grupos.add(getIndividuo.obtenerGrupo(i.getGrupoGrupo_ID()));
-           }
+           // Obtiene una lista de MaestrosMateriasGrupos y maestros a traves de la id de maestro         
+           ArrayList<TcMaterias> mat = new ArrayList<TcMaterias>();// crear lista materias
+           mat = getGroup.obtenerMateriasbyIDMaestro(miMaestro.getMaestro_ID());
+         
 
            // Obtiene menu y lo ponee en per D:
            ArrayList per = new ArrayList();
@@ -54,7 +51,33 @@
 <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="../js/siec.js"></script>
          <script type="text/javascript">
-          
+          function change()
+          {
+              document.getElementById('grupos').innerHTML ="<option value = null >Grupos</option>";
+           <%
+                    out.print("id_materia = document.form1.materias.value;");
+                                        
+                       
+                         for(TcMaterias i: mat)
+                         {
+                           
+                                ArrayList<TcGrupo> gr = getGroup.obtenerGruposByIDMateria(i.getMaterias_ID());
+                                for(TcGrupo j: gr)
+                                {
+                                    out.print(" if( id_materia == "+i.getMaterias_ID()+" ) ");
+                                    out.print("{"); 
+                                    out.print("document.getElementById('grupos').innerHTML+= ");
+                                    out.print(" '<option");
+                                    out.print(" id="+j.getGrupo_ID()+" value = "+j.getGrupo_ID()+" ");
+                                    out.print(">"+j.getDes_Grupo()+" "+j.getGrado()+"</option>'; ");
+                                    out.print("}");
+                                }
+                                 
+                        }
+                     
+            %>
+                   
+          }
         </script>
 
 </head>
@@ -70,14 +93,14 @@
 				<div class="fr topbar">
 					<ul>
 						<li><a href="../logout.jsp">Desconectarse</a></li>
-                                                <li>Bienvenido <span class="nameuser"><%--<%= usuario.getNombres() + " " + usuario.getApellidoPat() %>--%></span></li>
+                                                <li>Bienvenido <span class="nameuser"><%= usuario.getNombres() + " " + usuario.getApellidoPat() %></span></li>
 					</ul>
 				</div>
 			</div>
            <div id="mprincipal">
               <ul>
 		<c:forEach items="${per}" var="menu">
-                        <li><a class="${menu.img}" href="${menu.url}">${menu.menu}</a></li>
+                        <li><a class="${menu.img}" href="../${menu.url}">${menu.menu}</a></li>
                 </c:forEach>
              </ul>
            </div>
@@ -145,12 +168,21 @@
         <div class="cuadro cuadromarg">
 	<div class="theader">Búsqueda por Asignatura - Grupo</div>
 	<div class="cuadcont">
-            <form name="form1" class="form" action="../AlumnosServ" method="post">
+            <form name="form1" class="form" action="alumnoserv.do" method="post">
                 <div class="select">
                     <label>Seleccione la Asignatura</label>
-                        <select id="materias" name="materias" >
+                    <select id="materias" name="materias" onchange="change()">
                              <option value = null >Asignaturas</option>
-                            
+                             <%
+                             for(TcMaterias i: mat)
+                             {
+                                out.print("<option value = '");
+                                out.print(i.getMaterias_ID());
+                                out.print("' >");
+                                out.print(i.getDes_Materias());
+                                out.print("</option>");
+                             }
+                          %>
                         </select>
 
                 </div>

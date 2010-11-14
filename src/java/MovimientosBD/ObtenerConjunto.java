@@ -211,6 +211,25 @@ public class ObtenerConjunto {
         }
         return null;
     }
+        public ArrayList obtenerMateriasbyIDMaestro(int id_maestro){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList mat = new ArrayList();
+            //SQL query command
+            String SQL = "SELECT  DISTINCT  mat.* FROM tc_materias AS mat, tr_maestros AS m, tr_maestro_grupo_materia AS gmm WHERE gmm.MAESTRO_ID = m.MAESTRO_ID AND mat.MATERIAS_ID = gmm.MATERIAS_ID AND gmm.MAESTRO_ID = "+id_maestro;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                mat.add(new TcMaterias(rs.getInt("Materias_ID"), rs.getString("Des_Materias"), rs.getInt("Departamento_ID")));
+            }
+            return mat;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+  
 
     public ArrayList obtenerReportes (){
         try {
@@ -269,7 +288,47 @@ public class ObtenerConjunto {
         }
         return null;
     }
-
+        public ArrayList obtenerAlumnosbyIdGrupoIdMateria (int idGrupo, int idMateria){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList alm = new ArrayList();
+            StringBuilder q = new StringBuilder();
+            q.append(" SELECT ");
+            q.append(" a.*");
+            q.append(" FROM ");
+            q.append(" tr_grupo_alumno AS ga, ");
+            q.append(" tr_materia_maestro_grupo_alumno AS gmma, ");
+            q.append(" tr_alumnos AS a, ");
+            q.append(" tc_grupo AS g, ");
+            q.append(" tr_usuario AS u, ");
+            q.append(" tr_maestro_grupo_materia AS gmm ");
+            q.append(" WHERE ");
+            q.append(" ga.ALUMNOS_ID = a.ALUMNOS_ID AND  ");
+            q.append(" ga.GRUPO_ID = g.GRUPO_ID AND ");
+            q.append(" u.USUARIO_ID = a.USUARIO_ID AND ");
+            q.append(" gmma.tr_grupo_alumno_GRUPO_ALUMNO_ID = ga.GRUPO_ALUMNO_ID AND ");
+            q.append(" gmm.MATERIA_GRUPO_MAESTRO_ID = gmma.MATERIA_GRUPO_MAESTRO_ID AND ");
+            q.append(" gmm.MATERIAS_ID = ");
+            q.append(idMateria);
+            q.append(" AND ");
+            q.append(" gmm.GRUPO_ID = ");
+            q.append(idGrupo);
+            //SQL query command
+            String SQL = q.toString();
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                TrAlumnos alum = new TrAlumnos(rs.getInt("Alumnos_ID"), rs.getString("Matricula"), rs.getInt("Usuario_ID"), rs.getInt("Carrera_ID"));
+                alm.add(alum);
+            }
+            return alm;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+   
     public ArrayList obtenerComentarioDPAEstrategias (){
         try {
             Statement stmt = null;
@@ -448,8 +507,10 @@ public class ObtenerConjunto {
             String SQL = "SELECT * FROM Tr_Maestro_Grupo_Materia where MAESTRO_ID = ".toLowerCase()+id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
+            
             while(rs.next()){
-                mmg.add(new TrMaestroMateriaGrupo(rs.getInt("MATERIA_GRUPO_MAESTRO_ID"), rs.getInt("Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materias_ID")));
+                mmg.add(new TrMaestroMateriaGrupo(rs.getInt("MATERIA_GRUPO_MAESTRO_ID"),
+                        rs.getInt("Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materias_ID")));
             }
             return mmg;
         } catch (SQLException ex) {
@@ -735,6 +796,27 @@ public class ObtenerConjunto {
         }
         return null;
     }
+       public ArrayList obtenerGruposByIDMateria (int idMateria){
+        String SQL;
+         try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList grp = new ArrayList();
+            //SQL query command
+            SQL = String.format("SELECT g.*  FROM tc_grupo AS g, tr_maestro_grupo_materia AS gmm WHERE g.GRUPO_ID = gmm.GRUPO_ID AND gmm.MATERIAS_ID = %d", idMateria);
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                grp.add(new TcGrupo(rs.getInt("GRUPO_ID"), rs.getString("DES_GRUPO"), rs.getInt("CARRERA_ID"), rs.getString("GRADO")));
+            }
+            return grp;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
+
 
      public ArrayList getMateriasByMaestroIDGrupoID (int idMaestro, int idGrupo){
         String SQL;
@@ -756,6 +838,91 @@ public class ObtenerConjunto {
         }
         return null;
     }
+//METODOS PARA OBTENER ESTRATEGIAS
+       public ArrayList obtenerEstrategiasGrupales (int idm, int idma, int idg){
+         StringBuilder q = new StringBuilder();
+           try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList est= new ArrayList();
+            //SQL query command
+            q.append(" SELECT ");
+            q.append(" e.* ");
+            q.append(" FROM ");
+            q.append(" tr_estra_mgm AS egmm, ");
+            q.append(" tr_estrategias AS e, ");
+            q.append(" tr_maestro_grupo_materia AS gmm ");
+            q.append(" WHERE ");
+            q.append(" egmm.ESTRATEGIA_ID = e.ESTRATEGIA_ID AND ");
+            q.append(" egmm.MATERIA_GRUPO_MAESTRO_ID = gmm.MATERIA_GRUPO_MAESTRO_ID AND ");
+            q.append(" gmm.GRUPO_ID =  ");
+            q.append(idg);
+            q.append(" AND ");
+            q.append(" gmm.MATERIAS_ID =  ");
+            q.append(idm);
+            q.append(" AND ");
+            q.append(" gmm.MAESTRO_ID =  ");
+            q.append(idma);
+            
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(q.toString());
+            while(rs.next()){
+                est.add(new TrEstrategias(rs.getInt("ESTRATEGIA_ID"), rs.getString("FECHA_INICIO_REGISTRO"), rs.getString("MENSAJE"), rs.getString("FECHA_CAMBIO")));
+            }
+            return est;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
+         public ArrayList obtenerEstrategiasAlumnos (int idm, int idma, int idg){
+         StringBuilder q = new StringBuilder();
+           try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList aest= new ArrayList();
+            q.append(" SELECT ");
+            q.append(" ga.ALUMNOS_ID, ");
+            q.append(" e.ESTRATEGIA_ID, ");
+            q.append(" a.USUARIO_ID ");
+            q.append(" FROM ");
+            q.append(" tr_est_alumno AS ea, ");
+            q.append(" tr_alumnos AS a, ");
+            q.append(" tr_estrategias AS e, ");
+            q.append(" tr_maestro_grupo_materia AS gmm, ");
+            q.append(" tr_materia_maestro_grupo_alumno AS gmma, ");
+            q.append(" tr_grupo_alumno AS ga ");
+            q.append(" WHERE ");
+            q.append(" ea.ESTRATEGIA_ID = e.ESTRATEGIA_ID AND ");
+            q.append(" ea.MGMA_ID = gmma.materia_maestro_grupo_alumno_id AND ");
+            q.append(" gmma.MATERIA_GRUPO_MAESTRO_ID = gmm.MATERIA_GRUPO_MAESTRO_ID AND ");
+            q.append(" gmma.tr_grupo_alumno_GRUPO_ALUMNO_ID = ga.GRUPO_ALUMNO_ID AND ");
+            q.append(" gmm.GRUPO_ID = ga.GRUPO_ID AND ");
+            q.append(" ga.ALUMNOS_ID = a.ALUMNOS_ID AND ");
+            q.append(" gmm.MATERIAS_ID =  ");
+            q.append(idm);
+            q.append(" AND ");
+            q.append(" gmm.MAESTRO_ID =  ");
+            q.append(idma);
+            q.append(" AND ");
+            q.append(" gmm.GRUPO_ID =  ");
+            q.append(idg);
+
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(q.toString());
+            while(rs.next()){
+                aest.add(new TrEstrategiaAlumno(rs.getInt("ESTRATEGIA_ID"),rs.getInt("ALUMNOS_ID"), rs.getInt("USUARIO_ID")));
+            }
+            return aest;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
+
+
 
     public Connection getCon() {
         return con;
@@ -766,4 +933,9 @@ public class ObtenerConjunto {
 
     }
 
+    public static void main(String []args)
+    {
+        ObtenerConjunto on = new ObtenerConjunto();
+        System.out.print(((ArrayList<TrEstrategiaAlumno>)on.obtenerEstrategiasAlumnos(4, 1, 4)).get(0).getUsuario_id());
+    }
 }
