@@ -31,7 +31,9 @@
 	<title>SIEC &bull; Nombre de la Página</title>
 <link rel="stylesheet" type="text/css" href="../css/siec.css" media="all">
 <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery.jeditable.js"></script>
 <script type="text/javascript" src="../js/siec.js"></script>
+<script type="text/javascript" src="../js/estrategias.js"></script>
 </head>
 <body>
 <div id="top"><a name="top"></a></div>
@@ -74,10 +76,11 @@
    </div><!-- Menu izquierdo -->
    <div id="mitte"><!-- Contenido -->
                             <div class ="content">
-        <div class="box">
-        <h1 align="center">Lista de Estrategias de Alumnos</h1><br/>
-        </div>
-              <table>
+        <h2>Lista de Estrategias de Alumnos</h2>
+        <p>Para editar la estrategia has doble click en el <strong>mensaje</strong> de la estrategia. Si deseas eliminiar has click en el icono de eliminar de su respectiva estrategia.</p>
+        <div class="cuadro cuadromarg">
+           <div class="cuadcont">
+              <table class="tablaEstrategia">
                   <tr>
                         <th>Matricula</th>
                         <th>Nombre</th>
@@ -96,18 +99,20 @@
                     TrUsuario us = getIndividuo.obtenerUsuario(i.getUsuario_id());
                     TrAlumnos al = getIndividuo.obtenerAlumnobyID(i.getAlumno_id());
                     TrEstrategias es = getIndividuo.obtenerEstrategia(i.getEstrategia_id());
-                    out.print("<tr>");
+                    out.print("<tr id='tr"+es.getEstrategia_ID()+"'>");
                     out.print("<td>"+al.getMatricula()+"</td>");
                     out.print("<td>"+us.getNombres()+"</td>");
                     out.print("<td>"+us.getApellidoPat()+"</td>");
                     out.print("<td>"+us.getApellidoMat()+"</td>");
-                    out.print("<td>"+es.getMensaje()+"</td>");
+                    out.print("<td><div class='edit_mensaje' id='0m"+es.getEstrategia_ID()+"'>"+es.getMensaje()+"</div></td>");
                     out.print("<td>"+es.getFecha_Inicio_Registro()+"</td>");
-                    out.print("<td>"+es.getFecha_fin()+"</td>");
+                    out.print("<td>"+es.getFecha_fin()+"<div class='btnnor'><div class='btndelete' id='0d"+es.getEstrategia_ID()+"'></div></div></td>");
                     out.print("</tr>");
                 }
                     %>
                     </table>
+           </div>
+        </div>
       </div>
 
 			</div><!-- Contenido -->

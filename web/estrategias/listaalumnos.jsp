@@ -32,6 +32,7 @@
 <link rel="stylesheet" type="text/css" href="../css/siec.css" media="all">
 <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="../js/siec.js"></script>
+<script type="text/javascript" src="../js/estrategias.js"></script>
 </head>
 <body>
 </head>

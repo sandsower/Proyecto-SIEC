@@ -43,5 +43,19 @@ public class ActualizarCampos {
         }
         return false;
     }
+    public boolean actualizarEstrategiasMensaje (int idm, String mensaje){
+            Statement stmt = null;
+        try {
+            java.text.SimpleDateFormat f = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            String fecha = f.format(Calendar.getInstance().getTime());
+            String SQL = "Update tr_estrategias SET  MENSAJE = '".toLowerCase()+mensaje+"',FECHA_CAMBIO = '"+fecha+"' WHERE ESTRATEGIA_ID =".toLowerCase()+idm;
+            stmt = con.createStatement();
+            stmt.execute(SQL);
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Error: "+ex.toString());
+        }
+        return false;
+    }
 
 }

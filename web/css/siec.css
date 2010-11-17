@@ -74,6 +74,10 @@ hr {
     display: block;
     float: left;
 }
+.fr{
+    display: block;
+    float: right;
+}
 .cl{
     clear: left;
 }
@@ -449,4 +453,34 @@ input:hover,input:focus,textarea:hover,textarea:focus,select:hover,select:focus{
 span.lile{
     font-weight: bold;
     margin-right: 8px;
+}
+.tablaEstrategia{
+    width: 100%;
+    border:0;
+}
+.tablaEstrategia td{
+    padding:5px 10px 5px 10px;
+}
+.tdcenter{
+    text-align: center;
+}
+.odd{
+   background: #ccc;
+}
+.hover{
+    background-color: #b8d1e2;
+}
+.btnnor{
+   position: relative;
+}
+.btndelete{
+    display:block;
+    display:none;
+    width: 16px;
+    height: 16px;
+    background:url("../images/delete.png") no-repeat;
+    position: absolute;
+    top:-16px;
+    right: 0;
+    cursor:pointer;
 }
