@@ -26,7 +26,11 @@ public class ActualizarCampos {
 
     public ActualizarCampos() {
         ConexionBD nuevaConexion = new ConexionBD();
+<<<<<<< HEAD
         nuevaConexion.conectarBD("root", "13450811");
+=======
+        nuevaConexion.conectarBD("root", "");
+>>>>>>> 0ee19cb2a21778223ef5a264cecd561a7c8f496e
         this.setCon(nuevaConexion.getCon());
     }
 
@@ -35,6 +39,20 @@ public class ActualizarCampos {
         try {
             String SQL = "Update Tr_Evaluacion_Parcial SET Calificacion=".toLowerCase()+eva.getCalificacion()+",Parcial="+eva.getParcial()+",Evaluacion_Nivel_ID="+eva.getEvaluacion_nivel_ID()+",Tipo_Evaluacion_ID="+eva.getTipo_evaluacion_ID()+",Sesion_ID="+eva.getMaestro_materia_grupo_sesion_ID()+",Alumnos_ID="+eva.getAlumnos_ID()
                     + " WHERE Evaluacion_Parcial_ID=".toLowerCase()+eva.getEvaluacion_parcial_ID();
+            stmt = con.createStatement();
+            stmt.execute(SQL);
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Error: "+ex.toString());
+        }
+        return false;
+    }
+    public boolean actualizarEstrategiasMensaje (int idm, String mensaje){
+            Statement stmt = null;
+        try {
+            java.text.SimpleDateFormat f = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            String fecha = f.format(Calendar.getInstance().getTime());
+            String SQL = "Update tr_estrategias SET  MENSAJE = '".toLowerCase()+mensaje+"',FECHA_CAMBIO = '"+fecha+"' WHERE ESTRATEGIA_ID =".toLowerCase()+idm;
             stmt = con.createStatement();
             stmt.execute(SQL);
             return true;

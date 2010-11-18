@@ -1,6 +1,8 @@
+*.db
 build/
 dist/
 nbproject/private/
+nbproject/project.properties
 siec/
 Modelo/
 PantallasSIEC/

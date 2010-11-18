@@ -30,12 +30,12 @@ h1, h2, h3, h4 {
     padding: 10px 0px 10px 10px;
 }
 h1{
-    color:#718BA6;
+    color:#748391;
 }
 h2 {
     font-size: 150%;
-    background-color: #6a92b5;
-    color: #213343;
+    background-color: #718BA6;
+    color: #fff;
 }
 h3 {
     font-size: 130%;
@@ -54,7 +54,39 @@ hr {
 }
 
 /* Miscelaneos */
-
+.msnerror  {
+    background:#FF360E;
+    color:#FFFFFF;
+    margin:10px auto 0;
+    padding:5px;
+    text-align:center;
+    width:90%;
+}
+.msnok {
+    background:#ACE600;
+    color:#000;
+    margin:20px auto 0;
+    padding:5px;
+    text-align:center;
+    width:90%;
+}
+.fl{
+    display: block;
+    float: left;
+}
+.fr{
+    display: block;
+    float: right;
+}
+.cl{
+    clear: left;
+}
+.hidden{
+    display: none;
+}
+.cpointer{
+    cursor:pointer;
+}
     /* Cuadro */
 .cuadro{
 	border-bottom:1px solid #D3D3D3;
@@ -92,7 +124,7 @@ hr {
     margin: 0 200px -41px 200px;
     border-left: 3px solid #C3C3C3;
     border-right: 3px solid #C3C3C3;
-    background-color: #cfdce7;
+    background-color: #DDE4F4;
 }
 html > body #wrapper {
     height: auto;
@@ -146,8 +178,9 @@ html > body #wrapper {
 	background:#f2f2f2;
 }
 #mprincipal ul{
-	margin-top:13px;
+	margin-top:6px;
 	margin-left:10px;
+
 }
 #mprincipal li{
 	list-style:none;
@@ -156,10 +189,31 @@ html > body #wrapper {
 #mprincipal a{
 	color:#000;
 	font-size:90%;
-	display:block;
+        padding-top: 5px;
 	float:left;
-	margin-right:20px;
+	margin-right:10px;
+        padding: 4px 5px 7px 30px;
 }
+#mprincipal a:hover{
+    background-color: #ebe9e9;
+}
+    /* Menu Imagenes*/
+#mprincipal .competencias{
+    background:transparent url("../images/menu/competencias.png") no-repeat 5px 3px;
+}
+#mprincipal .formativas{
+    background:transparent url("../images/menu/formativas.png") no-repeat 5px 3px;
+}
+#mprincipal .acumulativas{
+    background:transparent url("../images/menu/criterios.png") no-repeat 5px 3px;
+}
+#mprincipal .reportes{
+    background:transparent url("../images/menu/reportes.png") no-repeat 5px 3px;
+}
+#mprincipal .estrategias{
+    background:transparent url("../images/menu/estrategias.png") no-repeat 5px 3px;
+}
+
     /* Menu de controles */
 #mtopctrl{
 float: right;
@@ -225,28 +279,33 @@ float: right;
 
 /* Formularios, elementos */
 .form{
-    margin: 10px;
+    margin: 0 20px 0 10px;
 }
 .form div{
     margin:5px;
 }
+.formse{
+    background: #92b1cd;
+    padding: 15px;
+}
 label{
     font-style: italic;
     font-size: 1.1em;
+    color: #000;
 }
 .input input,select{
     width: 200px;
 }
 .textarea textarea{
-    width: 80%;
+    width: 100%;
 }
  input,textarea,select{
-     border:1px solid #dee2e3;
+     border:1px solid #c4c7c8;
      padding: 5px;
 }
 input:hover,input:focus,textarea:hover,textarea:focus,select:hover,select:focus{
     color:#00204e;
-    border:1px solid #c4c7c8;
+    border:1px solid #575b9c;
 }
 .textarea textarea{
     color:#333;
@@ -264,6 +323,9 @@ input:hover,input:focus,textarea:hover,textarea:focus,select:hover,select:focus{
     height:30px;
     padding:5px 10px 5px 10px;
     color:#3e4545;
+}
+.submit input:hover{
+    border:1px solid #ccc;
 }
 
 /* Login */
@@ -353,6 +415,9 @@ input:hover,input:focus,textarea:hover,textarea:focus,select:hover,select:focus{
     margin:0 0 16px 8px;
     padding:12px;
 }
+.subform{
+    margin-right: 10px;
+}
 
 /********
 /
@@ -361,17 +426,61 @@ input:hover,input:focus,textarea:hover,textarea:focus,select:hover,select:focus{
 *********/
 
 /*Página Registro de Estrategias*/
-.ulalumnosel li{
-   margin-top: 5px;
+.avataral{
+    width:15%;
 }
-.ulalumnosel li:hover{
-   background:#ccc;
-   cursor:pointer;
-   font-weight: bold;
+.infoal{
+    width: 75%;
 }
-.ulalumnos{
+.infoeal{
+    margin: 0 25px 0 25px;
+}
+.infoeal ul{
+    width: 100%;
+}
+.infoeal ul li{
+    list-style: none;
+    margin:0 5px 1px -30px;
+    padding:0 0 0 5px;
+}
+.grayrow{
+    background: #ccc;
+}
+.imgal{
+    padding: 8px;
+    background: #e9e8e8;
+}
+span.lile{
+    font-weight: bold;
+    margin-right: 8px;
+}
+.tablaEstrategia{
+    width: 100%;
+    border:0;
+}
+.tablaEstrategia td{
+    padding:5px 10px 5px 10px;
+}
+.tdcenter{
+    text-align: center;
+}
+.odd{
+   background: #ccc;
+}
+.hover{
+    background-color: #b8d1e2;
+}
+.btnnor{
+   position: relative;
+}
+.btndelete{
+    display:block;
     display:none;
-}
-.ulalumnos li{
-    padding:5px 0 5px 0;
+    width: 16px;
+    height: 16px;
+    background:url("../images/delete.png") no-repeat;
+    position: absolute;
+    top:-16px;
+    right: 0;
+    cursor:pointer;
 }

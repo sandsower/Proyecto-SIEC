@@ -14,7 +14,8 @@
            response.sendRedirect("index.jsp");
            objSesion.setAttribute("usuario", null);
        } else
-           usuario = (TrUsuario)objSesion.getAttribute("usuario");
+
+      usuario = (TrUsuario)objSesion.getAttribute("usuario");
 %>
 <%@page import="clases.Tl_Menu" %>
 <%@page import="MovimientosBD.ObtenerConjunto" %>
@@ -58,11 +59,11 @@ request.setAttribute("per", per);
 				</div>
 			</div>
            <div id="mprincipal">
-    <ul>
-            <c:forEach items="${per}" var="menu">
-                <li><a href="${menu.url}" class="menuItem"><img alt=""  src="images/menu/${menu.img}.png" />${menu.menu}</a></li>
-            </c:forEach>
-    </ul>
+            <ul>
+                    <c:forEach items="${per}" var="menu">
+                        <li><a class="${menu.img}" href="${menu.url}">${menu.menu}</a></li>
+                    </c:forEach>
+            </ul>
 	</div>
            <div id="mtopctrl">
               <ul>

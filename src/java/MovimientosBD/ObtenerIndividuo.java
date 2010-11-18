@@ -19,7 +19,11 @@ public class ObtenerIndividuo {
 
     public ObtenerIndividuo() {
         ConexionBD nuevaConexion = new ConexionBD();
+<<<<<<< HEAD
         nuevaConexion.conectarBD("root", "13450811");
+=======
+        nuevaConexion.conectarBD("root", "");
+>>>>>>> 0ee19cb2a21778223ef5a264cecd561a7c8f496e
         this.setCon(nuevaConexion.getCon());
     }
 
