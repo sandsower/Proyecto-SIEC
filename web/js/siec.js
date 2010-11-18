@@ -15,10 +15,6 @@ $(function(){ // Función que se ejecuta al cargarse todos los elementos de una 
         }
       return 0;
     });
-    //Estrategias/Alumnos
-    $(".lialumnosel").bind("click",function(){
-      $("#ul"+$(this).attr("id")).toggle("slow");
-    });
 }); // Funcion que se ejecuta al cargarse todos los elementos de una Página
 
 /*                      */
