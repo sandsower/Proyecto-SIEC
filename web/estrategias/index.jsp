@@ -50,6 +50,7 @@
 <link rel="stylesheet" type="text/css" href="../css/siec.css" media="all">
 <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="../js/siec.js"></script>
+<script type="text/javascript" src="../js/estrategias.js"></script>
          <script type="text/javascript">
           function change()
           {
@@ -122,37 +123,7 @@
 	</div>
     </div>
    </div><!-- Menu izquierdo -->
-   <div id="mitte"><!-- Contenido -->
-       <p>
-        <%
-            /*
-            out.println("getServletContext().getRealPath(/)");
-            out.println("<br/>");
-            out.println(getServletContext().getRealPath("/"));
-            out.println("<br/>");
-            out.println("<br/>");
-
-            out.println("request.getPathInfo())");
-            out.println("<br/>");
-            out.println(request.getPathInfo());
-            out.println("<br/>");
-            out.println("<br/>");
-
-            out.println("request.getPathTranslated()");
-            out.println("<br/>");
-            out.println(request.getPathTranslated());
-            out.println("<br/>");
-            out.println("<br/>");
-
-            out.println("request.getServletPath()");
-            out.println("<br/>");
-            out.println(request.getServletPath());
-            out.println("<br/>");
-            out.println("<br/>");
-            */
-
-        %>
-       </p>
+ <div id="mitte"><!-- Contenido --> 
         <h1>Registro de Estrategias</h1>
         <p>Las estrategias son asdf...que se son asignadas de manera individual o grupal...Seleccione primero la materia, y posteriormente el grupo para asignar dicha estrategia.</p>
 

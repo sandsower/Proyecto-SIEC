@@ -33,8 +33,9 @@
 	<title>SIEC &bull; Nombre de la Página</title>
 <link rel="stylesheet" type="text/css" href="../css/siec.css" media="all">
 <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery.jeditable.js"></script>
 <script type="text/javascript" src="../js/siec.js"></script>
-
+<script type="text/javascript" src="../js/estrategias.js"></script>
 </head>
 <body>
 <div id="top"><a name="top"></a></div>
@@ -79,29 +80,32 @@
    </div><!-- Menu izquierdo -->
    <div id="mitte"><!-- Contenido -->
                             <div class ="content">
-        <div class="box">
-        <h1 align="center">Lista de Estrategias Grupales</h1><br/>
-        </div>
+                                
+        <h2>Lista de Estrategias Grupales</h2>
+        <p>Para editar la estrategia has doble click en el <strong>mensaje</strong> de la estrategia. Si deseas eliminiar has click en el icono de eliminar de su respectiva estrategia.</p>
+        <div class="cuadro cuadromarg">
+           <div class="cuadcont">
             <div>
-                <table>
+                <table class="tablaEstrategia">
                     <tr>
                         <th>Estrategia</th>
-                        <th>Fecha</th>
+                        <th>Creado</th>
                         <th>Ultima Actualizacion</th>
                     </tr>
                 <%
                 for(TrEstrategias i: est)
                 {
-                    out.print("<tr>");
-                    out.print("<td>"+i.getMensaje()+"</td>");
-                    out.print("<td>"+i.getFecha_Inicio_Registro()+"</td>");
-                    out.print("<td>"+i.getFecha_fin()+"</td>");
+                    out.print("<tr id='tr"+i.getEstrategia_ID()+"'>");
+                    out.print("<td><div class='edit_mensaje' id='0m"+i.getEstrategia_ID()+"'>"+i.getMensaje()+"</div></td>");
+                    out.print("<td class='tdcenter'><div class='edit_registro' id='0r"+i.getEstrategia_ID()+"'>"+i.getFecha_Inicio_Registro()+"</div></td>");
+                    out.print("<td class='tdcenter'><div class='edit_fechafin' id='0f"+i.getEstrategia_ID()+"'>"+i.getFecha_fin()+"</div><div class='btnnor'><div class='btndelete' id='0d"+i.getEstrategia_ID()+"'></div></div></td>");
                     out.print("</tr>");
                 }
                     %>
                 </table>
-            </div>
-               
+               </div>
+             </div>
+        </div>       
       </div>
 
 			</div><!-- Contenido -->
