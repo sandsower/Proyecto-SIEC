@@ -61,7 +61,7 @@ request.setAttribute("per", per);
            <div id="mprincipal">
             <ul>
                     <c:forEach items="${per}" var="menu">
-                        <li><a class="${menu.img}" href="${menu.url}">${menu.menu}</a></li>
+                        <li><a class="${menu.img} menuItem" href="${menu.url}">${menu.menu}</a></li>
                     </c:forEach>
             </ul>
 	</div>
