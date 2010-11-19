@@ -766,7 +766,7 @@ public class ObtenerConjunto {
             CarreraGrupo cg = null;
             while (rs.next()) {
                 cg = new CarreraGrupo(idMaestro, new TcCarrera(rs.getInt("Carrera_ID"), rs.getString("Des_Carrera")));
-                cg.setGrupos(this.obtenerGruposByIDCarrera(rs.getInt("Carrera_ID")));
+                cg.setGrupos(this.obtenerGruposByIDCarreraIDMaestro(idMaestro, rs.getInt("Carrera_ID")));
                 car.add(cg);
 
             }
@@ -785,6 +785,26 @@ public class ObtenerConjunto {
             ArrayList grp = new ArrayList();
             //SQL query command
             SQL = String.format("SELECT * FROM tc_grupo WHERE CARRERA_ID = %d", idCarrera);
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                grp.add(new TcGrupo(rs.getInt("GRUPO_ID"), rs.getString("DES_GRUPO"), rs.getInt("CARRERA_ID"), rs.getString("GRADO")));
+            }
+            return grp;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
+     public ArrayList obtenerGruposByIDCarreraIDMaestro (int idCarrera, int idMaestro){
+        String SQL;
+         try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList grp = new ArrayList();
+            //SQL query command
+            SQL = String.format("SELECT g.* FROM tc_grupo g, tr_maestro_grupo_materia mgm WHERE mgm.MAESTRO_ID = %d AND mgm.GRUPO_ID = g.GRUPO_ID AND g.CARRERA_ID = %d", idMaestro, idCarrera);
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){
