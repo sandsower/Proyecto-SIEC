@@ -1,9 +1,3 @@
-<%--
-    Document   : index
-    Created on : Oct 6, 2010, 5:49:16 PM
-    Author     : Esteban
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
        HttpSession objSesion = request.getSession(true);
