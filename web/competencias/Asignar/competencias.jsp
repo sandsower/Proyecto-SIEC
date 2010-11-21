@@ -43,7 +43,7 @@
             $("#header").css({"marginLeft":"-202px","marginRight":"-202px"});
         }
 
-        $("#menur").load("competencias/Asignar/presesiones.jsp");
+        $("#menur").load("competencias/Asignar/nuevas.jsp");
     });
 </script>
 <div class="theader"><a href="competencias/Asignar/grupos.jsp" class="menuItem">Grupos</a> >> <a href="competencias/Asignar/materias.jsp?id=<%=g.getGrupo_ID()%>" class="menuItem"><%=g.getDes_Grupo()%> - <%=g.getGrado()%></a> >> <%=m.getDes_Materias()%></div><br>

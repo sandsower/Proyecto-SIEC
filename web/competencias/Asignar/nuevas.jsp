@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/css" href="../../css/siec.css" media="all">
 <script type="text/javascript" >
     $("document").ready(function(){
         //alert("hola");
@@ -7,10 +6,10 @@
         }).mouseout(function(){
             this.bgColor="";
         });
-        $(".menuItem").click(function(e){
+        $(".menuItem2").click(function(e){
             e.preventDefault();
             //alert(this.href);
-            $("#mitte").load(this.href);
+            $("#menur").load(this.href);
         });
     });
 </script>
@@ -28,32 +27,32 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="clases.TcCategorias" %>
 <%@page import="MovimientosBD.ObtenerConjunto" %>
+<%@page import="clases.CompetenciasCategorias" %>
 <%
     ObtenerConjunto obco = new ObtenerConjunto();
     ArrayList cc = new ArrayList();
+
     try{
-        cc = obco.obtenerCategorias();
+        cc = obco.obtenerCategoriasCompetencias();
     }catch(NullPointerException e){
         out.print("no hay categorias disponibles");
     }
 request.setAttribute("cc", cc);
 %>
-<body>
-    <div class="cuadro cuadromarg">
-	<div class="theader">Seleccione una categoria</div>
-	<div class="cuadcont">
-            <c:forEach items="${cc}" var="car">
-            <table>
-                <tr>
-                    <td colspan="2"><strong>${car.des_categoria}</strong></td>
-                </tr>
-                <c:forEach items="${categoria}" var="gr">
-                <tr>
-                    <td width="20px"></td>
-                    <td width="300px" bgcolor="" style="" class="gruposList"><a href="competencias/Asignar/materias.jsp?id=${gr.grupo_ID}" class="menuItem">${gr.des_Grupo} - ${gr.grado}</a></td>
-                </tr></c:forEach>
-            </table>
-            </c:forEach>
-	</div>
+<div class="cuadro cuadromarg">
+    <div class="theader">Agregar competencia</div>
+    <div class="cuadcont">
+        <c:forEach items="${cc}" var="car">
+        <table>
+            <tr>
+                <td colspan="2"><strong>${car.des_Categoria}</strong></td>
+            </tr>
+            <c:forEach items="${car.competencias}" var="gr">
+            <tr>
+                <td width="20px"></td>
+                <td width="300px" bgcolor="" style="" class="gruposList"><a href="competencias/Asignar/asignarCriterios.jsp?id=${gr.competencia_ID}" class="menuItem2">- ${gr.des_Competencia}</a></td>
+            </tr></c:forEach>
+        </table>
+        </c:forEach>
     </div>
-</body>
+</div>

@@ -27,7 +27,7 @@ public class InsertarNuevo {
 
     public InsertarNuevo() {
         ConexionBD nuevaConexion = new ConexionBD();
-        nuevaConexion.conectarBD("root", "13450811");
+        nuevaConexion.conectarBD("root", "root");
         this.setCon(nuevaConexion.getCon());
     }
 
@@ -47,8 +47,8 @@ public class InsertarNuevo {
     public boolean insertarEstrategia(TrEstrategias es, int idg, int idm, int idmaestro)
     {
         Statement stmt = null;
-        try {
             StringBuilder q = new StringBuilder();
+        try {
             q.append("insert into tr_estrategias values( ");
             q.append(" null, '");
             q.append( es.getFecha_Inicio_Registro() );
@@ -59,6 +59,7 @@ public class InsertarNuevo {
             q.append("' ) ");
             stmt = con.createStatement();
             stmt.execute(q.toString());
+            System.out.print(q);
 
             q = new StringBuilder();
             q.append(" SELECT MATERIA_GRUPO_MAESTRO_ID ");
@@ -108,6 +109,7 @@ public class InsertarNuevo {
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(InsertarNuevo.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.print(q);
         }
         return false;
     }
@@ -213,8 +215,8 @@ public class InsertarNuevo {
     {
         InsertarNuevo in= new InsertarNuevo();
         System.out.print( in.insertarEstrategiaAlumnos(
-                        new TrEstrategias(0,"2010-10-10","nee","2010-10-10")
-                        , 7, 1,  1, 6
-                        ));
+            new TrEstrategias(0,"2010-10-10","nee","2010-10-10")
+            , 7, 1,  1, 6
+            ));
      }
 }
