@@ -1,6 +1,6 @@
 
        <h1>Modificar Competencia</h1>
-       <form  method="post" action="modificarCompetencia">
+       <form  method="post" action="competencias/modificarCompetencia">
            <table>
                <input type="hidden" name="idCompetencia" value="${Competencia.idCompetencia}"/>
                <tr>

@@ -93,15 +93,16 @@ public class CriterioCompetencia {
         }
         return 0;
     }
-    public int eliminarCriterio(int xId){
+    public int eliminarCriterio(int xIdCriterio, int xIdCompetencia){
 
        ConexionBD connect = new ConexionBD();
        Connection con = connect.getConnect();
         if(con!= null){
             try {
                 PreparedStatement stmt1 = (PreparedStatement) con.prepareStatement
-                            ("DELETE FROM tr_criterio_competencia WHERE CRITERIO_ID=?");
-                 stmt1.setInt(1, xId);
+                            ("DELETE FROM tr_criterio_competencia WHERE CRITERIO_ID=? AND COMPETENCIA_ID = ?");
+                 stmt1.setInt(1, xIdCriterio);
+                 stmt1.setInt(2,xIdCompetencia);
                  int rows_updated = stmt1.executeUpdate();
             con.close();
             return rows_updated;

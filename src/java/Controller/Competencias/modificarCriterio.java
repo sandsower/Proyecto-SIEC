@@ -71,7 +71,7 @@ public class modificarCriterio extends HttpServlet {
             view = request.getRequestDispatcher("modificar.jsp");
        }
        else{
-           view = request.getRequestDispatcher("../error.jsp");
+           view = request.getRequestDispatcher("errores/errorCriterio.jsp");
        }
        view.forward(request, response);       
     } 

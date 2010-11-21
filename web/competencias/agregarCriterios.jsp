@@ -14,7 +14,7 @@
            <br/>
            <table>
                <tr>Buscar<input type="text" name="nombre"/>&nbsp;</tr>
-               <tr><input type="image" src="../images/search2.gif"/></tr>
+               <tr><input type="image" src="images/search2.gif"/></tr>
            </table>
       </form>
            <br/><br/>

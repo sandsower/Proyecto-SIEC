@@ -73,7 +73,7 @@ public class eliminarCriterioCompetencia extends HttpServlet {
         RequestDispatcher view =null;
 
        try {
-       int criterio = nuevoCriterio.eliminarCriterio(idCriterio);
+       int criterio = nuevoCriterio.eliminarCriterio(idCriterio,idCompetencia);
        Criterios = c.obtenerCriterios();
        CriterioCompetencia = cc.obtenerCriterioxCompetencia(idCompetencia);
        

@@ -10,6 +10,7 @@
 </script>
 
        <h1>Lista de Criterios</h1>
+       <center><a href="competencias/criterios/crear.jsp" class="linkItem"><img src="images/add.png"/>Crear Criterio</a></center>
             <table>
                    <thead>
                         <tr>

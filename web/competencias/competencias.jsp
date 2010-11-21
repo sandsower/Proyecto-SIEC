@@ -10,6 +10,7 @@
    <div id="mitte"><!-- Contenido -->
 
       <h1>Lista de Competencias</h1>
+      <center><a href="competencias/crearCompetencia" class="linkItem"><img src="images/add.png"/>Crear Competencia</a></center>
       <table>
                    <thead>
                         <tr>
