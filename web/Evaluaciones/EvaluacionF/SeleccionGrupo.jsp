@@ -24,7 +24,6 @@
             <option value="${grupo.grupo_ID}">${grupo.des_Grupo}${grupo.grado}</option>
         </c:forEach>
     </select>
-    <input type="hidden" name="IDMaestro" value="${IDMaestro}" />
     <input type="hidden" name="IDMateria" value="${IDMateria}"/>
     <input type="image" src="images/botones/siguiente.gif"/>
 </form>

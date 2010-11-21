@@ -15,6 +15,7 @@ import MovimientosBD.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,8 +35,10 @@ public class crearAE extends HttpServlet {
         //Llenamos nuestra lista de la tabla CriterioCompetencias
         ArrayList listaCriCo = obtc.obtenerCriterioCompetenciasbyCompetenciaID(id);
         //Obtenemos el alumno con el ID del usuario
-        //TODO: Cambiar valor estatico por variable de sesion
-        TrAlumnos alumno = obti.obtenerAlumnobyUsuarioID(7);
+        //Para esto obtenemos el usuario por medio de la sesion
+        HttpSession objSesion = req.getSession(true);
+        TrUsuario user = (TrUsuario) objSesion.getAttribute("usuario");
+        TrAlumnos alumno = obti.obtenerAlumnobyUsuarioID(user.getUsuario_ID());
         //Obtenemos lista de MaestroMateriasGrupos por el ID de grupo sacado del alumno
         ArrayList listaMMG = llenarMateriasMaestroGrupo(alumno);
         //Llenamos nuestra lista de presesiones con coincidencia en nuestra lista criterioCompetencia seleccionada
@@ -57,8 +60,7 @@ public class crearAE extends HttpServlet {
                 RequestDispatcher view = req.getRequestDispatcher("../../Error.jsp");
                 view.forward(req, resp);
             }
-        } else {
-             //TODO: Cambiar valor estatico por variable de sesion
+        } else{
             eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), this.tipoEvaluacion, alumno.getAlumnos_ID());
         }
         eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), this.tipoEvaluacion, alumno.getAlumnos_ID());
@@ -107,8 +109,7 @@ public class crearAE extends HttpServlet {
     }
 
     protected boolean evaluadaAE(TrSesion sesion,TrAlumnos alumno) {
-        //TODO: Cambiar valor estatico por variable de sesion
-        TrEvaluacionParcial eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), 1, alumno.getAlumnos_ID());
+        TrEvaluacionParcial eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), this.tipoEvaluacion, alumno.getAlumnos_ID());
         if (eva != null) {
             return true;
         }

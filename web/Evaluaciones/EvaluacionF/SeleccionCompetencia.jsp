@@ -29,7 +29,6 @@
             <option value="${alumno.alumnos_ID}">${alumno.matricula}</option>
         </c:forEach>
     </select>
-    <input type="hidden" name="IDMaestro" value="${IDMaestro}" />
     <input type="hidden" name="IDMateria" value="${IDMateria}"/>
     <input type="hidden" name="IDGrupo" value="${IDGrupo}"/>
     <input type="image" src="images/botones/siguiente.gif"/>

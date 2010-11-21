@@ -61,7 +61,6 @@ public class crearEF extends HttpServlet {
                 view.forward(req, resp);
             }
         } else {
-             //TODO: Cambiar valor estatico por variable de sesion
             eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), this.tipoEvaluacion, idAlumno);
         }
         eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), this.tipoEvaluacion, idAlumno);
@@ -110,7 +109,6 @@ public class crearEF extends HttpServlet {
     }
 
     protected boolean evaluadaAE(TrSesion sesion,TrAlumnos alumno) {
-        //TODO: Cambiar valor estatico por variable de sesion
         TrEvaluacionParcial eva = obti.obtenerEvaluacionParcialFilter(sesion.getMaestroMateriaGrupoSesion_ID(), this.tipoEvaluacion, alumno.getAlumnos_ID());
         if (eva != null) {
             return true;
