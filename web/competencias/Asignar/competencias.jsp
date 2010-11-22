@@ -25,7 +25,7 @@
     try{
         g = obin.obtenerGrupo(Integer.parseInt(request.getParameter("grupo")));
         m = obin.obtenerMateria(Integer.parseInt(request.getParameter("id")));
-        mgm = obin.obtenerMaestroGrupoMateria(obin.obtenerMaestrobyUsuario_ID(usuario.getUsuario_ID()).getUsuario_ID(), g.getGrupo_ID(), m.getMaterias_ID());
+        mgm = obin.obtenerMaestroGrupoMateria(obin.obtenerMaestrobyUsuario_ID(usuario.getUsuario_ID()).getMaestro_ID(), g.getGrupo_ID(), m.getMaterias_ID());
         cc = obco.obtenerCompetenciasByMgmID(mgm.getMaestroMateriaGrupo_ID());
     }catch(NullPointerException e){
     }
