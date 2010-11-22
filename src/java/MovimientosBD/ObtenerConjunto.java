@@ -18,7 +18,11 @@ public class ObtenerConjunto {
     private Connection con;
 
     public ObtenerConjunto() {
+<<<<<<< HEAD
         ConexionBD nuevaConexion = new ConexionBD();
+=======
+         ConexionBD nuevaConexion = new ConexionBD();
+>>>>>>> upstream/master
         nuevaConexion.conectarBD("root", "root");
         this.setCon(nuevaConexion.getCon());
     }

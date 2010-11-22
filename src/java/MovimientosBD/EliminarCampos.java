@@ -26,7 +26,7 @@ public class EliminarCampos {
 
     public EliminarCampos() {
         ConexionBD nuevaConexion = new ConexionBD();
-        nuevaConexion.conectarBD("root", "");
+        nuevaConexion.conectarBD("root", "55785018");
         this.setCon(nuevaConexion.getCon());
     }
 
