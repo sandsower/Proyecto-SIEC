@@ -14,7 +14,7 @@
     TcCompetencias comp = obin.obtenerCompetencia(Integer.parseInt(request.getParameter("id")));
 %>
 <div class="cuadro cuadromarg">
-    <div class="theader">Asignar Competencias</div>
+    <div class="theader">Asignar Criterios</div>
     <div class="cuadcont">
         <h3><%= comp.getDes_Competencia() %></h3>
         <c:forEach items="${cc}" var="car">
