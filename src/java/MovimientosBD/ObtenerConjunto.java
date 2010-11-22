@@ -18,11 +18,7 @@ public class ObtenerConjunto {
     private Connection con;
 
     public ObtenerConjunto() {
-<<<<<<< HEAD
         ConexionBD nuevaConexion = new ConexionBD();
-=======
-         ConexionBD nuevaConexion = new ConexionBD();
->>>>>>> upstream/master
         nuevaConexion.conectarBD("root", "root");
         this.setCon(nuevaConexion.getCon());
     }
@@ -126,6 +122,26 @@ public class ObtenerConjunto {
             ArrayList com = new ArrayList();
             //SQL query command
             String SQL = "SELECT * FROM Tc_Competencias".toLowerCase();
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while (rs.next()) {
+                com.add(new TcCompetencias(rs.getInt("Competencia_ID"), rs.getString("Des_Competencia"), rs.getString("Descripcion"), rs.getInt("Categoria_ID")));
+            }
+            return com;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: " + ex.toString());
+        }
+        return null;
+    }
+
+    public ArrayList obtenerCompetenciasByMgmID(int idMgm) {
+        String SQL;
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList com = new ArrayList();
+            //SQL query command
+            SQL = String.format("SELECT DISTINCT co.* FROM tc_competencias co, tr_sesion s, tr_presesion p, tr_criterio_competencia cc WHERE s.MATERIA_GRUPO_MAESTRO_ID = %d AND p.PRESESION_ID = s.PRESESION_ID AND cc.CRITERIO_COMPETENCIA_ID = p.CRITERIO_COMPETENCIA_ID AND co.COMPETENCIA_ID = cc.COMPETENCIA_ID", idMgm);
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while (rs.next()) {
@@ -974,7 +990,7 @@ public class ObtenerConjunto {
             CompetenciasCategorias cc = null;
             while(rs.next()){
                 cc = new CompetenciasCategorias( new TcCategorias(rs.getInt("Categoria_ID"),rs.getString("Des_categoria"), rs.getString("Descripcion"), rs.getInt("Orden")));
-                cc.setCompetencias(this.obtenerCompetenciasByCategoriasID(rs.getInt("Categoria_ID")));
+                cc.setCompetencias(this.obtenerCompetenciasWithCriteriosByCategoriasID(rs.getInt("Categoria_ID")));
                 cat.add(cc);
             }
             return cat;
@@ -1003,7 +1019,28 @@ public ArrayList obtenerCompetenciasByCategoriasID(int idCategorias){
         }
         return null;
     }
-    
+
+
+public ArrayList obtenerCompetenciasWithCriteriosByCategoriasID(int idCategorias){
+        String SQL;
+         try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList cat = new ArrayList();
+            //SQL query command
+            SQL = String.format("SELECT * FROM tc_competencias WHERE categoria_ID = %d", idCategorias);
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                cat.add(new TcCompetencias(rs.getInt("competencia_ID"), rs.getString("des_Competencia"),  rs.getString("descripcion"),rs.getInt("categoria_ID")));
+            }
+            return cat;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
 
     public Connection getCon() {
         return con;

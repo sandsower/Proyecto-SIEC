@@ -19,11 +19,7 @@ public class ObtenerIndividuo {
 
     public ObtenerIndividuo() {
         ConexionBD nuevaConexion = new ConexionBD();
-<<<<<<< HEAD
         nuevaConexion.conectarBD("root", "root");
-=======
-        nuevaConexion.conectarBD("root", "55785018");
->>>>>>> upstream/master
         this.setCon(nuevaConexion.getCon());
     }
 
@@ -292,6 +288,25 @@ public class ObtenerIndividuo {
         }
         return null;
     }
+    public TrCriterioCompetencia obtenerCriterioCompetenciaByCompetenciaID (int idCompetencia){
+        String SQL;
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            TrCriterioCompetencia ccm = null;
+            //SQL query command
+            SQL = String.format("SELECT * FROM tr_criterio_competencia WHERE COMPETENCIA_ID= %d", idCompetencia);
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                ccm = new TrCriterioCompetencia(rs.getInt("Criterio_ID"), rs.getInt("Criterio_Competencia_ID"), rs.getInt("Competencia_ID"), rs.getString("Ponderacion_Criterio"));
+            }
+            return ccm;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
 
     public TrGrupoAlumno obtenerGrupoAlumno(int id){
         try {
@@ -413,6 +428,26 @@ public class ObtenerIndividuo {
             TrMaestroMateriaGrupo mmg = null;
             //SQL query command
             String SQL = "SELECT * FROM tr_maestro_grupo_materia WHERE MATERIA_GRUPO_MAESTRO_ID=".toLowerCase()+id;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                mmg = new TrMaestroMateriaGrupo(rs.getInt("MATERIA_GRUPO_MAESTRO_ID"), rs.getInt("Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materias_ID"));
+            }
+            return mmg;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
+
+    public TrMaestroMateriaGrupo obtenerMaestroGrupoMateria (int idMaestro, int idGrupo, int idMateria){
+        String SQL;
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            TrMaestroMateriaGrupo mmg = null;
+            //SQL query command
+            SQL = String.format( "SELECT * FROM tr_maestro_grupo_materia WHERE GRUPO_ID = %d AND MATERIAS_ID = %d AND MAESTRO_ID = %d", idGrupo, idMateria, idMaestro);
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while(rs.next()){

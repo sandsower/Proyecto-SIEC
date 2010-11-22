@@ -12,10 +12,13 @@
       TrUsuario usuario = null;
        if(objSesion.getAttribute("usuario") == null){
            response.sendRedirect("index.jsp");
-           objSesion.setAttribute("usuario", null);
-       } else
+       }
 
-      usuario = (TrUsuario)objSesion.getAttribute("usuario");
+      try{
+          usuario = (TrUsuario)objSesion.getAttribute("usuario");
+      } catch(NullPointerException e){
+          response.sendRedirect("index.jsp");
+      }
 %>
 <%@page import="clases.Tl_Menu" %>
 <%@page import="MovimientosBD.ObtenerConjunto" %>

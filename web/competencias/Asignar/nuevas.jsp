@@ -9,7 +9,14 @@
         $(".menuItem2").click(function(e){
             e.preventDefault();
             //alert(this.href);
-            $("#menur").load(this.href);
+            $.ajax({
+              url: this.href,
+              success: function(data) {
+                $('#mitte').load('competencias/Asignar/competencias.jsp?id=<%=request.getParameter("idMateria")%>&grupo=<%=request.getParameter("idGrupo")%>');//html(data);
+                //alert('Load was performed.');
+              }
+            });
+            //$("#menur").load(this.href);
         });
     });
 </script>
@@ -50,7 +57,7 @@ request.setAttribute("cc", cc);
             <c:forEach items="${car.competencias}" var="gr">
             <tr>
                 <td width="20px"></td>
-                <td width="300px" bgcolor="" style="" class="gruposList"><a href="competencias/Asignar/asignarCriterios.jsp?id=${gr.competencia_ID}" class="menuItem2">- ${gr.des_Competencia}</a></td>
+                <td width="300px" bgcolor="" style="" class="gruposList"><a href="competencias/Asignar/asignarCompetencia.jsp?idMgm=<%= request.getParameter("idMgm") %>&id=${gr.competencia_ID}" class="menuItem2">- ${gr.des_Competencia}</a></td>
             </tr></c:forEach>
         </table>
         </c:forEach>
