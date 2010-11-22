@@ -15,6 +15,7 @@ import MovimientosBD.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,14 +34,16 @@ public class crearEF extends HttpServlet {
         int idEvaluacion = Integer.parseInt(req.getParameter("IDEvaluacion"));
         int idAlumno = Integer.parseInt(req.getParameter("IDAlumno"));
         int idGrupo = Integer.parseInt(req.getParameter("IDGrupo"));
-        int idMaestro = Integer.parseInt(req.getParameter("IDMaestro"));
-        int idMateria = Integer.parseInt(req.getParameter("IDMateria"));
         //Obtenemos el alumno a evaluar
         TrAlumnos alumnoAEvaluar = obti.obtenerAlumnobyID(idAlumno);
         //Llenamos nuestra lista de la tabla CriterioCompetencias
         ArrayList listaCriCo = obtc.obtenerCriterioCompetenciasbyCompetenciaID(idEvaluacion);
         //Obtenemos lista de MaestroMateriasGrupos por el grupo y maestro seleccionados
-        ArrayList listaMMG = obtc.obtenerMaestrosMateriasGruposbyGrupoANDMaestro(idGrupo, idMaestro);
+        //Para esto obtenemos el usuario por medio de la sesion
+        HttpSession objSesion = req.getSession(true);
+        TrUsuario user = (TrUsuario) objSesion.getAttribute("usuario");
+        TrMaestros maestro = obti.obtenerMaestrobyUsuario_ID(user.getUsuario_ID());
+        ArrayList listaMMG = obtc.obtenerMaestrosMateriasGruposbyGrupoANDMaestro(idGrupo, maestro.getMaestro_ID());
         //Llenamos nuestra lista de presesiones con coincidencia en nuestra lista criterioCompetencia seleccionada
         ArrayList listaPresesiones = this.llenarPresesiones(listaCriCo);
         //Filtramos las sesiones disponibles de acuerdo a las listas de presesiones y de maestroMateriaGrupo disponibles
