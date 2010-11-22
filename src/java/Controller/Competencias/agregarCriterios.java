@@ -73,6 +73,7 @@ public class agregarCriterios extends HttpServlet {
         
         try {
                 CriterioCompetencia = cc.obtenerCriterioxCompetencia(idCompetencia);
+                //Criterios = c.obtenerCriteriosxCompetencia(idCompetencia);
                 Criterios = c.obtenerCriterios();
                 if(CriterioCompetencia != null){                    
                     request.setAttribute("CriterioCompetencia",CriterioCompetencia );
@@ -115,5 +116,4 @@ public class agregarCriterios extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
