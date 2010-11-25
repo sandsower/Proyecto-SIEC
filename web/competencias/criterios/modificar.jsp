@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -99,3 +100,30 @@
 </div><!-- Pie de página -->
 </body>
 </html>
+=======
+
+       <h1>Modificar Criterio</h1>
+       <form  method="post" action="competencias/criterios/modificarCriterio">
+           <table>
+               <input type="hidden" name="id" value="${Criterio.id}"/>
+               <tr>
+                   <td>Nombre:</td>
+                   <td><input type="text" name="nombre" value="${Criterio.nombre}"/></td>
+               </tr>
+               <tr>
+                   <td>Descripcion</td>
+                   <td><textarea cols="20" rows="4" name="descripcion">${Criterio.descripcion}</textarea></td>
+               </tr>
+               <tr>
+                   <td>Ponderacion</td>
+                   <td><input type="text" name="ponderacion" value="${Criterio.ponderacion}"/></td>
+               </tr>
+               <tr>
+                   <td><input type="submit" value="Modificar"/></td>
+               </tr>
+           </table>
+
+
+       </form>
+  
+>>>>>>> d8c1f0934804c4432b47a7a0fff3abaa5df0476e

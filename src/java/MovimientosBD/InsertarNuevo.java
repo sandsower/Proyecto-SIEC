@@ -27,7 +27,7 @@ public class InsertarNuevo {
 
     public InsertarNuevo() {
         ConexionBD nuevaConexion = new ConexionBD();
-        nuevaConexion.conectarBD("root", "13450811");
+        nuevaConexion.conectarBD("root", "55785018");
         this.setCon(nuevaConexion.getCon());
     }
 
@@ -209,6 +209,43 @@ public class InsertarNuevo {
         }
         return false;
     }
+     public int insertarPresesion(int idCompetenciaCriterio)
+    {
+         String SQL;
+         ObtenerIndividuo obin = new ObtenerIndividuo();
+         SQL = String.format("INSERT INTO tr_presesion VALUES (NULL, ' ', 0,'1', %d)", obin.obtenerCriterioCompetenciaByCompetenciaID(idCompetenciaCriterio).getCriterioCompetencia_ID());
+         int r = 0;
+         try{
+         Statement stmt = null;
+         ResultSet rs = null;
+            stmt = con.createStatement();
+            stmt.execute(SQL);
+            rs = stmt.executeQuery("SELECT PRESESION_ID from tr_presesion ORDER BY PRESESION_ID DESC");
+            rs.next();
+            r = rs.getInt("PRESESION_ID");
+         }catch(SQLException e){
+             System.out.print(SQL);
+         }catch(NullPointerException es){
+             System.out.print(SQL);
+         }
+         return r;
+    }
+     public void insertarSesion(int idPresesion, int idMgm)
+    {
+         String SQL;
+         Statement stmt = null;
+         ResultSet rs = null;
+         SQL = String.format("INSERT INTO tr_sesion VALUES (NULL, %d, %d, true)", idMgm, idPresesion);
+         try{
+            stmt = con.createStatement();
+            stmt.execute(SQL);
+         }catch(SQLException e){
+             System.out.print("Error al crear la sesion" + SQL);
+         }catch(NullPointerException es){
+             System.out.print(SQL);
+         }
+    }
+
      public static void main(String [] args)
     {
         InsertarNuevo in= new InsertarNuevo();
