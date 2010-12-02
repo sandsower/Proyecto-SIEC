@@ -229,6 +229,24 @@ public class ObtenerConjunto {
         }
         return null;
     }
+   public ArrayList obtenerMateriasbyIDGrupo(int id_grupo){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList mat = new ArrayList();
+            //SQL query command
+            String SQL = "SELECT  DISTINCT  mat.* FROM tc_materias AS mat, tr_maestros AS m, tr_maestro_grupo_materia AS gmm, tc_grupo AS g WHERE  gmm.MAESTRO_ID = m.MAESTRO_ID AND mat.MATERIAS_ID = gmm.MATERIAS_ID AND gmm.GRUPO_ID = g.GRUPO_ID  AND g.GRUPO_ID =  "+id_grupo;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                mat.add(new TcMaterias(rs.getInt("Materias_ID"), rs.getString("Des_Materias"), rs.getInt("Departamento_ID")));
+            }
+            return mat;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
   
 
     public ArrayList obtenerReportes (){
@@ -759,7 +777,24 @@ public class ObtenerConjunto {
             ResultSet rs = null;
             ArrayList car = new ArrayList();
             //SQL query command
-            SQL = String.format("SELECT c.* FROM tc_carrera c, tc_grupo g, tr_maestro_grupo_materia mgm WHERE mgm.MAESTRO_ID = %d AND mgm.GRUPO_ID = g.GRUPO_ID AND g.CARRERA_id = c.CARRERA_ID", idMaestro);
+            StringBuilder   q = new StringBuilder();
+            q.append(" SELECT  DISTINCT c.* ");
+            q.append(" FROM  ");
+            q.append(" tc_carrera AS c,  ");
+            q.append(" tr_maestro_grupo_materia AS mmg,  ");
+            q.append(" tc_grupo AS g,   ");
+            q.append(" tr_grupo_carrera AS gc,  ");
+            q.append(" tr_maestros AS m,  ");
+            q.append(" tc_materias AS ma ");
+            q.append(" WHERE ");
+            q.append(" mmg.GRUPO_ID = g.GRUPO_ID AND ");
+            q.append(" g.GRUPO_ID = gc.GRUPO_ID AND ");
+            q.append(" gc.CARRERA_ID = c.CARRERA_ID AND ");
+            q.append(" m.MAESTRO_ID =  mmg.MAESTRO_ID AND ");
+            q.append(" ma.MATERIAS_ID = mmg.MATERIAS_ID AND ");
+            q.append(" m.MAESTRO_ID = %d ");
+
+            SQL = String.format(q.toString(), idMaestro);
             System.out.println(SQL);
             stmt = getCon().createStatement();
             rs = stmt.executeQuery(SQL);
@@ -936,6 +971,6 @@ public class ObtenerConjunto {
     public static void main(String []args)
     {
         ObtenerConjunto on = new ObtenerConjunto();
-        System.out.print(((ArrayList<TrEstrategiaAlumno>)on.obtenerEstrategiasAlumnos(4, 1, 4)).get(0).getUsuario_id());
+        System.out.println(((ArrayList<TcMaterias>)on.obtenerMateriasbyIDGrupo(7)).get(0).getDes_Materias());
     }
 }

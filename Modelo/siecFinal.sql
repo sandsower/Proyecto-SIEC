@@ -273,8 +273,8 @@ CREATE TABLE `tr_est_alumno` (
   PRIMARY KEY  (`EST_ALUMNO_ID`),
   KEY `fk_EST_ALUMNO_tr_estrategias1` (`ESTRATEGIA_ID`),
   KEY `fk_EST_ALUMNO_tr_materia_maestro_grupo_alumno1` (`MGMA_ID`),
-  CONSTRAINT `FK_tr_est_alumno1` FOREIGN KEY (`ESTRATEGIA_ID`) REFERENCES `tr_estrategias` (`ESTRATEGIA_ID`),
-  CONSTRAINT `FK_tr_est_alumno` FOREIGN KEY (`MGMA_ID`) REFERENCES `tr_materia_maestro_grupo_alumno` (`materia_maestro_grupo_alumno_id`)
+  CONSTRAINT `FK_tr_est_alumno` FOREIGN KEY (`MGMA_ID`) REFERENCES `tr_materia_maestro_grupo_alumno` (`materia_maestro_grupo_alumno_id`),
+  CONSTRAINT `FK_tr_est_alumno1` FOREIGN KEY (`ESTRATEGIA_ID`) REFERENCES `tr_estrategias` (`ESTRATEGIA_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tr_est_alumno` */
@@ -294,11 +294,11 @@ CREATE TABLE `tr_estra_mgm` (
   KEY `fk_estra_mgm_tr_materia_grupo_materia1` (`MATERIA_GRUPO_MAESTRO_ID`),
   CONSTRAINT `fk_estra_mgm_tr_estrategias1` FOREIGN KEY (`ESTRATEGIA_ID`) REFERENCES `tr_estrategias` (`ESTRATEGIA_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_estra_mgm_tr_materia_grupo_materia1` FOREIGN KEY (`MATERIA_GRUPO_MAESTRO_ID`) REFERENCES `tr_maestro_grupo_materia` (`MATERIA_GRUPO_MAESTRO_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tr_estra_mgm` */
 
-insert  into `tr_estra_mgm`(`estra_mgm_id`,`ESTRATEGIA_ID`,`MATERIA_GRUPO_MAESTRO_ID`) values (1,1,1),(2,2,3),(3,3,1),(4,4,2);
+insert  into `tr_estra_mgm`(`estra_mgm_id`,`ESTRATEGIA_ID`,`MATERIA_GRUPO_MAESTRO_ID`) values (1,1,1),(2,2,3),(3,3,1),(4,4,2),(5,15,1);
 
 /*Table structure for table `tr_estrategias` */
 
@@ -310,11 +310,11 @@ CREATE TABLE `tr_estrategias` (
   `MENSAJE` varchar(45) default NULL,
   `FECHA_CAMBIO` date default NULL,
   PRIMARY KEY  (`ESTRATEGIA_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tr_estrategias` */
 
-insert  into `tr_estrategias`(`ESTRATEGIA_ID`,`FECHA_INICIO_REGISTRO`,`MENSAJE`,`FECHA_CAMBIO`) values (1,'2010-11-14','Un Grupo Excelente','2010-11-14'),(2,'2010-11-14','Grupo masomenos','2010-11-14'),(3,'2010-11-14','Deben leer el libro tipicamente','2010-11-14'),(4,'2010-11-14','Deben hacer  los ejercicios de JAVA','2010-11-14'),(5,'2010-11-14','Desestrezate','2010-11-14'),(14,'2010-11-14','Pride','2010-11-14');
+insert  into `tr_estrategias`(`ESTRATEGIA_ID`,`FECHA_INICIO_REGISTRO`,`MENSAJE`,`FECHA_CAMBIO`) values (1,'2010-11-14','Un Grupo Excelente','2010-11-14'),(2,'2010-11-14','Grupo masomenos','2010-11-14'),(3,'2010-11-14','Deben leer el libro tipicamente','2010-11-14'),(4,'2010-11-14','Deben hacer  los ejercicios de JAVA','2010-11-14'),(5,'2010-11-14','Desestrezate','2010-11-14'),(14,'2010-11-14','Pride','2010-11-14'),(15,'2010-11-14','Lean el capitulo 5 para reforzar lo aprendido','2010-11-14');
 
 /*Table structure for table `tr_evaluacion_acumulativa` */
 
