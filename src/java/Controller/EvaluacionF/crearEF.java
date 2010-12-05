@@ -29,7 +29,7 @@ public class crearEF extends HttpServlet {
     private int tipoEvaluacion = 3;
     
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Obtenemos los IDs de la vista
         int idEvaluacion = Integer.parseInt(req.getParameter("IDEvaluacion"));
         int idAlumno = Integer.parseInt(req.getParameter("IDAlumno"));

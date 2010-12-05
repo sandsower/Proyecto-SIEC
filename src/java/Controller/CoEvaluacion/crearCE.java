@@ -29,7 +29,7 @@ public class crearCE extends HttpServlet {
     private int tipoEvaluacion = 2;
     
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Obtenemos ID de la competencia y del alumno seleccionado
         int id = Integer.parseInt(req.getParameter("IDEvaluacion"));
         int idAlumno = Integer.parseInt(req.getParameter("IDAlumno"));

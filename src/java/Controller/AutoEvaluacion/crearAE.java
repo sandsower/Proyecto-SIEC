@@ -29,7 +29,7 @@ public class crearAE extends HttpServlet {
     private int tipoEvaluacion = 1;
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Obtenemos ID de la competencia seleccionada
         int id = Integer.parseInt(req.getParameter("ID"));
         //Llenamos nuestra lista de la tabla CriterioCompetencias

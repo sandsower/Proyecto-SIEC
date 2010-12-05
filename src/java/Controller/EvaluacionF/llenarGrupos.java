@@ -27,7 +27,7 @@ public class llenarGrupos extends HttpServlet {
     private ObtenerConjunto obtc = new ObtenerConjunto();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Obtenemos ID del maestro
         //Obtenemos tambien el ID de la materia seleccionada
         int idMateria = Integer.parseInt(req.getParameter("IDMateria"));

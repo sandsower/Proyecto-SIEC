@@ -27,7 +27,7 @@ public class llenarMaterias extends HttpServlet {
     private ObtenerConjunto obtc = new ObtenerConjunto();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Inicializamos metodos de obtencion
         //Para esto obtenemos el usuario por medio de la sesion
         HttpSession objSesion = req.getSession(true);

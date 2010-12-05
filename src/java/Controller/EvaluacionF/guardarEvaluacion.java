@@ -29,7 +29,7 @@ public class guardarEvaluacion extends HttpServlet {
     private ObtenerConjunto obtc = new ObtenerConjunto();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Obtenemos los datos mandados desde la vista para guardar la evaluacion
         int idEvaluacion = Integer.parseInt(req.getParameter("idEvaluacion"));
         int nivel = Integer.parseInt(req.getParameter("seleccionNivel"));

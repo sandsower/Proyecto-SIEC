@@ -14,9 +14,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>A winner is you!</h1>
+        <h1>¡Muchas gracias!</h1>
         <br>
         <br>
-        <h2>You haz won an Internet!</h2>
+        <h2>Gracias por hacer la evaluación correspondiente.</h2>
     </body>
 </html>
