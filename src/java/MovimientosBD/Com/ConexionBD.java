@@ -13,6 +13,7 @@ import java.sql.*;
 public class ConexionBD {
 
     public ConexionBD(){
+        //TODO: Cambiar contraseña
         this.conectarBD("root", "55785018");
     }
 
@@ -21,7 +22,7 @@ public class ConexionBD {
     public final void conectarBD(String username, String password){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            String connectionUrl = "jdbc:mysql://localhost/siec?user="+username+"&password="+"55785018";
+            String connectionUrl = "jdbc:mysql://localhost/siec?user="+username+"&password="+password;
             Connection con = DriverManager.getConnection(connectionUrl);
             this.setConnect(con);
         }

@@ -26,6 +26,7 @@ public class EliminarCampos {
 
     public EliminarCampos() {
         ConexionBD nuevaConexion = new ConexionBD();
+        //TODO: Cambiar contraseña
         nuevaConexion.conectarBD("root", "55785018");
         this.setCon(nuevaConexion.getCon());
     }
