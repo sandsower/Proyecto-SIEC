@@ -5,14 +5,6 @@
             e.preventDefault();
             $("#mitte").load(this.href);
         });
-        $("#formItem").submit(function(e){
-            e.preventDefault();
-            //alert(this.href);
-            $.get(this.action, $("#formItem").serialize(), function(data){
-                $("#mitte").html(data);
-            });
-            //$("#mitte").load(this.action);
-        });
     });
 </script>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -62,7 +54,7 @@
         <ul>
             <c:forEach items="${CriterioCompetencia}" var="CriterioCompetencia">
                 <li>${CriterioCompetencia.idCriterio}&nbsp;
-                    <a href="competencias/eliminarCriterioCompetencia?idCriterio=${CriterioCompetencia.idCriterio}&idCompetencia=${idCompetencia}&nombre=${nombre}" class="itemLink"><img src="images/delete.png"/></a>
+                    <a href="competencias/eliminarCriterioCompetencia?idCriterio=${CriterioCompetencia.idCriterio}&idCompetencia=${idCompetencia}&nombre=${nombre}" class="linkItem"><img src="images/delete.png"/></a>
                     </c:forEach>
         </ul>
     </div>

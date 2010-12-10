@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EstrategiasGrupales_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="grupo" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Proyecto-SIEC\\web\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+a.GRUPO_ID,
+d.DES_MATERIAS,
+d.materias_id,
+f.des_departamento,
+e.materia_grupo_maestro_id
+
+FROM
+tr_grupo_carrera AS a,
+tc_grupo AS b,
+tc_carrera AS c,
+tc_materias AS d,
+tr_maestro_grupo_materia AS e,
+tc_departamentos AS f
+
+WHERE
+f.departamento_id = d.departamento_id
+AND
+a.GRUPO_ID=e.GRUPO_ID
+AND
+a.GRUPO_ID=b.GRUPO_ID
+AND
+a.CARRERA_ID=c.CARRERA_ID
+AND
+a.GRUPO_ID=$P{grupo}
+AND
+e.MATERIAS_ID=d.MATERIAS_ID]]>
+	</queryString>
+	<field name="GRUPO_ID" class="java.lang.Integer"/>
+	<field name="DES_MATERIAS" class="java.lang.String"/>
+	<field name="materias_id" class="java.lang.Integer"/>
+	<field name="des_departamento" class="java.lang.String"/>
+	<field name="materia_grupo_maestro_id" class="java.lang.Integer"/>
+	<group name="materiagrupo">
+		<groupExpression><![CDATA[$F{materias_id}]]></groupExpression>
+		<groupHeader>
+			<band height="76">
+				<staticText>
+					<reportElement x="32" y="6" width="100" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Clave Materia:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="32" y="29" width="100" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Descripcion:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="133" y="29" width="343" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{DES_MATERIAS}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="133" y="52" width="343" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{des_departamento}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="133" y="6" width="343" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{materias_id}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="32" y="52" width="100" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Departamento:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="2" width="555" height="16"/>
+				<subreportParameter name="mgm">
+					<subreportParameterExpression><![CDATA[$F{materia_grupo_maestro_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "EstrategiasGrupales_subreport1_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Estrategias_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Proyecto-SIEC\\web\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idGrupo" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     mgm.materias_id,m.des_materias,d.des_departamento
+FROM
+     tr_maestro_grupo_materia mgm,tc_materias m,tc_departamentos d
+WHERE
+     mgm.MATERIAS_ID=m.MATERIAS_ID
+AND
+     m.DEPARTAMENTO_ID=d.DEPARTAMENTO_ID
+AND
+     mgm.grupo_id=$P{idGrupo}
+order by
+     mgm.materias_id]]>
+	</queryString>
+	<field name="materias_id" class="java.lang.Integer"/>
+	<field name="des_materias" class="java.lang.String"/>
+	<field name="des_departamento" class="java.lang.String"/>
+	<group name="alumnos">
+		<groupExpression><![CDATA[$F{materias_id}]]></groupExpression>
+		<groupHeader>
+			<band height="72">
+				<staticText>
+					<reportElement x="26" y="27" width="54" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Materia:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="126" y="7" width="100" height="20"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{materias_id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="126" y="27" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{des_materias}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="26" y="49" width="89" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Departamento:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="126" y="49" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{des_departamento}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="26" y="7" width="100" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Clave de Materia:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<subreport isUsingCache="false">
+				<reportElement x="0" y="17" width="544" height="10"/>
+				<subreportParameter name="idMateria">
+					<subreportParameterExpression><![CDATA[$F{materias_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "Estrategias_subreport1_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

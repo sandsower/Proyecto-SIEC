@@ -1,5 +1,18 @@
+<script type="text/javascript" >
+    $("document").ready(function(){
+
+        $("#formItem").submit(function(e){
+            e.preventDefault();
+            //alert(this.href);
+            $.post(this.action, $("#formItem").serialize(), function(data){
+                $("#mitte").html(data);
+            });
+            //$("#mitte").load(this.action);
+        });
+    });
+</script>
 <h1>Modificar Competencia</h1>
-<form  method="post" action="competencias/modificarCompetencia">
+<form  method="post" action="competencias/modificarCompetencia" id='formItem'>
     <table>
         <input type="hidden" name="idCompetencia" value="${Competencia.idCompetencia}"/>
         <tr>

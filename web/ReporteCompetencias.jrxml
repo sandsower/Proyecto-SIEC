@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteCompetencias" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Reporte\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="query" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[$P!{query}]]>
+	</queryString>
+	<field name="Clave" class="java.lang.Integer"/>
+	<field name="Competencia" class="java.lang.String"/>
+	<field name="Descripcion" class="java.lang.String"/>
+	<field name="Categoria" class="java.lang.String"/>
+	<group name="Categoria">
+		<groupExpression><![CDATA[$F{Clave}]]></groupExpression>
+		<groupHeader>
+			<band height="133">
+				<rectangle>
+					<reportElement x="1" y="1" width="572" height="130" backcolor="#CCCCCC"/>
+				</rectangle>
+				<textField>
+					<reportElement x="153" y="57" width="390" height="20"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Descripcion}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="66" y="77" width="79" height="20"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="14" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Categoría:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="45" y="57" width="100" height="20"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Descripción:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="11" y="18" width="134" height="20"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Clave Competencia:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="153" y="77" width="117" height="20"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Categoria}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="153" y="18" width="390" height="20"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Clave}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="153" y="38" width="390" height="20"/>
+					<textElement>
+						<font fontName="Arial" size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Competencia}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="45" y="38" width="100" height="20"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Competencia:]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement x="2" y="1" width="572" height="4" backcolor="#000066"/>
+				</rectangle>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="151" splitType="Stretch">
+			<staticText>
+				<reportElement x="7" y="18" width="544" height="30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Universidad Politécnica de Aguascalientes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="58" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sistema Integral de Evaluación por Competencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="86" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de Competencias por Criterios]]></text>
+			</staticText>
+			<image>
+				<reportElement x="462" y="18" width="110" height="68"/>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\Reporte\\siec.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="0" y="0" width="108" height="106"/>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\Reporte\\upa.gif"]]></imageExpression>
+			</image>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="454" y="126" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="82" splitType="Stretch">
+			<subreport>
+				<reportElement x="11" y="13" width="200" height="54"/>
+				<subreportParameter name="parametro">
+					<subreportParameterExpression><![CDATA[$F{Clave}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "ReporteCompetencias_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="440" y="13" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="520" y="13" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

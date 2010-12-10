@@ -1,8 +1,20 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript" >
+    $("document").ready(function(){
 
+        $("#formItem").submit(function(e){
+            e.preventDefault();
+            //alert(this.href);
+            $.post(this.action, $("#formItem").serialize(), function(data){
+                $("#mitte").html(data);
+            });
+            //$("#mitte").load(this.action);
+        });
+    });
+</script>
 <h1>Crear Competencia</h1>
-<form  method="post" action="competencias/crearCompetencia">
+<form  method="post" action="competencias/crearCompetencia" id="formItem">
     <table>
         <tr>
             <td>Nombre:</td>

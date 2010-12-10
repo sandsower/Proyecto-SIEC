@@ -1,6 +1,18 @@
+<script type="text/javascript" >
+    $("document").ready(function(){
 
+        $("#formItem").submit(function(e){
+            e.preventDefault();
+            //alert(this.href);
+            $.post(this.action, $("#formItem").serialize(), function(data){
+                $("#mitte").html(data);
+            });
+            //$("#mitte").load(this.action);
+        });
+    });
+</script>
 <h1>Crear Criterio</h1>
-<form  method="post" action="competencias/criterios/crearCriterio">
+<form  method="post" action="competencias/criterios/crearCriterio" id="formItem">
     <table>
         <tr>
             <td>Nombre:</td>

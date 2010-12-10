@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Estrategias_subreport1_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idMateria" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Proyecto-SIEC\\web\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+a.MATRICULA,u.NOMBRES,u.APELLIDO_PATERNO,u.APELLIDO_MATERNO,mmga.materia_maestro_grupo_alumno_id
+FROM
+tr_alumnos a,tr_usuario u,tr_materia_maestro_grupo_alumno mmga,tr_maestro_grupo_materia mgm,tr_grupo_alumno ga
+WHERE
+mmga.MATERIA_GRUPO_MAESTRO_ID=mgm.MATERIA_GRUPO_MAESTRO_ID
+AND
+mgm.MATERIAS_ID=$P{idMateria}
+AND
+a.USUARIO_ID=u.USUARIO_ID
+AND
+mmga.tr_grupo_alumno_GRUPO_ALUMNO_ID=ga.GRUPO_ALUMNO_ID
+AND
+ga.ALUMNOS_ID=a.ALUMNOS_ID
+order by
+mmga.materia_maestro_grupo_alumno_id]]>
+	</queryString>
+	<field name="MATRICULA" class="java.lang.String"/>
+	<field name="NOMBRES" class="java.lang.String"/>
+	<field name="APELLIDO_PATERNO" class="java.lang.String"/>
+	<field name="APELLIDO_MATERNO" class="java.lang.String"/>
+	<field name="materia_maestro_grupo_alumno_id" class="java.lang.Integer"/>
+	<group name="estrategia">
+		<groupExpression><![CDATA[$F{materia_maestro_grupo_alumno_id}]]></groupExpression>
+		<groupHeader>
+			<band height="76">
+				<staticText>
+					<reportElement x="37" y="28" width="64" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nombre:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="37" y="50" width="64" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Apellidos:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="102" y="5" width="100" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{MATRICULA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="102" y="28" width="186" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMBRES}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="102" y="50" width="143" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{APELLIDO_PATERNO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="245" y="50" width="122" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{APELLIDO_MATERNO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="37" y="5" width="64" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Matricula:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<subreport>
+				<reportElement x="8" y="13" width="535" height="12"/>
+				<subreportParameter name="Idmgma">
+					<subreportParameterExpression><![CDATA[$F{materia_maestro_grupo_alumno_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "Estrategias_subreport1_subreport1_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

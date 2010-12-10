@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteCompetencias_subreport1" language="groovy" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="parametro" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+ cc.criterio_id,
+ des_criterio,
+ descripcion,
+ ponderacion
+FROM
+tr_criterio_competencia cc,
+tc_criterios c
+WHERE cc.competencia_id=$P{parametro}
+AND  c.criterio_id = cc.criterio_id
+ORDER BY cc.criterio_id]]>
+	</queryString>
+	<field name="criterio_id" class="java.lang.Integer"/>
+	<field name="des_criterio" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="ponderacion" class="java.lang.Integer"/>
+	<variable name="total" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{criterio_id}+1]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="146" y="86" width="350" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{ponderacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="46" y="66" width="100" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[Descripción: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="46" y="27" width="100" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[Clave Criterio: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="146" y="67" width="350" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="46" y="47" width="100" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[Competencia: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="146" y="27" width="350" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{criterio_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="46" y="86" width="100" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="14" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Ponderación: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="146" y="47" width="350" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{des_criterio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="482" y="8" width="74" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="415" y="8" width="62" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
