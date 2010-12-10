@@ -27,8 +27,7 @@ public class InsertarNuevo {
 
     public InsertarNuevo() {
         ConexionBD nuevaConexion = new ConexionBD();
-        //TODO: Cambiar contraseña
-        nuevaConexion.conectarBD("root", "55785018");
+        nuevaConexion.conectarBD("root", "13450811");
         this.setCon(nuevaConexion.getCon());
     }
 

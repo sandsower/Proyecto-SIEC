@@ -13,8 +13,7 @@ import java.sql.*;
 public class ConexionBD {
 
     public ConexionBD(){
-        //TODO: Cambiar contraseña
-        this.conectarBD("root", "55785018");
+        this.conectarBD("root", "13450811");
     }
 
     private Connection connect = null;

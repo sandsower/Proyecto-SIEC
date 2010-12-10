@@ -20,10 +20,11 @@ public class ObtenerIndividuo {
     public ObtenerIndividuo() {
         ConexionBD nuevaConexion = new ConexionBD();
 <<<<<<< HEAD
-        nuevaConexion.conectarBD("root", "");
-=======
+        //TODO: Cambiar contraseña
         nuevaConexion.conectarBD("root", "13450811");
->>>>>>> upstream/master
+=======
+        nuevaConexion.conectarBD("root","");
+>>>>>>> f5222e28722a80fad4e972500d6a2a4e95c0bf10
         this.setCon(nuevaConexion.getCon());
     }
 

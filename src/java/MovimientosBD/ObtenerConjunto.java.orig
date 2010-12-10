@@ -20,10 +20,11 @@ public class ObtenerConjunto {
     public ObtenerConjunto() {
          ConexionBD nuevaConexion = new ConexionBD();
 <<<<<<< HEAD
-        nuevaConexion.conectarBD("root", "");
-=======
+         //TODO: Cambiar contraseña
         nuevaConexion.conectarBD("root", "55785018");
->>>>>>> upstream/master
+=======
+        nuevaConexion.conectarBD("root", "");
+>>>>>>> f5222e28722a80fad4e972500d6a2a4e95c0bf10
         this.setCon(nuevaConexion.getCon());
     }
 
@@ -233,43 +234,6 @@ public class ObtenerConjunto {
         }
         return null;
     }
-
-    public ArrayList obtenerMateriasbyIDMaestro(int id_maestro) {
-        try {
-            Statement stmt = null;
-            ResultSet rs = null;
-            ArrayList mat = new ArrayList();
-            //SQL query command
-            String SQL = "SELECT  DISTINCT  mat.* FROM tc_materias AS mat, tr_maestros AS m, tr_maestro_grupo_materia AS gmm WHERE gmm.MAESTRO_ID = m.MAESTRO_ID AND mat.MATERIAS_ID = gmm.MATERIAS_ID AND gmm.MAESTRO_ID = " + id_maestro;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while (rs.next()) {
-                mat.add(new TcMaterias(rs.getInt("Materias_ID"), rs.getString("Des_Materias"), rs.getInt("Departamento_ID")));
-            }
-            return mat;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: " + ex.toString());
-        }
-        return null;
-    }
-        public ArrayList obtenerMateriasbyIDMaestro(int id_maestro){
-        try {
-            Statement stmt = null;
-            ResultSet rs = null;
-            ArrayList mat = new ArrayList();
-            //SQL query command
-            String SQL = "SELECT  DISTINCT  mat.* FROM tc_materias AS mat, tr_maestros AS m, tr_maestro_grupo_materia AS gmm WHERE gmm.MAESTRO_ID = m.MAESTRO_ID AND mat.MATERIAS_ID = gmm.MATERIAS_ID AND gmm.MAESTRO_ID = "+id_maestro;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                mat.add(new TcMaterias(rs.getInt("Materias_ID"), rs.getString("Des_Materias"), rs.getInt("Departamento_ID")));
-            }
-            return mat;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
    public ArrayList obtenerMateriasbyIDGrupo(int id_grupo){
         try {
             Statement stmt = null;
@@ -289,6 +253,24 @@ public class ObtenerConjunto {
         return null;
     }
   
+public ArrayList obtenerMateriasbyIDMaestro(int id_maestro){
+        try {
+            Statement stmt = null;
+            ResultSet rs = null;
+            ArrayList mat = new ArrayList();
+            //SQL query command
+            String SQL = "SELECT  DISTINCT  mat.* FROM tc_materias AS mat, tr_maestros AS m, tr_maestro_grupo_materia AS gmm WHERE gmm.MAESTRO_ID = m.MAESTRO_ID AND mat.MATERIAS_ID = gmm.MATERIAS_ID AND gmm.MAESTRO_ID = "+id_maestro;
+            stmt = con.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                mat.add(new TcMaterias(rs.getInt("Materias_ID"), rs.getString("Des_Materias"), rs.getInt("Departamento_ID")));
+            }
+            return mat;
+        } catch (SQLException ex) {
+            System.out.println("SQL Exception: "+ ex.toString());
+        }
+        return null;
+    }
 
     public ArrayList obtenerReportes() {
         try {
@@ -347,12 +329,7 @@ public class ObtenerConjunto {
         }
         return null;
     }
-<<<<<<< HEAD
-        public ArrayList obtenerAlumnosbyIdGrupoIdMateria (int idGrupo, int idMateria){
-=======
-
-    public ArrayList obtenerAlumnosbyIdGrupoIdMateria(int idGrupo, int idMateria) {
->>>>>>> upstream/master
+     public ArrayList obtenerAlumnosbyIdGrupoIdMateria (int idGrupo, int idMateria){
         try {
             Statement stmt = null;
             ResultSet rs = null;
@@ -382,31 +359,18 @@ public class ObtenerConjunto {
             String SQL = q.toString();
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
-<<<<<<< HEAD
             while(rs.next()){
-=======
-            while (rs.next()) {
->>>>>>> upstream/master
                 TrAlumnos alum = new TrAlumnos(rs.getInt("Alumnos_ID"), rs.getString("Matricula"), rs.getInt("Usuario_ID"), rs.getInt("Carrera_ID"));
                 alm.add(alum);
             }
             return alm;
         } catch (SQLException ex) {
-<<<<<<< HEAD
             System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
-   
-    public ArrayList obtenerComentarioDPAEstrategias (){
-=======
-            System.out.println("SQL Exception: " + ex.toString());
         }
         return null;
     }
 
     public ArrayList obtenerComentarioDPAEstrategias() {
->>>>>>> upstream/master
         try {
             Statement stmt = null;
             ResultSet rs = null;
@@ -576,26 +540,13 @@ public class ObtenerConjunto {
         }
         return null;
     }
-<<<<<<< HEAD
-    public ArrayList obtenerMaestrosMateriasGruposbyMaestro (int id){
-=======
 
     public ArrayList obtenerMaestrosMateriasGruposbyMaestro(int id) {
->>>>>>> upstream/master
         try {
             Statement stmt = null;
             ResultSet rs = null;
             ArrayList mmg = new ArrayList();
             //SQL query command
-<<<<<<< HEAD
-            String SQL = "SELECT * FROM Tr_Maestro_Grupo_Materia where MAESTRO_ID = ".toLowerCase()+id;
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            
-            while(rs.next()){
-                mmg.add(new TrMaestroMateriaGrupo(rs.getInt("MATERIA_GRUPO_MAESTRO_ID"),
-                        rs.getInt("Grupo_ID"), rs.getInt("Maestro_ID"),rs.getInt("Materias_ID")));
-=======
             String SQL = "SELECT * FROM Tr_Maestro_Grupo_Materia where MAESTRO_ID = ".toLowerCase() + id;
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
@@ -603,7 +554,6 @@ public class ObtenerConjunto {
             while (rs.next()) {
                 mmg.add(new TrMaestroMateriaGrupo(rs.getInt("MATERIA_GRUPO_MAESTRO_ID"),
                         rs.getInt("Grupo_ID"), rs.getInt("Maestro_ID"), rs.getInt("Materias_ID")));
->>>>>>> upstream/master
             }
             return mmg;
         } catch (SQLException ex) {
@@ -612,21 +562,13 @@ public class ObtenerConjunto {
         return null;
     }
 
-<<<<<<< HEAD
-    public ArrayList obtenerMaestrosMateriasGruposbyMateria (int id){
-=======
     public ArrayList obtenerMaestrosMateriasGruposbyMateria(int id) {
->>>>>>> upstream/master
         try {
             Statement stmt = null;
             ResultSet rs = null;
             ArrayList mmg = new ArrayList();
             //SQL query command
-<<<<<<< HEAD
-            String SQL = "SELECT * FROM Tr_Maestro_Materia_Grupo where Materias_ID=".toLowerCase()+id;
-=======
             String SQL = "SELECT * FROM Tr_Maestro_Materia_Grupo where Materias_ID=".toLowerCase() + id;
->>>>>>> upstream/master
             stmt = con.createStatement();
             rs = stmt.executeQuery(SQL);
             while (rs.next()) {
@@ -639,13 +581,7 @@ public class ObtenerConjunto {
         return null;
     }
 
-<<<<<<< HEAD
-    
-
-    public ArrayList obtenerMaestrosMateriasGruposbyGrupoANDMaestro (int idGrupo, int idMaestro){
-=======
     public ArrayList obtenerMaestrosMateriasGruposbyGrupoANDMaestro(int idGrupo, int idMaestro) {
->>>>>>> upstream/master
         try {
             Statement stmt = null;
             ResultSet rs = null;
@@ -937,7 +873,8 @@ public class ObtenerConjunto {
         }
         return null;
     }
-       public ArrayList obtenerGruposByIDMateria (int idMateria){
+
+     public ArrayList obtenerGruposByIDMateria (int idMateria){
         String SQL;
          try {
             Statement stmt = null;
@@ -956,8 +893,6 @@ public class ObtenerConjunto {
         }
         return null;
     }
-
-
 
     public ArrayList obtenerGruposByIDCarreraIDMaestro(int idCarrera, int idMaestro) {
         String SQL;
@@ -979,25 +914,7 @@ public class ObtenerConjunto {
         return null;
     }
 
-    public ArrayList obtenerGruposByIDMateria(int idMateria) {
-        String SQL;
-        try {
-            Statement stmt = null;
-            ResultSet rs = null;
-            ArrayList grp = new ArrayList();
-            //SQL query command
-            SQL = String.format("SELECT g.*  FROM tc_grupo AS g, tr_maestro_grupo_materia AS gmm WHERE g.GRUPO_ID = gmm.GRUPO_ID AND gmm.MATERIAS_ID = %d", idMateria);
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while (rs.next()) {
-                grp.add(new TcGrupo(rs.getInt("GRUPO_ID"), rs.getString("DES_GRUPO"), rs.getInt("CARRERA_ID"), rs.getString("GRADO")));
-            }
-            return grp;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: " + ex.toString());
-        }
-        return null;
-    }
+    
 
     public ArrayList getMateriasByMaestroIDGrupoID(int idMaestro, int idGrupo) {
         String SQL;
@@ -1021,43 +938,7 @@ public class ObtenerConjunto {
     }
 //METODOS PARA OBTENER ESTRATEGIAS
 
-    public ArrayList obtenerEstrategiasGrupales(int idm, int idma, int idg) {
-        StringBuilder q = new StringBuilder();
-        try {
-            Statement stmt = null;
-            ResultSet rs = null;
-            ArrayList est = new ArrayList();
-            //SQL query command
-            q.append(" SELECT ");
-            q.append(" e.* ");
-            q.append(" FROM ");
-            q.append(" tr_estra_mgm AS egmm, ");
-            q.append(" tr_estrategias AS e, ");
-            q.append(" tr_maestro_grupo_materia AS gmm ");
-            q.append(" WHERE ");
-            q.append(" egmm.ESTRATEGIA_ID = e.ESTRATEGIA_ID AND ");
-            q.append(" egmm.MATERIA_GRUPO_MAESTRO_ID = gmm.MATERIA_GRUPO_MAESTRO_ID AND ");
-            q.append(" gmm.GRUPO_ID =  ");
-            q.append(idg);
-            q.append(" AND ");
-            q.append(" gmm.MATERIAS_ID =  ");
-            q.append(idm);
-            q.append(" AND ");
-            q.append(" gmm.MAESTRO_ID =  ");
-            q.append(idma);
-
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(q.toString());
-            while (rs.next()) {
-                est.add(new TrEstrategias(rs.getInt("ESTRATEGIA_ID"), rs.getString("FECHA_INICIO_REGISTRO"), rs.getString("MENSAJE"), rs.getString("FECHA_CAMBIO")));
-            }
-            return est;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: " + ex.toString());
-        }
-        return null;
-    }
-
+   
     public ArrayList obtenerEstrategiasAlumnos(int idm, int idma, int idg) {
         StringBuilder q = new StringBuilder();
         try {
@@ -1123,28 +1004,8 @@ public class ObtenerConjunto {
         }
         return null;
     }
-
-public ArrayList obtenerCompetenciasByCategoriasID(int idCategorias){
-        String SQL;
-         try {
-            Statement stmt = null;
-            ResultSet rs = null;
-            ArrayList cat = new ArrayList();
-            //SQL query command
-            SQL = String.format("SELECT * FROM tc_competencias WHERE categoria_ID = %d", idCategorias);
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(SQL);
-            while(rs.next()){
-                cat.add(new TcCompetencias(rs.getInt("competencia_ID"), rs.getString("des_Competencia"),  rs.getString("descripcion"),rs.getInt("categoria_ID")));
-            }
-            return cat;
-        } catch (SQLException ex) {
-            System.out.println("SQL Exception: "+ ex.toString());
-        }
-        return null;
-    }
 //METODOS PARA OBTENER ESTRATEGIAS
-       public ArrayList obtenerEstrategiasGrupales (int idm, int idma, int idg){
+      public ArrayList obtenerEstrategiasGrupales (int idm, int idma, int idg){
          StringBuilder q = new StringBuilder();
            try {
             Statement stmt = null;
@@ -1168,7 +1029,7 @@ public ArrayList obtenerCompetenciasByCategoriasID(int idCategorias){
             q.append(" AND ");
             q.append(" gmm.MAESTRO_ID =  ");
             q.append(idma);
-            
+
             stmt = con.createStatement();
             rs = stmt.executeQuery(q.toString());
             while(rs.next()){
@@ -1180,54 +1041,25 @@ public ArrayList obtenerCompetenciasByCategoriasID(int idCategorias){
         }
         return null;
     }
-
-         public ArrayList obtenerEstrategiasAlumnos (int idm, int idma, int idg){
-         StringBuilder q = new StringBuilder();
-           try {
+public ArrayList obtenerCompetenciasByCategoriasID(int idCategorias){
+        String SQL;
+         try {
             Statement stmt = null;
             ResultSet rs = null;
-            ArrayList aest= new ArrayList();
-            q.append(" SELECT ");
-            q.append(" ga.ALUMNOS_ID, ");
-            q.append(" e.ESTRATEGIA_ID, ");
-            q.append(" a.USUARIO_ID ");
-            q.append(" FROM ");
-            q.append(" tr_est_alumno AS ea, ");
-            q.append(" tr_alumnos AS a, ");
-            q.append(" tr_estrategias AS e, ");
-            q.append(" tr_maestro_grupo_materia AS gmm, ");
-            q.append(" tr_materia_maestro_grupo_alumno AS gmma, ");
-            q.append(" tr_grupo_alumno AS ga ");
-            q.append(" WHERE ");
-            q.append(" ea.ESTRATEGIA_ID = e.ESTRATEGIA_ID AND ");
-            q.append(" ea.MGMA_ID = gmma.materia_maestro_grupo_alumno_id AND ");
-            q.append(" gmma.MATERIA_GRUPO_MAESTRO_ID = gmm.MATERIA_GRUPO_MAESTRO_ID AND ");
-            q.append(" gmma.tr_grupo_alumno_GRUPO_ALUMNO_ID = ga.GRUPO_ALUMNO_ID AND ");
-            q.append(" gmm.GRUPO_ID = ga.GRUPO_ID AND ");
-            q.append(" ga.ALUMNOS_ID = a.ALUMNOS_ID AND ");
-            q.append(" gmm.MATERIAS_ID =  ");
-            q.append(idm);
-            q.append(" AND ");
-            q.append(" gmm.MAESTRO_ID =  ");
-            q.append(idma);
-            q.append(" AND ");
-            q.append(" gmm.GRUPO_ID =  ");
-            q.append(idg);
-
+            ArrayList cat = new ArrayList();
+            //SQL query command
+            SQL = String.format("SELECT * FROM tc_competencias WHERE categoria_ID = %d", idCategorias);
             stmt = con.createStatement();
-            rs = stmt.executeQuery(q.toString());
+            rs = stmt.executeQuery(SQL);
             while(rs.next()){
-                aest.add(new TrEstrategiaAlumno(rs.getInt("ESTRATEGIA_ID"),rs.getInt("ALUMNOS_ID"), rs.getInt("USUARIO_ID")));
+                cat.add(new TcCompetencias(rs.getInt("competencia_ID"), rs.getString("des_Competencia"),  rs.getString("descripcion"),rs.getInt("categoria_ID")));
             }
-            return aest;
+            return cat;
         } catch (SQLException ex) {
             System.out.println("SQL Exception: "+ ex.toString());
         }
         return null;
     }
-
-
-
 
 
 public ArrayList obtenerCompetenciasWithCriteriosByCategoriasID(int idCategorias){
@@ -1260,15 +1092,8 @@ public ArrayList obtenerCompetenciasWithCriteriosByCategoriasID(int idCategorias
 
     }
 
-<<<<<<< HEAD
-    public static void main(String []args)
-    {
-        ObtenerConjunto on = new ObtenerConjunto();
-        System.out.println(((ArrayList<TcMaterias>)on.obtenerMateriasbyIDGrupo(7)).get(0).getDes_Materias());
-=======
     public static void main(String[] args) {
         ObtenerConjunto on = new ObtenerConjunto();
         System.out.print(((ArrayList<TrEstrategiaAlumno>) on.obtenerEstrategiasAlumnos(4, 1, 4)).get(0).getUsuario_id());
->>>>>>> upstream/master
     }
 }

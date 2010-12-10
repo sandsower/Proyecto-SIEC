@@ -26,8 +26,7 @@ public class ActualizarCampos {
 
     public ActualizarCampos() {
         ConexionBD nuevaConexion = new ConexionBD();
-        //TODO: Cambiar contraseña
-        nuevaConexion.conectarBD("root", "55785018");
+        nuevaConexion.conectarBD("root", "13450811");
         this.setCon(nuevaConexion.getCon());
     }
 

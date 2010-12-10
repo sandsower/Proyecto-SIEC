@@ -14,10 +14,11 @@ public class ConexionBD {
 
     public ConexionBD(){
 <<<<<<< HEAD
-        this.conectarBD("root", "");
-=======
+        //TODO: Cambiar contraseña
         this.conectarBD("root", "55785018");
->>>>>>> upstream/master
+=======
+        this.conectarBD("root", "");
+>>>>>>> f5222e28722a80fad4e972500d6a2a4e95c0bf10
     }
 
     private Connection connect = null;
@@ -25,7 +26,7 @@ public class ConexionBD {
     public final void conectarBD(String username, String password){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            String connectionUrl = "jdbc:mysql://localhost/siec?user="+username+"&password="+"55785018";
+            String connectionUrl = "jdbc:mysql://localhost/siec?user="+username+"&password="+password;
             Connection con = DriverManager.getConnection(connectionUrl);
             this.setConnect(con);
         }

@@ -5,6 +5,14 @@
             e.preventDefault();
             $("#mitte").load(this.href);
         });
+        $("#formItem").submit(function(e){
+            e.preventDefault();
+            //alert(this.href);
+            $.get(this.action, $("#formItem").serialize(), function(data){
+                $("#mitte").html(data);
+            });
+            //$("#mitte").load(this.action);
+        });
     });
 </script>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -35,7 +43,7 @@
                 <td>${Criterios.nombre}</td>
                 <td>${Criterios.descripcion}</td>
                 <td>${Criterios.ponderacion}</td>
-                <td><a href="competencias/crearCriterioCompetencia?idCriterio=${Criterios.id}&idCompetencia=${idCompetencia}&nombre=${nombre}" class="itemLink"><img src="images/add.png" alt="Agregar Criterio"/></a></td>
+                <td><a href="competencias/crearCriterioCompetencia?idCriterio=${Criterios.id}&idCompetencia=${idCompetencia}&nombre=${nombre}" class="linkItem"><img src="images/add.png" alt="Agregar Criterio"/></a></td>
 
             </tr>
         </c:forEach>

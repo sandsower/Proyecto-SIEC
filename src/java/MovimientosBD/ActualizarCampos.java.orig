@@ -27,7 +27,8 @@ public class ActualizarCampos {
 
     public ActualizarCampos() {
         ConexionBD nuevaConexion = new ConexionBD();
-        nuevaConexion.conectarBD("root", "");
+        //TODO: Cambiar contraseña
+        nuevaConexion.conectarBD("root", "55785018");
         this.setCon(nuevaConexion.getCon());
     }
 
@@ -89,7 +90,7 @@ public class ActualizarCampos {
 
     public ActualizarCampos() {
         ConexionBD nuevaConexion = new ConexionBD();
-        nuevaConexion.conectarBD("root", "55785018");
+        nuevaConexion.conectarBD("root", "");
         this.setCon(nuevaConexion.getCon());
     }
 
@@ -122,4 +123,4 @@ public class ActualizarCampos {
     }
 
 }
->>>>>>> upstream/master
+>>>>>>> f5222e28722a80fad4e972500d6a2a4e95c0bf10

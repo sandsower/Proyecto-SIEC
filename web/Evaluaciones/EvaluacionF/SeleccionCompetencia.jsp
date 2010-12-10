@@ -9,7 +9,7 @@
         $("#formItem").submit(function(e){
             e.preventDefault();
             //alert(this.href);
-            $.post(this.action, $("#formItem").serialize(), function(data){
+            $.get(this.action, $("#formItem").serialize(), function(data){
                 $("#mitte").html(data);
             });
             //$("#mitte").load(this.action);
