@@ -542,7 +542,7 @@ CREATE TABLE `tr_usuario` (
 
 /*Data for the table `tr_usuario` */
 
-insert  into `tr_usuario`(`USUARIO_ID`,`NOMBRES`,`APELLIDO_PATERNO`,`APELLIDO_MATERNO`,`FECHA_NAC`,`USUARIO`,`PASSWORD`,`IMAGEN`,`PERFIL_ID`) values (1,'Esteban Alberto','Uscanga','Olea','10/10/10','darknavi','darknavi','dsadsa.jpg',2),(2,'Omar ','Rosales','Hernandez','10/10/1950','omar','omar','dasvas.jpg',1),(3,'Amanda Janeth ','Gonzalez','Macias','29/08/1990','haru','haru','haruhi.jpg',2),(4,'Oscar David','DÃ­az ','Avalos','16/07/1990','zero','zero','Fuminori.jpg',2),(5,'Luis Giovanni','Ramirez','Franco','10/10/1990','monin','monin','mello.png',2),(6,'Giannina Wendolyne','Cajero','Rodriguez','22/09/1989','wen','wen','moka2.jpg',2),(7,'Leonel','Kirby','Kirbioso','0/0/0','kirbi','kirbi','1284708944271.jpg',2);
+insert  into `tr_usuario`(`USUARIO_ID`,`NOMBRES`,`APELLIDO_PATERNO`,`APELLIDO_MATERNO`,`FECHA_NAC`,`USUARIO`,`PASSWORD`,`IMAGEN`,`PERFIL_ID`) values (1,'Esteban Alberto','Uscanga','Olea','10/10/10','darknavi','darknavi','dsadsa.jpg',2),(2,'Omar ','Rosales','Hernandez','10/10/1950','omar','omar','dasvas.jpg',1),(3,'Amanda Janeth ','Gonzalez','Macias','29/08/1990','haru','haru','haruhi.jpg',2),(4,'Oscar David','Díaz ','Avalos','16/07/1990','zero','zero','Fuminori.jpg',2),(5,'Luis Giovanni','Ramirez','Franco','10/10/1990','monin','monin','mello.png',2),(6,'Giannina Wendolyne','Cajero','Rodriguez','22/09/1989','wen','wen','moka2.jpg',2),(7,'Leonel','Kirby','Kirbioso','0/0/0','kirbi','kirbi','1284708944271.jpg',2);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

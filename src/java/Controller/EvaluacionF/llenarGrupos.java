@@ -15,6 +15,7 @@ import clases.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -26,15 +27,16 @@ public class llenarGrupos extends HttpServlet {
     private ObtenerConjunto obtc = new ObtenerConjunto();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Obtenemos ID del maestro
-        //TODO: Cambiar valor estatico por variable de sesion
         //Obtenemos tambien el ID de la materia seleccionada
-        int idMaestro = Integer.parseInt(req.getParameter("IDMaestro"));
         int idMateria = Integer.parseInt(req.getParameter("IDMateria"));
         //Inicializamos metodos de obtencion
         //Obtenemos el maestro con el ID del usuario
-        TrMaestros maestro = obti.obtenerMaestrobyUsuario_ID(idMaestro);
+        //Para esto obtenemos el usuario por medio de la sesion
+        HttpSession objSesion = req.getSession(true);
+        TrUsuario user = (TrUsuario) objSesion.getAttribute("usuario");
+        TrMaestros maestro = obti.obtenerMaestrobyUsuario_ID(user.getUsuario_ID());
         //Obtenemos lista de MaestroMateriasGrupos por el ID de grupo sacado del maestro
         ArrayList listaMMG = obtc.obtenerMaestrosMateriasGruposbyMaestro(maestro.getMaestro_ID());
         //Creamos un iterador para la listaMMG
@@ -56,7 +58,6 @@ public class llenarGrupos extends HttpServlet {
         }
         //Regresamos la lista de grupos a la vista SeleccionGrupo.jsp
         req.setAttribute("Grupos", listaGrupos);
-        req.setAttribute("IDMaestro", idMaestro);
         req.setAttribute("IDMateria", idMateria);
         RequestDispatcher view = req.getRequestDispatcher("SeleccionGrupo.jsp");
         view.forward(req, resp);

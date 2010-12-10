@@ -69,7 +69,7 @@ public class eliminarCriterio extends HttpServlet {
            view = request.getRequestDispatcher("criterios.jsp");
        }
        else{
-           view = request.getRequestDispatcher("../errores/errorCriterio.jsp");
+           view = request.getRequestDispatcher("../../errores/errorCriterio.jsp");
        }
         view.forward(request, response);
     }

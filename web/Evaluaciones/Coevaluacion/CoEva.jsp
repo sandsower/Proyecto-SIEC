@@ -18,7 +18,7 @@
 </script>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <h1>Favor de ingresar la calificacion deseada al criterio/competencia a evaluar:</h1>
-<form action="Evaluaciones/Coevaluacion/guardarEvaluacion.do" method="POST" class="formItem" id="formItem">
+<form action="Evaluaciones/Coevaluacion/guardarEvaluacion.do" method="GET" class="formItem" id="formItem">
     Criterio:${Criterio.des_Criterio}<br/>
     <select name="seleccionNivel">
         <c:forEach items="${Niveles}" var="nivel">

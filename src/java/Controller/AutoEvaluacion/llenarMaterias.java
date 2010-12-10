@@ -15,6 +15,7 @@ import clases.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -26,15 +27,16 @@ public class llenarMaterias extends HttpServlet {
     private ObtenerConjunto obtc = new ObtenerConjunto();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Obtenemos ID (asignado por default para pruebas)
-    int id = Integer.parseInt(req.getParameter("ID"));
         //Inicializamos metodos de obtencion
-        //Obtenemos el alumno con el ID del usuario
-        TrAlumnos alumno = obti.obtenerAlumnobyUsuarioID(id);
+        //Para esto obtenemos el usuario por medio de la sesion
+        HttpSession objSesion = req.getSession(true);
+        TrUsuario user = (TrUsuario) objSesion.getAttribute("usuario");
+        TrAlumnos al = obti.obtenerAlumnobyUsuarioID(user.getUsuario_ID());
         //Obtenemos lista de MaestroMateriasGrupos por el ID de grupo sacado del alumno
         //Actualizacion: Ahora se sacan la lista de materias basandonos en la lista de grupos en los que esta el alumno inscrito.
-        ArrayList listaMMG = this.llenarMateriasMaestroGrupo(alumno);
+        ArrayList listaMMG = this.llenarMateriasMaestroGrupo(al);
         //Creamos un iterador para la listaMMG
         Iterator it = listaMMG.iterator();
         //Creamos la lista donde se guardaran las materias

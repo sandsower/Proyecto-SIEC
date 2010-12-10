@@ -10,7 +10,7 @@
         $("#formItem").submit(function(e){
             e.preventDefault();
             //alert(this.href);
-            $.post(this.action, $("#formItem").serialize(), function(data){
+            $.get(this.action, $("#formItem").serialize(), function(data){
                 $("#mitte").html(data);
             });
             //$("#mitte").load(this.action);
@@ -18,7 +18,7 @@
     });
 </script>
 <h1>Por favor selecciona la materia a evaluar:</h1>
-<form action="Evaluaciones/Autoevaluacion/llenarCompetencias.do" method="POST" id="formItem">
+<form action="Evaluaciones/Autoevaluacion/llenarCompetencias.do" method="GET" id="formItem">
     <select name="ID">
         <c:forEach items="${Materias}" var="materia">
             <option value="${materia.materias_ID}">${materia.des_Materias}</option>

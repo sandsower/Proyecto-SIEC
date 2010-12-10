@@ -10,7 +10,7 @@
         $("#formItem").submit(function(e){
             e.preventDefault();
             //alert(this.href);
-            $.post(this.action, $("#formItem").serialize(), function(data){
+            $.get(this.action, $("#formItem").serialize(), function(data){
                 $("#mitte").html(data);
             });
             //$("#mitte").load(this.action);
@@ -18,7 +18,7 @@
     });
 </script>
 <h1>Favor de seleccionar la competencia a evaluar:</h1>
-<form action="Evaluaciones/Autoevaluacion/crearAE.do" method="POST" id="formItem">
+<form action="Evaluaciones/Autoevaluacion/crearAE.do" method="GET" id="formItem">
     <select name="ID">
         <c:forEach items="${Competencias}" var="competencia">
             <option value="${competencia.competencia_ID}">${competencia.des_Competencia}</option>

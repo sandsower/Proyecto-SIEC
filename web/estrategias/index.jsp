@@ -130,7 +130,7 @@
         <div class="cuadro cuadromarg">
 	<div class="theader">Búsqueda por Asignatura - Grupo</div>
 	<div class="cuadcont">
-            <form name="form1" class="form" action="alumnoserv.do" method="post">
+            <form name="form1" class="form" action="estrategias/alumnoserv.do" method="post">
                 <div class="select">
                     <label>Seleccione la Carrera</label>
                     <select id="carreras" name="carrera" onchange="change()">
@@ -164,7 +164,5 @@
            </form>
 	</div>
     </div>
-            
-			 </div><!-- Contenido -->
 </body>
 </html>

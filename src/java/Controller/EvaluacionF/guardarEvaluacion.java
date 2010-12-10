@@ -29,13 +29,13 @@ public class guardarEvaluacion extends HttpServlet {
     private ObtenerConjunto obtc = new ObtenerConjunto();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Obtenemos los datos mandados desde la vista para guardar la evaluacion
         int idEvaluacion = Integer.parseInt(req.getParameter("idEvaluacion"));
         int nivel = Integer.parseInt(req.getParameter("seleccionNivel"));
         TrEvaluacionParcial evaluacion = obti.obtenerEvaluacionParcial(idEvaluacion);
         //Instanciamos un nuevo objeto para actualizar los datos
-        TrEvaluacionParcial nuevaEvaluacion = new TrEvaluacionParcial(idEvaluacion, 0, 1, nivel, evaluacion.getTipo_evaluacion_ID(), evaluacion.getMaestro_materia_grupo_sesion_ID(), evaluacion.getAlumnos_ID());
+        TrEvaluacionParcial nuevaEvaluacion = new TrEvaluacionParcial(idEvaluacion, 1, 1, nivel, evaluacion.getTipo_evaluacion_ID(), evaluacion.getMaestro_materia_grupo_sesion_ID(), evaluacion.getAlumnos_ID());
         //Actualizamos los valores en nuestra base de datos
         ActualizarCampos act = new ActualizarCampos();
         RequestDispatcher view = null;

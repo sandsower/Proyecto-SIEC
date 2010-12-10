@@ -42,5 +42,4 @@ public class TrEstrategiaAlumno {
     public void setUsuario_id(int usuario_id) {
         this.usuario_id = usuario_id;
     }
-
 }

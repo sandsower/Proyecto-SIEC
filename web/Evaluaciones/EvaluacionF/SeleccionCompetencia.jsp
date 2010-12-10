@@ -18,7 +18,7 @@
 </script>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <h1>Favor de seleccionar la competencia y el alumno a evaluar:</h1>
-<form action="Evaluaciones/EvaluacionF/crearEF.do" method="POST" class="formItem" id="formItem">
+<form action="Evaluaciones/EvaluacionF/crearEF.do" method="GET" class="formItem" id="formItem">
     <select name="IDEvaluacion">
         <c:forEach items="${Competencias}" var="competencia">
             <option value="${competencia.competencia_ID}">${competencia.des_Competencia}</option>
@@ -29,7 +29,6 @@
             <option value="${alumno.alumnos_ID}">${alumno.matricula}</option>
         </c:forEach>
     </select>
-    <input type="hidden" name="IDMaestro" value="${IDMaestro}" />
     <input type="hidden" name="IDMateria" value="${IDMateria}"/>
     <input type="hidden" name="IDGrupo" value="${IDGrupo}"/>
     <input type="image" src="images/botones/siguiente.gif"/>

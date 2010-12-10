@@ -1,5 +1,13 @@
-Proyecto SIEC
+<h1>Proyecto SIEC</h1>
+=============
 
-Modulos integrados:
-- Estrategias
+<h2>Modulos integrados:</h2>
+-------------------
+- Estrategias (incompleto , falta integracion ajax)
 - Login
+- Evaluaciones (3/4)
+- Competencias
+- Presesiones
+
+Direccion para descargar la documentacion:
+http://www.inkdev.com/Documentacion/DocSIEC.doc

@@ -16,6 +16,7 @@ import MovimientosBD.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,12 +29,14 @@ public class llenarCompetencias extends HttpServlet {
     private ObtenerConjunto obtc = new ObtenerConjunto();
    
      @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Obtenemos ID de la materia seleccionada
         int id = Integer.parseInt(req.getParameter("ID"));
         //Obtenemos el alumno por el ID de usuario
-        //TODO: Cambiar el valor estatico por la variable de sesion
-        TrAlumnos al = obti.obtenerAlumnobyUsuarioID(7);
+        //Para esto obtenemos el usuario por medio de la sesion
+        HttpSession objSesion = req.getSession(true);
+        TrUsuario user = (TrUsuario) objSesion.getAttribute("usuario");
+        TrAlumnos al = obti.obtenerAlumnobyUsuarioID(user.getUsuario_ID());
         //Obtenemos la materia con el id
         TcMaterias mat = obti.obtenerMateria(id);
         //Llenamos nuestra lista de la tabla MaestroMateriaGrupo

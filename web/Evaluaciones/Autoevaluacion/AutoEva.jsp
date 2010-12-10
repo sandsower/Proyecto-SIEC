@@ -11,7 +11,7 @@
         $("#formItem").submit(function(e){
             e.preventDefault();
             //alert(this.href);
-            $.post(this.action, $("#formItem").serialize(), function(data){
+            $.get(this.action, $("#formItem").serialize(), function(data){
                 $("#mitte").html(data);
             });
             //$("#mitte").load(this.action);
@@ -19,7 +19,7 @@
     });
 </script>
 <h1>Favor de ingresar la calificacion deseada al criterio/competencia a evaluar:</h1>
-<form action="Evaluaciones/Autoevaluacion/guardarEvaluacion.do" method="POST" id="formItem">
+<form action="Evaluaciones/Autoevaluacion/guardarEvaluacion.do" method="GET" id="formItem">
     Criterio:${Criterio.des_Criterio}<br/>
     <select name="seleccionNivel">
         <c:forEach items="${Niveles}" var="nivel">

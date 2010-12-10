@@ -38,7 +38,7 @@
     ObtenerIndividuo obin = new ObtenerIndividuo();
     ArrayList cg = new ArrayList();
     try{
-        int idm = obin.obtenerMaestroByUsuarioID(usuario.getUsuario_ID()).getMaestro_ID();
+        int idm = obin.obtenerMaestrobyUsuario_ID(usuario.getUsuario_ID()).getMaestro_ID();
         cg = obco.getCarrerasGruposByIdMaestro(idm);
     }catch(NullPointerException e){
         out.print("no hay grupos disponibles");
