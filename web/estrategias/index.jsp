@@ -115,47 +115,6 @@
 
 </head>
 <body>
-<div id="top"><a name="top"></a></div>
-
-<div id="wrapper">
-   <div id="header">
-
-       <div id="desktopTitlebarWrapper">
-			<div id="desktopTitlebar">
-				<h1 class="hidden">SIEC</h1>
-				<div class="fr topbar">
-					<ul>
-						<li><a href="../logout.jsp">Desconectarse</a></li>
-                                                <li>Bienvenido <span class="nameuser"><%= usuario.getNombres() + " " + usuario.getApellidoPat() %></span></li>
-					</ul>
-				</div>
-			</div>
-           <div id="mprincipal">
-              <ul>
-		<c:forEach items="${per}" var="menu">
-                        <li><a class="${menu.img}" href="../${menu.url}">${menu.menu}</a></li>
-                </c:forEach>
-             </ul>
-           </div>
-           <div id="mtopctrl">
-              <ul>
-                  <li><a id="btnhidecols" class="btnhidecolsnp" href="#">Ocultar Columnas</a></li>
-             </ul>
-           </div>
-	</div>
-   </div>
-
-    <div id="menul"><!-- Menu izquierdo -->
-    <div class="cuadro">
-	<div class="theader">Navegación</div>
-	<div class="cuadcont">
-            <ul>
-                <li><a href="../systemIndex.jsp">Inicio de Sistema</a></li>
-            </ul>
-	</div>
-    </div>
-   </div><!-- Menu izquierdo -->
- <div id="mitte"><!-- Contenido --> 
         <h1>Registro de Estrategias</h1>
         <p>Las estrategias son asdf...que se son asignadas de manera individual o grupal...Seleccione primero la materia, y posteriormente el grupo para asignar dicha estrategia.</p>
 
@@ -207,23 +166,5 @@
     </div>
             
 			 </div><!-- Contenido -->
-   <div id="menur"><!-- Menu derecho -->
-   <div class="cuadro">
-	<div class="theader">Cuadro 2</div>
-	<div class="cuadcont">
-            <ul>
-		<li>Lista 1</li>
-                <li>Lista 2</li>
-                
-            </ul>
-	</div>
-    </div>
-   </div><!-- Menu derecho -->
-   <div id="footerbox"></div>
-</div>
-<div id="footer"><!-- Pie de página -->
-    <hr>
-    <p>&copy; 2010 <a href="#">ISEI UPA</a> -  <a href="#">SIEC</a></p>
-</div><!-- Pie de página -->
 </body>
 </html>
