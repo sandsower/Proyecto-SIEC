@@ -21,7 +21,7 @@ public class AlumnoServ extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException
    {
-       
+
         HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
         int idm = Integer.parseInt(request.getParameter("materias"));
@@ -31,11 +31,11 @@ public class AlumnoServ extends HttpServlet {
 
         ObtenerConjunto conj = new  ObtenerConjunto();
         ArrayList<TrAlumnos> al= conj.obtenerAlumnosbyIdGrupoIdMateria(idg, idm);
-        
+
         request.setAttribute("alumnos", al);
         RequestDispatcher view = request.getRequestDispatcher("listaalumnos.jsp");
         view.forward(request, response);
     }
 
-    
+
 }

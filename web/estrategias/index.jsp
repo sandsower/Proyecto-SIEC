@@ -6,7 +6,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="clases.TrUsuario,clases.TrMaestros,clases.TcGrupo,clases.TcMaterias,clases.TrMaestroMateriaGrupo,MovimientosBD.ObtenerIndividuo, MovimientosBD.ObtenerConjunto" %>
+<%@page import="clases.*,MovimientosBD.*" %>
 
 <%
        /* Obtiene objeto usuario de variable de sesion usuario */
@@ -29,8 +29,9 @@
            TrMaestros miMaestro = getIndividuo.obtenerMaestrobyUsuario_ID(usuario.getUsuario_ID()); // Obtiene Maestro
            // Obtiene una lista de MaestrosMateriasGrupos y maestros a traves de la id de maestro         
            ArrayList<TcMaterias> mat = new ArrayList<TcMaterias>();// crear lista materias
-           mat = getGroup.obtenerMateriasbyIDMaestro(miMaestro.getMaestro_ID());
-         
+           ArrayList<CarreraGrupo> car = new ArrayList<CarreraGrupo>();
+           car = getGroup.getCarrerasGruposByIdMaestro(miMaestro.getMaestro_ID());
+
 
            // Obtiene menu y lo ponee en per D:
            ArrayList per = new ArrayList();
@@ -55,17 +56,15 @@
           function change()
           {
               document.getElementById('grupos').innerHTML ="<option value = null >Grupos</option>";
-           <%
-                    out.print("id_materia = document.form1.materias.value;");
-                                        
-                       
-                         for(TcMaterias i: mat)
+              id_carrera = document.form1.carreras.value;
+            <%
+                         for(CarreraGrupo i: car)
                          {
                            
-                                ArrayList<TcGrupo> gr = getGroup.obtenerGruposByIDMateria(i.getMaterias_ID());
+                                ArrayList<TcGrupo> gr = getGroup.obtenerGruposByIDCarrera(i.getCarrera_ID());
                                 for(TcGrupo j: gr)
                                 {
-                                    out.print(" if( id_materia == "+i.getMaterias_ID()+" ) ");
+                                    out.print(" if( id_carrera == "+i.getCarrera_ID()+" ) ");
                                     out.print("{"); 
                                     out.print("document.getElementById('grupos').innerHTML+= ");
                                     out.print(" '<option");
@@ -74,56 +73,48 @@
                                     out.print("}");
                                 }
                                  
-                        }
+                         }
                      
             %>
                    
+          }
+          function change2()
+          {
+              document.getElementById('materias').innerHTML ="<option value = null >Materias</option>";
+              id_carrera = document.form1.carreras.value;
+              id_grupo = document.form1.grupos.value;
+              var grupos = new Array();
+              <%
+              for(CarreraGrupo i: car)
+              {
+                    ArrayList<TcGrupo> gr = getGroup.obtenerGruposByIDCarrera(i.getCarrera_ID());
+                    for(int j = 0; j < gr.size(); j++)
+                    {
+                        out.print(" if( id_carrera == "+i.getCarrera_ID()+" ) ");
+                        out.print("{");
+                        ArrayList<TcMaterias> ms = getGroup.obtenerMateriasbyIDGrupo(gr.get(j).getGrupo_ID());
+                        for(int k = 0; k < ms.size(); k++)
+                        {
+                            out.print(" if( id_grupo == "+gr.get(j).getGrupo_ID()+" ) ");
+                            out.print("{");
+
+                                    out.print("document.getElementById('materias').innerHTML+= ");
+                                    out.print(" '<option");
+                                    out.print(" id="+ms.get(k).getMaterias_ID()+" value = "+ms.get(k).getMaterias_ID()+" ");
+                                    out.print(">"+ms.get(k).getDes_Materias()+"</option>'; ");
+
+                            out.print("}");
+                        }
+                        out.print("}");
+                    }
+              }
+             
+              %>
           }
         </script>
 
 </head>
 <body>
-<div id="top"><a name="top"></a></div>
-
-<div id="wrapper">
-   <div id="header">
-
-       <div id="desktopTitlebarWrapper">
-			<div id="desktopTitlebar">
-				<h1 class="hidden">SIEC</h1>
-				<div class="fr topbar">
-					<ul>
-						<li><a href="../logout.jsp">Desconectarse</a></li>
-                                                <li>Bienvenido <span class="nameuser"><%= usuario.getNombres() + " " + usuario.getApellidoPat() %></span></li>
-					</ul>
-				</div>
-			</div>
-           <div id="mprincipal">
-              <ul>
-		<c:forEach items="${per}" var="menu">
-                        <li><a class="${menu.img}" href="../${menu.url}">${menu.menu}</a></li>
-                </c:forEach>
-             </ul>
-           </div>
-           <div id="mtopctrl">
-              <ul>
-                  <li><a id="btnhidecols" class="btnhidecolsnp" href="#">Ocultar Columnas</a></li>
-             </ul>
-           </div>
-	</div>
-   </div>
-
-    <div id="menul"><!-- Menu izquierdo -->
-    <div class="cuadro">
-	<div class="theader">Navegación</div>
-	<div class="cuadcont">
-            <ul>
-                <li><a href="../systemIndex.jsp">Inicio de Sistema</a></li>
-            </ul>
-	</div>
-    </div>
-   </div><!-- Menu izquierdo -->
- <div id="mitte"><!-- Contenido --> 
         <h1>Registro de Estrategias</h1>
         <p>Las estrategias son asdf...que se son asignadas de manera individual o grupal...Seleccione primero la materia, y posteriormente el grupo para asignar dicha estrategia.</p>
 
@@ -139,53 +130,39 @@
         <div class="cuadro cuadromarg">
 	<div class="theader">Búsqueda por Asignatura - Grupo</div>
 	<div class="cuadcont">
-            <form name="form1" class="form" action="alumnoserv.do" method="post">
+            <form name="form1" class="form" action="estrategias/alumnoserv.do" method="post">
                 <div class="select">
-                    <label>Seleccione la Asignatura</label>
-                    <select id="materias" name="materias" onchange="change()">
-                             <option value = null >Asignaturas</option>
+                    <label>Seleccione la Carrera</label>
+                    <select id="carreras" name="carrera" onchange="change()">
+                             <option value = null >Carreras</option>
                              <%
-                             for(TcMaterias i: mat)
-                             {
-                                out.print("<option value = '");
-                                out.print(i.getMaterias_ID());
-                                out.print("' >");
-                                out.print(i.getDes_Materias());
-                                out.print("</option>");
-                             }
-                          %>
+                                 for(CarreraGrupo i: car)
+                                 {
+                                    out.print("<option value = '");
+                                    out.print(i.getCarrera_ID());
+                                    out.print("' >");
+                                    out.print(i.getDes_Carrera());
+                                    out.print("</option>");
+                                 }
+                             %>
                         </select>
 
                 </div>
                 <div class="selectmultiple">
                         <label>Seleccione el Grupo</label>
-                        <select  multiple  name="grupos" id="grupos">
+                        <select   name="grupos" id="grupos" onchange="change2()" >
                              <option value = null >Grupos</option>
+                        </select>
+                </div>
+                <div class="selectmultiple">
+                        <label>Seleccione la Materia</label>
+                        <select multiple  name="materias" id="materias">
+                             <option value = null >Materias</option>
                         </select>
                 </div>
             <div class="submit"><input type="submit" value="Aceptar" /></div>
            </form>
 	</div>
     </div>
-            
-			 </div><!-- Contenido -->
-   <div id="menur"><!-- Menu derecho -->
-   <div class="cuadro">
-	<div class="theader">Cuadro 2</div>
-	<div class="cuadcont">
-            <ul>
-		<li>Lista 1</li>
-                <li>Lista 2</li>
-                
-            </ul>
-	</div>
-    </div>
-   </div><!-- Menu derecho -->
-   <div id="footerbox"></div>
-</div>
-<div id="footer"><!-- Pie de página -->
-    <hr>
-    <p>&copy; 2010 <a href="#">ISEI UPA</a> -  <a href="#">SIEC</a></p>
-</div><!-- Pie de página -->
 </body>
 </html>
